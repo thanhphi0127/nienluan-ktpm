@@ -1,0 +1,152 @@
+﻿
+<!-- NOI DUNG -->
+<div class="khung" style="margin-top:45px">
+    <div class="row">
+    <div class="nguoidung_nhom">
+	<header class='quanly' style='margin:0px;'>
+		Thông tin quản lý nhóm
+	</header>
+	
+        <div class="row" id="chon_mh">                                  
+        <label>Chọn môn học hiển thị </label>
+        <form action="<?php echo CIT_BASE_URL.'giangvien/tiendocongviec/';?>" method="post">
+        <?php 
+			if(isset($LayMonHoc_GiangVien) && !empty($LayMonHoc_GiangVien)){
+        		echo "<select id='sl_mh' class='form-control' name='MA_LOPHOCPHAN'>";
+					echo "<option value='all'>Tất cả</option>";
+				$i = 0;
+				foreach ($LayMonHoc_GiangVien as $row) {
+					echo "<option value='".$row['MA_LOPHOCPHAN']."'";
+						if($row['MA_LOPHOCPHAN'] == $MA_LOPHOCPHAN) echo "selected";
+					echo ">".$row['MA_MH']." - ".$row['TEN_MH']."</option>";
+					$i++;
+				}
+       	        echo " </select>";
+				echo "<a id='btn_monhoc' class='btnShow' href='".CIT_BASE_URL."giangvien/tiendocongviec/all'>"."   Hiển thị"."</a>";
+			}    
+		?>
+		</form>
+     </div>
+
+ 	<div class="box" >    
+    
+	<?php
+		echo '
+    	<div class="box-body table-responsive">
+			<table id="example1" class="table-bordered table-hover table_nguoidung">
+	
+				   <thead>
+						<tr>
+						<th colspan="8" id="header_mon" >Hiển thị danh sách môn theo nhóm</th>
+						</tr>
+					   <tr>
+						   <th>STT</th>
+						   <th>Tên môn</th>
+						   <th>Nhóm </th>
+						   <th>Tên đề tài</th>
+						   <th>Mô tả</th>
+						   <th width="20px">Số thành viên</th>
+						   <th>Tên trưởng nhóm</th>
+					   </tr>
+				   </thead>
+				<tbody>';
+       if(isset($LayThongTinNhom) && !empty($LayThongTinNhom)){
+                    $i = 1;
+                    foreach ($LayThongTinNhom as $row) {
+						echo "<tr>";
+						
+                        echo "<td width='20px'>$i</td>";
+						echo "<td width='170px'><a href='".CIT_BASE_URL.'giangvien/tiendocongviec/'.$row['MA_LOPHOCPHAN'].'/'.$row['STT_NHOM']."	#reportlist'>".$row['TEN_MH']."</a></td>";
+						echo "<td>Nhóm ".$row['STT_NHOM']."</td>";
+						echo "<td width='200px'>".$row['DETAI']."</td>";
+						echo "<td width='220px'>".$row['MOTA']."</td>"; 
+						echo "<td width='30px'>".$row['SLTV']."</td>";	
+						echo "<td width='110px'>".$row['HOTEN']."</td>";			
+						//echo "<td>Học kì ".$row['MA_HK']."</td>";				
+						echo " </tr>";
+						$i++;
+                    }  
+                }
+		echo '
+				</tbody>
+				<tfoot>
+					   <tr>
+						   <th>STT</th>
+						   <th>Tên môn</th>
+						   <th>Nhóm </th>
+						   <th>Tên đề tài</th>
+						   <th>Mô tả</th>
+						   <th>Số thành viên</th>
+						   <th>Tên trưởng nhóm</th>
+					   </tr>
+				</tfoot>
+			</table>
+		   
+		</div><!-- /.box-body -->
+		<div class="row btn_border" style="background:none;">
+          		<a id="xuat_excel" href="'.CIT_BASE_URL.'giangvien/xuat_excel?ma_mh='.$MA_LOPHOCPHAN.'" class="btn btn-success square-btn-adjust" title="Nhấp để in danh sách nhóm" >Xuất ra file excel</a>
+         </div><!--end div row -->
+	  </div><!-- /.box -->
+
+      <div id="choice" class="active"></div>
+      	';
+	?>         
+
+    	</div><!--end div col-md-12-->
+ 	</div><!--end div row-->
+</div><!--end div contener-->
+
+<section class='view reportlist'>
+		<?php if (isset ($load_dsbc) && $load_dsbc){ ?>
+				
+				<div class='list reportlist' id='reportlist'>
+				<table>
+					<tr class='tieude_bar'><th colspan='13'>Danh sách báo cáo dã gửi của nhóm <?php echo $LayThongTinNhom[0]['STT_NHOM'];?> môn <?php echo $LayThongTinNhom[0]['TEN_MH'];?> </th></tr>
+					<tr><th>STT</th>
+						<th>Môn học</th>
+						<th><span class='sort'>Tiêu đề</span></th>
+						<th><span class='sort'>Ngày gửi</span></th>
+						<th>Trạng thái</th>
+						<th>Người gửi </span></th>
+						<th>Nội dung</th>
+						<th>File </th>
+					</tr>
+					<?php if (isset($dsbaocao) && !empty($dsbaocao)){
+						
+							
+							
+								foreach($dsbaocao as $row){
+								echo "<tr>";
+									
+									echo "<td>".$i."<input type='text' class='hide' value='".$row['MA_BC']."'/></td>";
+									echo "<td>".$row['TEN_MH']."</td>";
+									echo "<td>".$row['TIEUDE']."</td>";
+									echo "<td>".substr($row['NGAYGUI'],0,10)."</td>";
+									echo "<td>";
+										if ('TB_CHUAXEM' == $row['MA_TRANGTHAI']) 
+											echo "Chưa xem"; 
+										else echo "Đã xem";
+									echo "</td>";
+									echo "<td>".$row['HOTEN']."</td>";
+									echo "<td>".$row['NOIDUNG']."</td>";
+									echo "<td>";
+										if ($row['FILEPATH'] == NULL)
+											echo "- - -";
+										else 
+										echo "<a target='_blank' title =' click để download' style='text-decoration:underline;' href='".CIT_BASE_URL."sinhvien/downloadfile/".$row['MA_NH']."/".$row['MA_HK']."/".$row['MA_LOPHOCPHAN']."-".$row['STT_NHOM']."/".$row['FILEPATH']."'>".$row['FILEPATH']." </a></td>";
+								echo "</tr>";	
+								}
+						}
+					else 
+						echo "<span class='error' >Chưa nhận được báo cáo</span>";
+							
+							
+						
+					
+					?>
+				</table>
+				
+				</div>	
+	<?php }?>
+
+</section>

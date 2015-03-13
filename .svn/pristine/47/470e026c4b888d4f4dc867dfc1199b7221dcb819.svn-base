@@ -1,0 +1,208 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Admin extends MY_Controller {
+	private $auth;
+	public function __construct(){
+		parent::__construct();	
+	}
+
+	//---------------------------------------------------------------------------
+    // Name          	: homeview()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------	
+	public function home_view(){
+		$data['seo']['title'] = 'Home view';
+		$data['seo']['keyword'] = 'home view';
+		$data['seo']['description'] = 'Trang chủ của admin';
+		$data['template'] = 'admin/home_view';
+		$this->load->view('layout/admin', isset($data)?$data:NULL);
+	}
+	
+	
+	//---------------------------------------------------------------------------
+    // Name          	: quanlysinhvien()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------	
+	public function quanlysinhvien(){
+		$data['seo']['title'] = 'Quản lý sinh viên';
+		$data['seo']['keyword'] = 'Quản lý sinh viên';
+		$data['seo']['description'] = 'Thông tin sinh viên';
+		$data['template'] = 'admin/quanlysinhvien';
+		$data['press_add'] = 0;
+		$data['press_modify'] = 0;
+		
+		//Load view
+		$this -> load -> model('sinhvien');
+		$this -> load -> model('msinhvien');
+		$data['LayNganh'] = $this -> msinhvien -> LayNganh();
+		
+		if (1){ //$this -> session -> userdata('logged_in') Chua rang buoc dang nhap
+			
+			/////////////////////////////////////////////////////////////////////////////////
+			//Xu ly them sinh vien
+			if($this->input->post('add_student')) {
+			
+				//Gan bien de su dung insert
+				$_POST = $this->input->post('add');
+				$data['add']['_POST'] = $_POST;
+				
+				$this->load->helper(array('form', 'url'));
+				$this->load->library('form_validation');
+				$this->form_validation->set_error_delimiters('<div class="error">','</div>');
+				 
+				//Kiểm tra dữ liệu
+				$this->form_validation->set_rules('mssv','Mã sinh viên','trim|required|min_length[5]|max_length[15]');
+				$this->form_validation->set_rules('hoten', 'Họ tên', 'trim|required|min_length[3]|max_length[40]');
+				$this->form_validation->set_rules('sodt', 'Số điện thoại', 'required|trim|regex_match[/^([0-9])+$/i]');
+				$this->form_validation->set_rules('ngaysinh', 'Năm sinh', 'required|birthday');
+				$this->form_validation->set_rules('mail', 'Địa chỉ mail', 'trim|required|valid_email');
+				$this->form_validation->set_rules('diachi', 'Địa chỉ', 'trim|required');
+			
+				if ($this->form_validation->run()) 
+				{
+					// Tạo biến data lưu dữ liệu insert
+					$data = array(
+						'mssv' => $_POST['mssv'],
+						'ma_nganh' => $_POST['manganh'],
+						'hoten' => $_POST['hoten'],
+						'gioitinh' => $_POST['gioitinh'],
+						'sdt' => $_POST['sodt'],
+						'diachi' => $_POST['diachi'],
+						'mail' => $_POST['mail'],
+						'ngaysinh' => $_POST['ngaysinh'],
+						'khoahoc' => $_POST['khoahoc']
+					);
+					
+					//Them vao CSDL
+					$result = $this->sinhvien->mAddStudent($data);
+					
+					//Kiem tra insert du lieu
+					if (!$result) {
+						$this->lib_string->alert("Không thể thêm được", CIT_BASE_URL.'admin/quanlysinhvien');
+					}
+					else {
+						$this->lib_string->alert(NULL, CIT_BASE_URL.'admin/quanlysinhvien');
+					}
+				}
+				else {
+					$data['press_add'] = 1;
+
+				}// END IF FORM_VALIDATION
+
+			}
+			else {
+				//Nothing
+			}
+			
+			/////////////////////////////////////////////////////////////////////////////////
+			//Xu ly chinh sua sinh vien
+			if($this->input->post('btn_save')) {
+				
+				$this->load->helper(array('form', 'url'));
+				$this->load->library('form_validation');
+				$this->form_validation->set_error_delimiters('<div class="error">','</div>');
+				
+				if (isset($_POST['checked'])){
+					$kq = $_POST['checked'];
+					
+					//Gan bien de su dung insert
+					
+					
+					foreach ($_POST['checked'] as $check)
+					{
+					
+					echo $check;
+					
+					$_POST = $this->input->post('modify');
+					echo $_POST[$check]['hoten'];
+					
+					//Kiểm tra dữ liệu
+					//$this->form_validation->set_rules($_POST[$check]['hoten'], 'Họ tên', 'trim|required|min_length[3]|max_length[40]');
+					//$this->form_validation->set_rules('sodt', 'Số điện thoại', 'required|trim|regex_match[/^([0-9])+$/i]');
+					//$this->form_validation->set_rules('ngaysinh', 'Năm sinh', 'required|birthday');
+					//$this->form_validation->set_rules('mail', 'Địa chỉ mail', 'trim|required|valid_email');
+					//$this->form_validation->set_rules('diachi', 'Địa chỉ', 'trim|required');	
+						
+					
+					//echo $_POST[$check]['ngaysinh'];
+					//echo $_POST[$check]['sdt'];
+					//echo $_POST[$check]['gioitinh'];
+					//echo $_POST[$check]['ma_nganh'];
+					//echo $_POST[$check]['diachi'];
+					//echo $_POST[$check]['mail'];
+					//echo $_POST[$check]['khoahoc'];
+						
+						
+					}
+					
+				}
+				else { }
+			}
+			else {}
+
+			
+			$data['template'] = 'admin/quanlysinhvien';
+			$data['ds'] = $this -> sinhvien -> DanhsanhSV();
+			$this->load->view('layout/admin', isset($data)?$data:NULL);
+			
+		}
+        else{
+			//Neu chua dang nhap
+			$data['template'] = 'auth/login';
+			$this->load->view('layout/login', isset($data)?$data:NULL);
+        }
+		
+	}
+
+
+
+	//---------------------------------------------------------------------------
+	// Name          	: add_student()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: data[], $_POST
+	// return           : none
+	//---------------------------------------------------------------------------
+	public function ChinhSuaSinhVien() {
+		$data['template'] = 'admin/ChinhSuaSinhVien';
+		/////////////////////////////////////////////////////////////////////////////////
+		//Xu ly chinh sua sinh vien
+		//if($this->input->post('btn_modify')) {
+		if (isset($_POST['checked'])){
+			$kq = $_POST['checked'];
+		  
+			foreach ($_POST['checked'] as $check)
+			{
+				//echo $check;
+				$data1 = $check.";";
+				echo $data1;
+			}
+			
+		}
+	}
+	
+
+
+
+	//---------------------------------------------------------------------------
+	// Name          	: __construct()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	public function quanlygiangvien(){
+		$data['seo']['title'] = 'Quản lý giảng viên';
+		$data['seo']['keyword'] = 'Quản lý giảng viên';
+		$data['seo']['description'] = 'Thông tin giảng viên';
+		$data['template'] = 'admin/quanlygiangvien';
+		$this->load->view('layout/admin', isset($data)?$data:NULL);
+	}	
+
+}

@@ -1,0 +1,217 @@
+div {	
+	//float:left;
+	
+}
+p {
+	margin:23px;
+}
+
+.verticalBarGraph {
+	//border-top: 2px solid #372A27;
+	border-bottom: 2px solid #372A27;
+	border-right: 2px solid #FFF;
+	border-left: 2px solid #006;
+	height: 200px;
+	margin-left: 30px;
+	margin-right:auto;
+	margin-top:20px;
+	
+	width:auto;
+	position: relative;
+	
+}
+
+.khung h4 {
+	text-align:center;
+	color:#090;
+}
+	
+.verticalBarGraph li {
+	border: 1px solid #999;
+	border-bottom: none;
+	bottom: 0;
+	list-style:none;
+	margin:0px 10px;
+	padding: 0;
+	position: absolute;
+	text-align: center;
+	width: 80px;
+	}
+	
+
+	
+.barGraph {
+	
+	border-bottom: 3px solid #333;
+	font: 9px Helvetica, Geneva, sans-serif;
+	height: 200px;
+	margin: 1em 0;
+	padding: 0;
+	position: relative;
+	}
+	
+.barGraph li {
+	border: 1px solid #555;
+	border-bottom: none;
+	bottom: 0; 
+	color: #FFF;
+	margin: 0; 
+	padding: 0 0 0 0;
+	position: absolute;
+	list-style: none;
+	text-align: center;
+	width: 39px;
+}
+	
+.barGraph li.p1{ background-color:#666666 }
+.barGraph li.p2{ background-color:#888888 }
+.barGraph li.p3{ background-color:#AAAAAA }
+
+.barname {
+	margin-top:0px;
+	border:none;
+	height: 100px;
+}
+.barname li {
+	border:none;
+	top:5px;
+}
+.fauxLineGraph {
+	background: url(images/horizontal_line_2.png) bottom left;
+	border-bottom: 3px solid #333; 
+	font: 9px Helvetica, Geneva, sans-serif;
+	height: 200px;
+	margin: 1em 0; 
+	padding: 0;
+	position: relative; 
+	}
+.fauxLineGraph li {
+	border-top: 3px solid #555; 
+	border-bottom: none; 
+	color: #000;
+	bottom: 0; 
+	list-style: none;
+	margin: 0; 
+	padding: 0 0 0 0;
+	position: absolute; 
+	text-align: center; 
+	width: 39px; 
+	}
+
+.fauxLineGraph li.p1{ 
+	background: url(images/blue_shadow.png) repeat-x top right;
+	border-color: #4E536B; 
+	}
+.fauxLineGraph li.p2{ 
+	background: url(images/red_shadow.png) repeat-x top right; 
+	border-color: #355B31;
+	}
+.fauxLineGraph li.p3{ 
+	background: url(images/yellow_shadow.png) repeat-x top right; 
+	border-color: #88262B;
+	}
+	
+.set1 {
+	background-color: rgb(11, 98, 164);
+	color:white;
+	border: 2px solid #999;
+	
+}
+
+.set2 {
+	background: rgb(122, 146, 163);
+	color: white;
+	border: 2px solid #999;
+	
+}
+.setspecial {
+	opacity:0.8;
+}
+
+div.thoigian{
+	display: block;
+	color:#FFF;
+	background-color:#009;
+}
+
+div.hoanthanh{
+	display: block;
+	color:#FFF;
+	background-color:#900;
+}
+
+bieudo_nhom{
+	width: auto;
+	border: 1px solid #999;
+}
+
+.khung {
+	margin-top: 42px;
+}
+
+.btn {
+	float: none;
+}
+
+.divThoigian{
+	width: 150px;
+	height: 25px;
+	margin: 5px;
+	padding: 5px;
+	color:#FFF;
+	background-color: rgb(11, 98, 164);
+}
+
+.divHoanthanh{
+	width:150px;
+	height: 25px;
+	margin: 5px;
+	padding: 5px;
+	color:#FFF;
+	background-color: rgb(122, 146, 163);
+}
+
+span {
+	margin-left:5px;
+}
+
+
+.bieudo p {
+	margin: 10px;
+	text-align: center;
+	color:#C00;
+	font-size: 17pt;
+	font-weight:bold;
+}
+
+.note {
+	//float:right;
+	margin-left: 600px;
+	min-height: 150px;
+}
+
+table.table_congviec{
+	float:left;
+	margin-left: 30px;
+}
+
+table.table_congviec tr td:first-child{
+	width: 200px;
+}
+
+table.table_congviec tr td{
+	height: 32px;
+}
+
+.noidung{
+	margin-top: 10px;
+	background-color:#FCFCFC;
+}
+
+hr {
+	margin:15px;
+}
+
+label {
+	margin-left: 30px;
+}

@@ -1,0 +1,54 @@
+
+<header id='giangvien_top'>
+	<div id='bar'>
+		<div id='cssmenu'>
+			<ul>
+				<li><a href="<?php echo CIT_BASE_URL; ?>giangvien/">Trang chủ</a></li>
+               <li class='last'><a href='<?php echo CIT_BASE_URL; ?>diendan'><span>Diễn đàn</span></a></li>
+               <!-- <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/thongtingiangvien'><span>Giảng viên</span></a></li>-->
+			   <li class='has-sub'><a  href='<?php echo CIT_BASE_URL; ?>giangvien/danhsachnhom'><span>Theo dõi nhóm</span></a>
+				  <ul>
+						 <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/danhsachnhom'><span>Danh sách nhóm</span></a>
+						 </li>
+						 <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/thongke'><span>Tiến độ công việc</span></a>
+						 </li>
+                      	<li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/bieudocongviec'><span>Biểu đồ công việc</span></a>
+						 </li>
+                        <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/danhsachsinhvien'><span>Danh sách sinh viên</span></a></li>
+					</ul>
+				</li>
+				<li class='has-sub'><a  href='<?php echo CIT_BASE_URL; ?>giangvien/quanlymaunhom'><span>Quản lý mẫu nhóm</span></a>
+				  <ul>
+						 <li class='last'><a ><span class='manipulation btnAddgrouptemplate'>Tạo mẫu nhóm</span></a>
+						 </li>
+						 <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/quanlymaunhom'><span>Danh sách mẫu nhóm </span></a>
+						 </li>
+					</ul>
+				</li>
+				<!--<li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/thongke'><span>Thống kê</span></a>
+				 </li>
+				<li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/download'><span>Download</span></a>
+				 </li>-->
+                <li class='last' style='float:right;'><a ><span id='menu_thongbao'><img src='public/img/iconthongbao.png'/>Thông báo<?php echo ' ('.$count_tb. ')' ;?></span></a>
+				 </li>
+			</ul>
+		</div>
+			
+	</div>
+	
+	<div id='frame_thongbao'>
+		<img class='closeall' src='public/img/iconclose.png' title='Đóng thông báo'/>
+
+		<div class='dsthongbao'>
+			<iframe id='frame_notification' class='arrow_box' src="<?php echo CIT_BASE_URL;?>thongbao/dsthongbao" scrolling="auto"></iframe>
+		</div>
+		
+		<div class='form_thongbao'>	
+		</div>
+	</div>
+			
+	
+				
+		
+	
+</header>

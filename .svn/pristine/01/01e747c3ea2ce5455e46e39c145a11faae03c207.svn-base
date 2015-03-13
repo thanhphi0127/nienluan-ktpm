@@ -1,0 +1,650 @@
+﻿<!-- * View quản lý công việc
+     * @author: Thành Tâm
+-->
+
+
+<section id='cit_wrapper' >
+	<header class='quanly'>
+		<img src='public/img/quanlycongviec_logo.png'></img>
+		<span class='title'> Quản lý công việc</span>
+		
+	</header>
+	<nav class='menu_quanly'>
+			<ul class='main'>
+			   <li class='main'><a  class='main view_common_list'>Xem lịch sử công việc</a>
+				  <ul class='item'>
+					 <li class='item'><a  class='item view_calendar'>Xem dạng lịch</a> </li>
+					 <li class='item'><a  class='item view_list'>Xem dạng danh sách</a> </li>
+				  </ul>
+			   </li>
+			   <li class='main'><a class='main view_report'>Báo cáo tiến độ</a> </li>			   
+			</ul>
+	</nav>
+	
+	<section class='list tasklist' id='section_tasklist'>
+		<header class='tab tasklist'>
+			<ul>
+			<li>
+			<span  class="btnAMD manipulation btnAddtask">Tạo công việc</span>
+			</li>
+			</ul>
+			
+		</header>
+		<section class='view tasklist'>
+			<section class='advance'>
+				<?php if (isset($tatcamonhocthamgia) && !empty($tatcamonhocthamgia)){
+					
+					echo "<div class='search'>
+					
+						
+						<p>
+						<label><div class='span_title'>Môn học</div>
+							<select name='data[MA_MH]'>";
+							echo "<option value='all'>--Tất cả--</option>";
+							foreach ($tatcamonhocthamgia as $row){
+								echo "<option value='".$row['MA_MH']."'>".$row['TEN_MH']."</option>";
+							}
+							echo "</select> 
+						</label>
+						</p>
+						
+						
+						
+					</div>";
+					}
+					?>
+				
+			</section>
+			<div id='calendar'>
+			</div>
+			<div class='list tasklist'>
+				<table>
+					<tr><th><input type='checkbox' value='checkall'/></th>
+						<th>Môn học</th>
+						<th>Tên công việc </th>
+						<th>Từ ngày  </th>
+						<th>Đến ngày  </th>
+						<th>Số giờ</th><th>Mô tả</th><th>Hoàn thành(%)</th><th>Người được giao</th><th>Trạng thái</th><th>Mức độ</th><th>Tính chất</th><th>Thao tác</th>
+					</tr>
+					<?php if (isset($query_dscongviec) && !empty($query_dscongviec)){
+						foreach ($query_dscongviec as $MA_LOPHOCPHAN => $congviec_monhoc){
+							foreach ($congviec_monhoc['dscongviec'] as $congviec){
+								
+							echo "<tr> ";
+							echo "<td class='center'><input type='checkbox' name='check_list[]' value='".$congviec['MA_CV']."'/></td>";
+							echo "<td class='TEN_MH'><a>".$congviec_monhoc['monhoc']['TEN_MH']."</a></td>";
+							echo "<td class='TEN_CV'><a>".$congviec['TEN_CV']."</a></td>";
+							echo "<td class='NGAYBD'><a>".$congviec['NGAYBD']."</a></td>";
+							echo "<td class='NGAYKT'><a>".$congviec['NGAYKT']."</a></td>";
+							echo "<td class='THOIGIANUL'><a>".$congviec['THOIGIANUL']."</a></td>";
+							echo "<td class='MOTA'><a>".$congviec['MOTA']."</a></td>";
+							echo "<td class='TILEHOANTHANH'><a>".$congviec['TILEHOANTHANH']."</a></td>";
+							echo "<td class='NGUOIDUOCGIAO'><a>";
+								$array_nguoiduocgiao = explode(',',$congviec['NGUOIDUOCGIAO']);	
+								foreach ($array_nguoiduocgiao as $nguoiduocgiao){
+									echo $nguoiduocgiao;
+									echo "<br/>";
+								}
+							echo "</a></td>";
+							echo "<td class='TEN_TRANGTHAI'><a>".$congviec['TEN_TRANGTHAI']."</a></td>";
+							echo "<td class='TEN_MUCDO'><a>".$congviec['TEN_MUCDO']."</a></td>";
+							echo "<td class='TEN_TINHCHAT'><a>".$congviec['TEN_TINHCHAT']."</a></td>";
+							echo "<td><span class='manipulation btnDeletetask'><img src='public/img/deleteicon.png'></img></span>
+									<span class='manipulation btnModifytask'><img src='public/img/editicon.png'></img></span></td>
+								</tr>";
+							}
+						}
+					}
+					?>
+					
+					
+				</table>
+				<section class='pagination'>
+					<ul>
+						<li><a href='#'>Trang đầu</a></li>
+						<li><a href='#'>Lùi lại</a></li>
+						<li><a href='#'>1</a></li>
+						<li><a href='#'>Tiếp theo</a></li>
+						<li><a href='#'>Trang cuối</a></li>
+						<li>
+							<form action='' method='post' >
+								<input type='text' class='search' placeholder='Nhập số trang'/> 
+								<input type='submit' value='Chuyển đến'/>;
+							</form>
+						</li>
+					</ul>
+				</section>
+			</div>	
+		</section>
+		
+	</section>
+	<section class='list reportlist' id='section_reportlist'>
+		<header class='tab reportlist'>
+			
+			<ul>
+				<li><span  class="btnAMD manipulation btnAddreport">Tạo báo cáo</span></li>
+			</ul>
+		</header>
+		<section class='view reportlist'>
+				<section class='advance'>
+				<?php if (isset($tatcamonhocthamgia) && !empty($tatcamonhocthamgia)){
+					
+					echo "<div class='search'>
+					
+						
+						<p>
+						<label><div class='span_title'>Môn học</div>
+							<select name='data[MA_MH]'>";
+							echo "<option value='all'>--Tất cả--</option>";
+							foreach ($tatcamonhocthamgia as $row){
+								echo "<option value='".$row['MA_MH']."'>".$row['TEN_MH']."</option>";
+							}
+							echo "</select> 
+						</label>
+						</p>
+						
+						
+						
+					</div>";
+					}
+					?>
+				</section>
+				
+				<div class='list reportlist' id='reportlist'>
+				<table>
+					<tr><th>STT</th>
+						<th>Môn học</th>
+						<th><span class='sort'>Tiêu đề<img src='public/img/downarrowicon.png'></img></span></th>
+						<th><span class='sort'>Ngày gửi  <img src='public/img/downarrowicon.png'></img></span></th>
+						<th>Trạng thái</th>
+						<th>Người gửi </span></th>
+						<th>Nội dung</th>
+						<th>Danh sách file</th>
+					</tr>
+					<?php if (isset($dsbaocao) && !empty($dsbaocao)){
+						
+							foreach($dsbaocao as $mon){
+								$i = 0;
+								foreach($mon as $row){
+								echo "<tr>";
+									$i++;
+									echo "<td>".$i."<input type='text' class='hide' value='".$row['MA_BC']."'/></td>";
+									echo "<td>".$row['TEN_MH']."</td>";
+									echo "<td>".$row['TIEUDE']."</td>";
+									echo "<td>".substr($row['NGAYGUI'],1,10)."</td>";
+									echo "<td>";
+										if ('TB_CHUAXEM' == $row['MA_TRANGTHAI']) 
+											echo "Chưa xem"; 
+										else echo "Đã xem";
+									echo "</td>";
+									echo "<td>".$row['HOTEN']."</td>";
+									echo "<td>".$row['NOIDUNG']."</td>";
+									echo "<td><span class='manipulation btnXemdsbc'>Click để xem</span>";
+								echo "</tr>";	
+								}
+							}
+							
+							
+						
+					}
+					?>
+				</table>
+				
+				</div>	
+		</section>
+				
+				
+		
+	</section>
+	
+	<!-- //MANIPULATION 
+	     //
+		 //
+		 //
+		 //
+		 //
+	-->
+	<section class='manipulation'>
+		<div id='black'>
+		</div>
+		
+		
+		<div id='addtask'  class="form">
+
+				  <form action="" method="post" class="w50p">
+				  <input type='text' id ='flag' class='hide' name='data[flag]' value='<?php echo common_postvalue(isset($flag_post) ? $flag_post : '');?>'/>
+				  <h1>
+						TẠO CÔNG VIỆC
+						<span>Điền đầy đủ thông tin.</span>
+					
+					</h1>
+					
+
+					<table>
+						<tr><td><p><span class='error monhoc'></span></p>
+									<label  id='subject'><span>Môn học: </span>
+											<select name='data[MA_LOPHOCPHAN]' >
+											<option value='0-0'>Chọn 1 môn học</option>
+												<?php if (isset($tatcamonhocthamgia) && !empty($tatcamonhocthamgia)){
+													
+													
+													foreach ($tatcamonhocthamgia as $row){
+														if (isset($_post) && $_post['MA_LOPHOCPHAN'] == $row['MA_LOPHOCPHAN'].'-'.$row['STT_NHOM'])
+															echo "<option value='".$row['MA_LOPHOCPHAN']."-".$row['STT_NHOM']."' selected >".$row['TEN_MH']."</option>";
+														else 
+															echo "<option value='".$row['MA_LOPHOCPHAN']."-".$row['STT_NHOM']."' >".$row['TEN_MH']."</option>";
+													}
+													
+												}
+												
+												?>
+
+											</select>
+									</label>
+							</td>
+							
+						<td rowspan='2'><p><span class='error nguoiduocgiao'></span></p>
+								<label><span>Người được giao (Ctrl + Click để chọn nhiều) </span>
+										<select id='NGUOIDUOCGIAO' name='data[NGUOIDUOCGIAO][]' multiple>
+											
+												 <?php if (isset($query_dsthanhvien) && !empty($query_dsthanhvien)){
+														foreach ($query_dsthanhvien['thanhvien'] as $row){
+															echo "<option value='".$row['MSSV']."'>".$row['HOTEN']."</option>";
+														}
+													}
+													else 
+														echo "<option value='0' disabled='disabled'>Chọn môn học để hiển thị thành viên</option>";
+												?>
+											
+										</select>
+								</label>
+							</td>
+						<tr>
+							<td>
+							
+								<label><p><span class='error ten_cv'></span></p>
+									<span>Tên công việc:</span>
+									<input id="TEN_CV" type="text" name="data[TEN_CV]" value='<?php echo common_postvalue(isset($_post['TEN_CV']) ? $_post['TEN_CV'] : '');?>' />
+								</label>
+							</td>
+						</tr>
+						<tr><td><p><span class='error thoigian'></span></p>
+								<fieldset>
+									<legend>Thời gian</legend>
+										<label>Ngày bắt đầu
+											<input type="date" id = 'NGAYBD' name='data[NGAYBD]' value='<?php echo date('Y-m-d'); ?>' />
+										</label>
+									
+									
+										<label>Ngày kết thúc  <input type="date" id='NGAYKT' name='data[NGAYKT]' value='<?php echo common_postvalue(isset($_post['NGAYKT']) ? $_post['NGAYKT'] : '');?>' /></label>
+									
+									
+										<label>Uớc lượng <input type="number" min ='0' max='99' id ='THOIGIANUL' name='data[THOIGIANUL]' value='<?php echo common_postvalue(isset($_post['THOIGIANUL']) ? $_post['THOIGIANUL'] : '0');?>' /><span> giờ</span></label>
+									
+								</fieldset>
+							</td>
+							<td><fieldset>
+									<legend>Trạng thái</legend>
+									
+								<?php if (isset($_post['MA_TRANGTHAI'])){
+								if ('CV_DONG' == $_post['MA_TRANGTHAI'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]' checked='checked' value='CV_DONG'>Đóng</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_MO'  value='CV_MO'>Mới mở</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_TRONG' >Trong tiến trình</label></p>";
+									else if ('CV_MO' == $_post['MA_TRANGTHAI'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]'  value='CV_DONG'>Đóng</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_MO' checked='checked' value='CV_MO'>Mới mở</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_TRONG' >Trong tiến trình</label></p>";
+									else 
+										echo "
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]'  value='CV_DONG'>Đóng</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_MO'  value='CV_MO'>Mới mở</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' checked='checked' value='CV_TRONG' >Trong tiến trình</label></p>";
+								}
+								else 
+									echo "<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_DONG'>Đóng</label></p>
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]' checked='checked' value='CV_MO'  value='CV_MO'>Mới mở</label></p>
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_TRONG' >Trong tiến trình</label></p>";
+									
+								?>
+								</fieldset>
+							</td>
+							
+						</tr>
+						<tr>
+							<td><fieldset>
+									<legend>Mức độ</legend>
+								<?php if (isset($_post['MA_MUCDO'])){
+									if ('1' == $_post['MA_MUCDO'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_MUCDO][]' checked='checked' value='1'>Không quan trọng</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='2'  value='Bình thường'>Bình thường</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='3'>Quan trọng</label></p>";
+									else if ('2' == $_post['MA_MUCDO'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_MUCDO][]' value='1'>Không quan trọng</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='2' checked='checked' value='Bình thường'>Bình thường</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='3'>Quan trọng</label></p>";
+									else 
+										echo "
+											<p><label><input type='radio' name='data[MA_MUCDO][]' value='1'>Không quan trọng</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='2'  value='Bình thường'>Bình thường</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='3' checked='checked'>Quan trọng</label></p>";
+								}
+								else 
+									echo "<p><label><input type='radio' name='data[MA_MUCDO][]' value='1'>Không quan trọng</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='2' checked='checked' value='Bình thường'>Bình thường</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='3'>Quan trọng</label></p>";
+								?>
+								
+								</fieldset>
+							</td>
+							<td>
+							<fieldset>
+									<legend>Tính chất</legend>
+								<?php if (isset($_post['MA_TINHCHAT'])){
+									if ('NV' == $_post['MA_TINHCHAT'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_TINHCHAT][]' checked='checked' value='NV'>Nhiệm vụ</label></p>
+								<p><label><input type='radio' name='data[MA_TINHCHAT][]' value='KK'>Khó khăn</label></p>";
+									else 
+										echo "
+											<p><label><input type='radio' name='data[MA_TINHCHAT][]' value='NV'>Nhiệm vụ</label></p>
+								<p><label><input type='radio' name='data[MA_TINHCHAT][]' checked='checked' value='KK'>Khó khăn</label></p>";
+								}
+								else 
+									echo "<p><label><input type='radio' name='data[MA_TINHCHAT][]' checked='checked' value='NV'>Nhiệm vụ</label></p>
+											<p><label><input type='radio' name='data[MA_TINHCHAT][]' value='KK'>Khó khăn</label></p>";
+								?>
+									
+							
+							 </fieldset>
+							</td>
+						</tr>
+						<tr>	
+							<td >
+								<label><span>Mô tả</span><textarea name='data[MOTA]' placeholder="Nhập đoạn văn bản"  ><?php echo common_postvalue(isset($_post['MOTA']) ? $_post['MOTA'] : '');?></textarea></label>
+							</td>
+							<td>
+								<label>Hoàn thành <br/><input type="number" min="0" max='99' step='5' id ='TILEHOANTHANH' name='data[TILEHOANTHANH]' value='<?php echo common_postvalue(isset($_post['TILEHOANTHANH']) ? $_post['TILEHOANTHANH'] : '0');?>' /><span> %</span></label>
+							</td>
+						</tr>
+						
+					
+					
+					<tr><td colspan='2'>
+					<label>
+							<span>&nbsp;</span> 
+							<input type="button" class="submit-button" name='close' value="Đóng" /> 
+						</label>
+						 
+						<label>
+							<span>&nbsp;</span> 
+							<input type="button" class="submit-button" value="Hủy" /> 
+						</label>
+						<label>
+							<span>&nbsp;</span> 
+							<input type="submit" class="submit-button" name='addtask' value="Tạo" /> 
+						</label>
+						<input type='submit' class='hide' name='getgroupmate' value='Lấy thành viên cùng nhóm'/>	
+					</td></tr>
+					</table>
+					    
+		</form>
+		</div>
+<!--/*--------------------------------------------------------------------------------------------------------------------------------------*/-->
+			
+		<div id='addreport' class="form">
+				
+				  <form action="" method="post" enctype="multipart/form-data" >
+				  
+					<h1>TẠO BÁO CÁO
+						<span>Điền đầy đủ thông tin.</span>
+					</h1>
+					
+					<label ><span>Môn học: </span>
+							<select name='data[MA_LOPHOCPHAN]'>
+								<?php if (isset($tatcamonhocthamgia) && !empty($tatcamonhocthamgia)){
+									echo "<option value='0-0'>Chọn 1 môn học</option>";
+									foreach ($tatcamonhocthamgia as $row){
+										echo "<option value='".$row['MA_LOPHOCPHAN']."-".$row['STT_NHOM']."'>".$row['TEN_MH']."</option>";
+									}
+								}
+								?>
+
+							</select>
+					</label>
+
+					<label>
+						<span>Ngày gửi (hôm nay): </span>
+						<input readonly='readonly' type="text" name="data[NGAYGUI]" value='<?php echo date('Y-m-d'); ?>' />
+					</label>
+						
+					<label>
+						<span>Tiêu đề:</span>
+						<input id="name" type="text" name="data[TIEUDE]"  />
+					</label>
+					
+					<label >
+					
+						<span>Nội dung</span>
+						<textarea rows='50' name='data[NOIDUNG]' placeholder='Nhập đoạn văn bản'></textarea>
+					</label>	
+					<p>
+						<label> <span>  </span><input type='file' name='file' value='Chọn file'/></label>
+					</p>
+					
+					 
+					 <label>
+						<span>&nbsp;</span> 
+						<input type="submit" class="submit-button" name='addreport' value="Tạo" /> 
+					</label>    
+				
+		</form>
+		</div>
+		
+		
+		<!-- -------------------------------------------------------------------------------------------------------------------------- -->
+		<div id='modifytask' class='form'>
+			<form action="" method="post" class="w50p">
+				  <input type='text' id ='flag2' class='hide' name='data[flag2]' value='<?php echo common_postvalue(isset($flag_post) ? $flag_post : '');?>'/>
+				  <h1>
+						CHỈNH SỬA CÔNG VIỆC
+						<span>Điền đầy đủ thông tin.</span>
+					
+					</h1>
+					
+
+					<table>
+						<tr><td><p><span class='error monhoc'></span></p>
+									<label  id='subject2'><span>Môn học: </span>
+											<select name='data[MA_LOPHOCPHAN]' >
+											<option value='0-0'>Chọn 1 môn học</option>
+												<?php if (isset($tatcamonhocthamgia) && !empty($tatcamonhocthamgia)){
+													
+													
+													foreach ($tatcamonhocthamgia as $row){
+														if (isset($_post) && $_post['MA_LOPHOCPHAN'] == $row['MA_LOPHOCPHAN'].'-'.$row['STT_NHOM'])
+															echo "<option value='".$row['MA_LOPHOCPHAN']."-".$row['STT_NHOM']."' selected >".$row['TEN_MH']."</option>";
+														else 
+															echo "<option value='".$row['MA_LOPHOCPHAN']."-".$row['STT_NHOM']."' >".$row['TEN_MH']."</option>";
+													}
+													
+												}
+												
+												?>
+
+											</select>
+									</label>
+							</td>
+							
+						<td rowspan='2'><p><span class='error nguoiduocgiao'></span></p>
+								<label><span>Người được giao (Ctrl + Click để chọn nhiều) </span>
+										<select id='NGUOIDUOCGIAO2' name='data[NGUOIDUOCGIAO][]' multiple>
+											
+												 <?php if (isset($query_dsthanhvien) && !empty($query_dsthanhvien)){
+														foreach ($query_dsthanhvien['thanhvien'] as $row){
+															echo "<option value='".$row['MSSV']."'>".$row['HOTEN']."</option>";
+														}
+													}
+													else 
+														echo "<option value='0' disabled='disabled'>Chọn môn học để hiển thị thành viên</option>";
+												?>
+											
+										</select>
+								</label>
+							</td>
+						<tr>
+							<td>
+							
+								<label><p><span class='error ten_cv'></span></p>
+									<span>Tên công việc:</span>
+									<input id="TEN_CV2" type="text" name="data[TEN_CV]" value='<?php echo common_postvalue(isset($_post['TEN_CV']) ? $_post['TEN_CV'] : '');?>' />
+								</label>
+							</td>
+						</tr>
+						<tr><td><p><span class='error thoigian'></span></p>
+								<fieldset>
+									<legend>Thời gian</legend>
+										<label>Ngày bắt đầu
+											<input type="date" id = 'NGAYBD2' name='data[NGAYBD]' value='<?php echo date('Y-m-d'); ?>' />
+										</label>
+									
+									
+										<label>Ngày kết thúc  <input type="date" id='NGAYKT2' name='data[NGAYKT]' value='<?php echo common_postvalue(isset($_post['NGAYKT']) ? $_post['NGAYKT'] : '');?>' /></label>
+									
+									
+										<label>Uớc lượng <input type="number" min="0" max="100" step="5" id ='THOIGIANUL2' name='data[THOIGIANUL]' value='<?php echo common_postvalue(isset($_post['THOIGIANUL']) ? $_post['THOIGIANUL'] : '0');?>' /><span> Giờ</span></label>
+									
+								</fieldset>
+							</td>
+							<td><fieldset class='MA_TRANGTHAI'>
+									<legend>Trạng thái</legend>
+									
+								<?php if (isset($_post['MA_TRANGTHAI'])){
+								if ('CV_DONG' == $_post['MA_TRANGTHAI'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]' checked='checked' value='CV_DONG'>Đóng</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_MO'  value='CV_MO'>Mới mở</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_TRONG' >Trong tiến trình</label></p>";
+									else if ('CV_MO' == $_post['MA_TRANGTHAI'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]'  value='CV_DONG'>Đóng</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_MO' checked='checked' value='CV_MO'>Mới mở</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_TRONG' >Trong tiến trình</label></p>";
+									else 
+										echo "
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]'  value='CV_DONG'>Đóng</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_MO'  value='CV_MO'>Mới mở</label></p>
+								<p><label><input type='radio' name='data[MA_TRANGTHAI][]' checked='checked' value='CV_TRONG' >Trong tiến trình</label></p>";
+								}
+								else 
+									echo "<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_DONG'>Đóng</label></p>
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]' checked='checked' value='CV_MO'  value='CV_MO'>Mới mở</label></p>
+											<p><label><input type='radio' name='data[MA_TRANGTHAI][]' value='CV_TRONG' >Trong tiến trình</label></p>";
+									
+								?>
+								</fieldset>
+							</td>
+							
+						</tr>
+						<tr>
+							<td><fieldset class='MA_MUCDO'>
+									<legend>Mức độ</legend>
+								<?php if (isset($_post['MA_MUCDO'])){
+									if ('1' == $_post['MA_MUCDO'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_MUCDO][]' checked='checked' value='1'>Không quan trọng</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='2'  value='Bình thường'>Bình thường</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='3'>Quan trọng</label></p>";
+									else if ('2' == $_post['MA_MUCDO'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_MUCDO][]' value='1'>Không quan trọng</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='2' checked='checked' value='Bình thường'>Bình thường</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='3'>Quan trọng</label></p>";
+									else 
+										echo "
+											<p><label><input type='radio' name='data[MA_MUCDO][]' value='1'>Không quan trọng</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='2'  value='Bình thường'>Bình thường</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='3' checked='checked'>Quan trọng</label></p>";
+								}
+								else 
+									echo "<p><label><input type='radio' name='data[MA_MUCDO][]' value='1'>Không quan trọng</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='2' checked='checked' value='Bình thường'>Bình thường</label></p>
+								<p><label><input type='radio' name='data[MA_MUCDO][]' value='3' >Quan trọng</label></p>";
+								?>
+								
+								</fieldset>
+							</td>
+							<td>
+							<fieldset class='MA_TINHCHAT'>
+									<legend>Tính chất</legend>
+								<?php if (isset($_post['MA_TINHCHAT'])){
+									if ('NV' == $_post['MA_TINHCHAT'][0])
+										echo "
+											<p><label><input type='radio' name='data[MA_TINHCHAT][]' checked='checked' value='NV'>Nhiệm vụ</label></p>
+								<p><label><input type='radio' name='data[MA_TINHCHAT][]' value='KK'>Khó khăn</label></p>";
+									else 
+										echo "
+											<p><label><input type='radio' name='data[MA_TINHCHAT][]' value='NV'>Nhiệm vụ</label></p>
+								<p><label><input type='radio' name='data[MA_TINHCHAT][]' checked='checked' value='KK'>Khó khăn</label></p>";
+								}
+								else 
+									echo "<p><label><input type='radio' name='data[MA_TINHCHAT][]' checked='checked' value='NV'>Nhiệm vụ</label></p>
+											<p><label><input type='radio' name='data[MA_TINHCHAT][]' value='KK'>Khó khăn</label></p>";
+								?>
+									
+							
+							 </fieldset>
+							</td>
+						</tr>
+						<tr>	
+							<td >
+								<label><span>Mô tả</span><textarea name='data[MOTA]' placeholder="Nhập đoạn văn bản"  ><?php echo common_postvalue(isset($_post['MOTA']) ? $_post['MOTA'] : '');?></textarea></label>
+							</td>
+							<td>
+								<label>Hoàn thành<br/> <input type="number" min="0" max="100" step="10" id ='TILEHOANTHANH2' name='data[TILEHOANTHANH]' value='<?php echo common_postvalue(isset($_post['TILEHOANTHANH']) ? $_post['TILEHOANTHANH'] : '0');?>' /><span> %</span></label>
+								<br/>
+								<div class='bar_tilehoanthanh'>
+									<div></div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan='2'>
+								<label><span>Ghi chú cho lần thay đổi này</span><textarea name='data[GHICHU]' placeholder="Nhập đoạn văn bản"  ><?php echo common_postvalue(isset($_post['GHICHU']) ? $_post['GHICHU'] : '');?></textarea></label>
+							</td>
+						</tr>
+						
+					
+					
+					<tr><td colspan='2'>
+					<label>
+							<span>&nbsp;</span> 
+							<input type="button" class="submit-button close" value="Đóng" /> 
+						</label>
+						 
+						<label>
+							<span>&nbsp;</span> 
+							<input type="reset" class="submit-button" value="Hủy" /> 
+						</label>
+						<label>
+							<span>&nbsp;</span> 
+							<input type="submit" class="submit-button" name='modifytask' value="Lưu" /> 
+						</label>
+						<input type='submit' class='hide' name='getgroupmate2' value='Lấy thành viên cùng nhóm'/>	
+					</td></tr>
+					</table>
+					    
+		</form>
+		</div>
+		<div id='iframe_login'>
+			<div class='verify'><?php $this->load->view('auth/login');?></div>
+			<div  class='iframe_login_up' >
+				<img src='public/img/buttonup.png'></img>
+			</div>
+		</div>
+	</section>
+</section>

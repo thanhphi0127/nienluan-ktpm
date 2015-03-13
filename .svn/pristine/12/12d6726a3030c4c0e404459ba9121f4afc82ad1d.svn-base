@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>He thong quan ly nhom</title>
+    <meta charset="utf-8" />
+
+  </head>
+  
+  <body style="font-family:'Times New Roman'">
+	
+
+        
+	<!-- NOI DUNG -->
+    <div class="container khung" style="font-family:'Times New Roman'">
+        <div class="row">
+        <div class="col-md-12 nguoidung">
+          
+        <h5>Thông tin người dùng</h5>
+<table id="table_nguoidung" border="1">
+               <thead>
+                   <tr>
+                       <th>STT</th>
+                       <th>Mã chủ đề</th>
+                       <th>Tiêu đề</th>
+                       <th>Trạng thái</th>
+                       <th>Ngày tạo</th>
+                       <th>Nội dung</th>
+                   </tr>
+               </thead>
+	<tbody>
+<?php 
+	  session_start();
+	  $user = new mdiendan();
+	  $i = 1;
+	  foreach ($ds as $user)
+	  {
+			echo "<tr>";  
+			echo "<td>$i</td>";         
+			echo "<td>$user->machude</td>";                
+			echo "<td>$user->tieude</td>";         
+			echo "<td>$user->trangthai</td>";       
+			echo "<td>$user->ngaytao</td>";   
+			echo "<td>$user->noidung</td>";        
+			echo "</tr>";     
+		  $i++;
+	  }
+?>
+    </tbody>
+              <tfoot>
+                       <th>STT</th>
+                       <th>Mã chủ đề</th>
+                       <th>Tiêu đề</th>
+                       <th>Trạng thái</th>
+                       <th>Ngày tạo</th>
+                       <th>Nội dung</th>
+              </tfoot>
+           </table>
+
+         
+         <div class="row btn_border">
+         <div class="col-md-2"></div>
+         	<div class="col-md-8 btn_nguoidung">
+				<button class="btn btn-default"><i class="fa fa-refresh"></i> Làm mới</button>
+				<button class="btn btn-default"><i class="fa fa-dedent"></i> Thêm</button>
+                <button class="btn btn-default"><i class="fa fa-edit"></i> Cập nhật</button>
+				<button class="btn btn-default"><i class="fa fa-pencil"></i> Xóa</button>
+                <div style="background-color:#CCC"
+            </div>
+            <div class="col-md-2"></div>
+         </div><!--end div row -->
+         
+        </div>
+        <!--end div col-md-12-->
+<!--        
+        <div class="col-md-2" style=" border:1px solid red">
+        	<div ><input class="btn btn-success" type="button" value="Luu lai" /></div>
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Default <span class="caret"></span></button>
+							
+            <div class="col-md-7">
+            	<p class="sotrang" style="margin-top: 35px">
+                	<input type="button"  class="btn btn-info list_btn" value="<< Trang đầu"</input>
+                	<input type="button" class="btn btn-default btn-xs" value="Trước"</input>
+                	<input type="button" class="btn btn-default btn-xs" value="1"</input>
+                    <input type="button" class="btn btn-default btn-xs" value="2"</input>
+                    <input type="text" style="width: 35px; height:25px"/>
+                    <input type="button" class="btn btn-default btn-xs" value="Chuyển đến"</input>
+                    <input type="button" class="btn btn-default btn-xs" value="Kế tiếp"</input>
+                	<input type="button" class="btn btn-info list_btn" value=">> Trang cuối"</input></p>
+            </div>
+
+
+        </div><!--end div col-md-3 -->
+        
+    	</div><!--end div row-->
+	</div><!--end div contener-->
+    
+    
+            <br />
+		<div style="border: 1px dashed #F0F5F5;"></div>
+		<div class="footer">
+        <div class="container">
+        <br />
+			<p>Khoa Công nghệ Thông tin & Truyền thông - Trường Đại học Cần Thơ</p>
+			<p>Số 01 Lý Tự Trọng, Q. Ninh Kiều, TP. Cần Thơ, Việt Nam; Điện thoại: 84 710 3831301; Fax: 84 710 3830841</p>
+            </div>
+		</div>
+		<hr />
+        <br /><br />
+    
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Iframe extends MY_Controller {
+	
+	public function __construct(){
+		parent::__construct();
+		
+		
+	}
+	public function thongtinmaunhom($MA_LOPHOCPHAN){
+		$data['maunhom'] = $this->mgiangvien->lay_maunhom_bang_malophocphan($MA_LOPHOCPHAN);
+		$data['giangvien'] = $this->mgiangvien->lay_thongtincanhan($data['maunhom'][0]['MSCB']);
+		$data['template'] = 'iframe/thongtinmaunhom';
+		$this->load->view ('layout/iframe', isset($data) ? $data : NULL);
+			
+	
+	}
+	
+	
+
+}

@@ -1,0 +1,53 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Thongbao extends MY_Controller {
+	private $auth;
+	public $CI;
+	public function __construct(){
+		parent::__construct();
+		$this->CI =& get_instance();
+		$this->auth = $this->lib_authentication->check_cookie();			
+	}
+	public function dsthongbao(){/*
+		$data['seo']['title'] = 'Thông báo';
+		$data['seo']['keyword'] = 'notification';
+		$data['seo']['description'] = 'Hiển thị thông báo và tin nhắn của thành viên khác hay hệ thống gửi đến';
+		$usertype = $this->classify_user();
+		//if ($usertype == -1)
+			//$this->CI->lib_string->alert('Bạn chưa đăng nhập', CIT_BASE_URL."auth/login");
+	//	else 
+			if (0 == $usertype){
+			$data['usertype'] = 0;
+		}
+		else if (1 == $usertype) {
+			$data['usertype'] = 1;
+		}
+		
+		if ($this->input->post('seemore')){
+			$data['template'] = 'notification/full_notification';
+		}
+		else  {
+			$data['template'] = 'notification/short_notification';
+		}
+		$this->load->view ('layout/notification', $data);
+		*/
+		$data['template'] = 'thongbao/dsthongbao';
+		$this->load->view('layout/thongbao', isset($data) ? $data : null);
+	}
+	public function ndthongbao(){
+		$data['template'] = 'thongbao/ndthongbao';
+		$this->load->view('layout/thongbao', isset($data) ? $data : null);
+		
+	}
+	public function classify_user() {
+		if ($this->auth == NULL)
+			return -1;
+		else {
+			$data['_auth'] = $this->auth;
+			if ('1111336' == $data['_auth']['username'])
+				return 0;
+			else
+				return 1;
+		}
+	}
+}

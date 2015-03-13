@@ -1,0 +1,152 @@
+
+
+
+
+section.view {
+	
+	
+	margin:0px 0px 5px 0px;
+	overflow:hidden;
+	padding:10px;
+}
+
+section.view .advance{
+	float:left;
+	width:100%;
+	
+}
+
+section.view .advance .search{
+	float:left;
+	width:100%;
+	margin:0px 0px 10px 10px;
+}
+div.div_title{
+	padding:5px 30px 5px 0px;
+	width:140px;
+	float:left;
+	font-weight:700;
+}
+
+span.span_title {
+	font-weight:bold;
+	font-size:15px;
+}
+
+
+section.view .advance .search form > * {
+	margin:4px;
+} 
+section.view .advance .search form input[type=submit]{
+	margin:0px 90px 0px 0px;
+}
+
+section.view .advance .search form input {
+	padding:3px;
+}
+
+section.view .advance .search form select {
+	text-align:center;
+	padding:3px;
+}
+
+section.list {
+	background:#EEF5F9;
+}
+div.list {
+		width:98%;
+	text-align:center;
+	padding:12px;
+	
+}
+
+div.list  table {
+	border-collapse:collapse;
+	width:100%;
+	border:1px solid black;
+}
+
+div.list table tr:hover td{
+	background:#CCFFCC !important;
+}
+
+div.list table tr.select td{
+	background:#FFCC99;
+}
+div.list table th{
+	border-bottom:1px solid #999999;
+	background:#ccc; /*rgb(66, 168, 226);*/
+	line-height:30px;
+	height:30px;
+	text-align:left;
+	padding:2px;
+	text-align:center;
+	border-right:1px solid gray;
+	font-weight: bold;
+}
+
+div.list table tr td {	
+	text-align:center;
+	float:none;
+	padding:2px;
+	vertical-align:middle;
+	font-size:13px;
+	background:#FFF;
+}
+
+div.list table tr td:nth-child(6), div.list table tr td:nth-child(7) {	
+	width:200px;
+}
+div.list table th span.sort{
+	
+}
+div.list table th span.sort:hover {
+	text-decoration:underline;
+}
+
+
+
+div.list table td:last-child{
+	width:144px;
+	height:auto;
+}
+
+div.list table td input, div.list table th input {
+	margin:10px;
+}
+
+.center{
+	text-align:center;
+}
+
+div.list .pagination {
+	overflow:hidden;
+	margin:10px;
+}
+
+div.list .pagination ul{
+	list-style:none;
+	margin:0px;
+	line-height:30px;
+}
+
+div.list .pagination li{
+	display:inline;
+	padding:5px;
+	float:left;
+	margin:0px 5px 0px 0px;
+	border:1px solid #CCCCCC;
+}
+
+div.list .pagination li{
+	color:#025A8D;
+}
+
+div.list .pagination li:hover {
+	color:black;
+	background:#E7E7E7;
+}
+tr.tieude_bar th{
+	background:#3898DE !important;
+	color:white !important;
+}

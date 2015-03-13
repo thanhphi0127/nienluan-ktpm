@@ -1,0 +1,103 @@
+﻿<section class='body'>
+
+	
+<section>
+	
+	<div id='title'> <h2> In danh sách công việc</h2> </div>
+	<section class='config_download form'>
+		<form action="" method="post">
+			<fieldset>
+				<legend>Cấu hình download</legend>
+				<p><label> Tên nhóm: <input type="checkbox"  name='data[groupname]' checked='checked' ></label></p>
+				<p><label> Phiên bản: <input type="checkbox" name='data[version]' checked='checked' ></label></p>
+				<p><label> tdành viên:<input type="checkbox" name='data[member]' checked='checked' ></label></p>
+				<fieldset class='config_list' name='task'>
+					<legend>
+						<label>Danh sách công việc <input id='data[list]' type="checkbox" name='list'  checked='checked'/></label>
+					</legend>
+					<br/>
+					<p class='nothide'>
+					<label> 
+						<select name='data[orderby]'>
+						  <option value="ngaybddesc">Mới nhất trước</option>
+						  <option value="ngaybdasc">Cũ nhất trước</option>
+						  <option value="tencongviec">Tên công việc</option>
+						  <option value="tinhchat">Loại công việc</option>
+						</select>
+					<label>
+					</p>
+						<span> <label> <p id='detail'> Xem / Ẩn chi tiết >> </p></label> </span>
+						<p><label >Tên công việc:<input type="checkbox" name='data[taskname]]' checked='checked' ></label></p> 
+						<p><label >Ngày bắt đầu: <input type="checkbox" name='data[startdate]]'  checked='checked'></label></p> 
+						<p><label >Ngày kết thúc:<input type="checkbox" name='data[enddate]'  checked='checked' ></label></p> 
+						<p><label >Ước lượng tdời gian<input type="checkbox" name='data[estimate]'  checked='checked'></label></p> 
+						<p><label >Mô tả: <input type="checkbox" name='data[description]'  checked='checked'></label></p> 
+						<p><label >Người được giao: <input type="checkbox" name='data[asignee]' checked='checked' ></label></p>
+						<p><label>Mức độ công việc: <input type="checkbox" name='data[level]'  checked='checked'></label></p>
+						<p><label >Loại công việc: <input type="checkbox" name='data[type]'  checked='checked' ></label>
+						
+
+				</fieldset>
+				<p>
+					<input type="submit" class='submit-button' name='download' value='Download'/>
+					<input type='reset' class='submit-button'  value='Làm lại'/>
+				</p>
+			</fieldset>
+		</form>
+		
+	</section>
+		
+	<section class='review_download'>
+		<br/><p>Xem trước bản download</p> <br/>
+		<section class='review_area'>
+			<br/><br/><span class='groupname'> TÊN NHÓM </span> </p>
+			<span class='version'> PHIÊN BẢN ngày dd/mm/yyyy </span><br/><br/><br/>
+			<span class='member'>Danh sách tdành viên</span><br/><br/><br/>
+			<table border='1'  class='member'>
+				<tr><td>Mã số</td><td>Họ và tên</td><td>Email</td><td>Số điện tdoại</td><td>Chức vụ</td>
+				<tr> 
+					<td>123456</td>
+					<td>Nguyễn Văn A</td>
+					<td>nga@gmail.com</td>
+					<td>0xxxxxxxxxxxx</td>
+					<td>Nhóm trưởng</td>
+				</tr>
+				<tr>
+					<td>B111234</td>
+					<td>Nguyễn Văn B</td>
+					<td>ngb@gmail.com</td>
+					<td>0xxxxxxxxxxxx</td>
+					<td>tdành viên</td>
+				</tr>
+				
+			</table>
+			<span class='list'>Danh sách công việc</span><br/><br/><br/>
+			<table border='1' class='list'>
+				<tr><td>Tên</td><td>Từ ngày</td><td>Đến ngày</td><td>Số giờ</td><td>Mô tả</td><td>Người được giao</td><td>Mức độ</td><td>Loại công việc</td></tr>
+				<tr> 
+					<td>Công việc A</td>
+					<td> 17/08/2014</td>
+					<td> 24/8/2014</td>
+					<td> 20</td>
+					<td>Mô tả của công việc A</td>
+					<td>Nguyễn Văn A<br/>Trần tdị B</td>
+					<td> QT</td>
+					<td> NV</td>
+				</tr>
+				<tr>
+					<td>Công việc B</td>
+					<td> 17/08/2014</td>
+					<td> 24/8/2014</td>
+					<td> 20</td>
+					<td>Mô tả của công việc B</td>
+					<td>Nguyễn Văn A<br/>Trần tdị B</td>
+					<td> QT</td>
+					<td> NV</td>
+				</tr>
+				
+			</table>
+		</section>
+	</section>
+</section>
+
+</section>

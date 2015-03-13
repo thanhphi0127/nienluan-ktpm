@@ -1,0 +1,166 @@
+	<!-- NOI DUNG -->
+<div class="container">
+        <div class="row">
+    		<div class="col-md-4">
+                <h2>ĐĂNG NHẬP</h2>
+				<div class="panel panel-default" style="background-color: #f5f9f5; border-color: #c5c5c5;">
+					<div class="panel-body" style="padding: 10px; margin:auto">
+						<div align="center"><img src="<?php echo CIT_BASE_URL;?>public/img/login-user.png" alt="Image-User"/></div>
+					</div>
+					
+					
+						<?php echo "<span style='color:red;'>".common_showerror(validation_errors())."</span>"; ?>
+									<p class="form-group">
+										<label>Tên đăng nhập
+										<input type="text" class="form-control" name='data[username]' placeholder="Nhập tài khoản người dùng"  
+											       value="<?php echo common_postvalue(isset($_post['username']) ? $_post['username'] : '');?>" />
+										</label>
+									</p>
+									
+									<p class="form-group"> 
+										<label>Mật khẩu
+											<input type="password" class="form-control"  name='data[password]' value="" placeholder="Nhập mật khẩu" >
+										 </label>
+									</p>
+									
+										
+									<p class="form-group_check">
+										<label class="checkbox">
+												<input  name="data[remember]" type="checkbox" value="0"> Ghi nhớ đăng nhập
+										</label>
+									</p>
+									
+									<p class="form-group">
+										<label><a href="<?php echo CIT_BASE_URL; ?>auth/forgot">Quên mật khẩu?</a></label>
+									</p>
+									
+									<p>	
+										<input id='loginf' type="submit" class='btn btn-primary' name='login' value='Đăng nhập' />
+										<input id="resetf" class='btn btn-primary' type="reset" value="Hủy bỏ"/>
+									</p>
+										
+					
+					
+				</div>
+			</div><!--end div col-md-4-->
+			
+			<div class="col-md-8">
+				<div class="row">        		
+					<div id='intro'>
+						<span>Giới thiệu về hệ thống</span>
+						<table>
+							<tr><td><img  class='crop'  src="<?php echo CIT_BASE_URL; ?>public/img/nhom-login.png"/></td><td>Hệ thống cho phép sinh viên có thể quản lý công việc của mỗi môn học cụ thể</p></td></tr>
+							<tr><td><img  class='crop' src="<?php echo CIT_BASE_URL; ?>public/img/giangvien-login.png"/></td><td>Giáo viên có thể xem xét, đánh giá mức độ hoàn thành công việc của mỗi thanh viên kèm theo quản lý các nhóm mà mình phụ trách.</td></tr>
+						</table>
+					</div>
+				</div>
+			</div><!--end div col-md-8-->
+			
+		</div><!--end div row-->
+		
+</div><!--end div container-->
+
+<!--
+
+<section>
+	<div id='login'>
+		
+		<div class='form'>
+			<h2>Đăng nhập vào hệ thống</h2>
+			
+			<form action="" method="post" >
+					<img class='loginuser' src='public/img/login-user.png'></img>
+					<?php echo "<span style='color:red;'>".common_showerror(validation_errors())."</span>"; ?>
+					<p> 
+						<label>Username
+							<input type="text" name='data[username]'  value="<?php echo common_postvalue(
+										isset($_post['username']) ? $_post['username'] : '');?>" >
+                         </label>
+					</p>
+					<p> 
+						<label>Password
+							<input type="password"   name='data[password]' value="" >
+                           
+					</p>
+					<p>
+						<label class="checkbox">
+                                <input class=form-control" name="data[remember]" type="checkbox" value="0"> Ghi nhớ đăng nhập
+						</label>
+					</p>
+					
+                     <p>
+						<label><a href="<?php echo CIT_BASE_URL; ?>auth/forgot">Quên mật khẩu?</a></label>
+					</p>
+					
+					<p>	
+							<input id="resetf" type="reset" value="Hủy bỏ"/>
+							<input type="submit" class='submit-button' name='login' value='Đăng nhập' id='loginf'>
+							
+					</p>
+						
+			</form>
+		</form>
+	</div>
+	<div id='intro'>
+		<span>Giới thiệu về hệ thống</span>
+		
+		<table class='intro'>
+			<tr><td><img  class='crop'  src="<?php echo CIT_BASE_URL; ?>public/img/nhom-login.png"/></td><td>Hệ thống cho phép sinh viên có thể quản lý công việc của mỗi môn học cụ thể</p></td></tr>
+            <tr><td><img  class='crop' src="<?php echo CIT_BASE_URL; ?>public/img/giangvien-login.png"/></td><td>Giáo viên có thể xem xét, đánh giá mức độ hoàn thành công việc của mỗi thanh viên kèm theo quản lý các nhóm mà mình phụ trách.</td></tr>
+		</table>
+		
+	</div>
+</section>
+-->
+
+<!--
+<section>
+	<div id='login'>
+		
+		<div class='form'>
+			<h2>Đăng nhập vào hệ thống</h2>
+			
+			<form action="" method="post" >
+					<img class='loginuser' src='public/img/login-user.png'></img>
+					<?php echo "<span style='color:red;'>".common_showerror(validation_errors())."</span>"; ?>
+					<p> 
+						<label>Username
+							<input type="text" name='data[username]'  value="<?php echo common_postvalue(
+										isset($_post['username']) ? $_post['username'] : '');?>" >
+                         </label>
+					</p>
+					<p> 
+						<label>Password
+							<input type="password"   name='data[password]' value="" >
+                           
+					</p>
+					<p>
+						<label class="checkbox">
+                                <input class=form-control" name="data[remember]" type="checkbox" value="0"> Ghi nhớ đăng nhập
+						</label>
+					</p>
+					
+                     <p>
+						<label><a href="<?php echo CIT_BASE_URL; ?>auth/forgot">Quên mật khẩu?</a></label>
+					</p>
+					
+					<p>	
+							<input id="resetf" type="reset" value="Hủy bỏ"/>
+							<input type="submit" class='submit-button' name='login' value='Đăng nhập' id='loginf'>
+							
+					</p>
+						
+			</form>
+		</form>
+	</div>
+	<div id='intro'>
+		<span>Giới thiệu về hệ thống</span>
+		
+		<table class='intro'>
+			<tr><td><img  class='crop'  src="<?php echo CIT_BASE_URL; ?>public/img/nhom-login.png"/></td><td>Hệ thống cho phép sinh viên có thể quản lý công việc của mỗi môn học cụ thể</p></td></tr>
+            <tr><td><img  class='crop' src="<?php echo CIT_BASE_URL; ?>public/img/giangvien-login.png"/></td><td>Giáo viên có thể xem xét, đánh giá mức độ hoàn thành công việc của mỗi thanh viên kèm theo quản lý các nhóm mà mình phụ trách.</td></tr>
+		</table>
+		
+	</div>
+</section>
+-->

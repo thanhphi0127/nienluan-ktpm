@@ -1,0 +1,115 @@
+$(document).ready(function(){
+	var G_MA_LOPHOCPHAN;
+	
+	if ('addmember' == $('#flag').val()){
+		$('section.manipulation').fadeIn(1000);
+		$('section.manipulation').children().hide();
+		$('section.manipulation').siblings().css('opacity','0.2');
+		$('#addmember').show();
+	}
+	
+	$('div.form > h2').html("CHỨNG THỰC NGƯỜI DÙNG");
+	$('#login #intro').hide();
+	$('fieldset.register_info').show();
+	$('span.btnDeletemember img').attr('title','Xóa khỏi nhóm');
+	$('span.btnLeave img').attr('title','Rời khỏi nhóm');
+	$('span.btnSendmail').attr('title','Gửi thông báo');	
+	/* iframe notification */
+	$('#register select').change(function(){
+		
+		var MA_LOPHOCPHAN = $(this).val();
+		$('fieldset.register_info > iframe').hide();
+		$('fieldset.register_info > iframe').attr('src','http://localhost/cit-quanlynhom/iframe/thongtinmaunhom/' + MA_LOPHOCPHAN);
+		$('fieldset.register_info > iframe').fadeIn("slow");
+	});
+	$('span.manipulation').click(function() {
+		$('section.manipulation').fadeIn(1000);
+		$('section.manipulation').children().hide();
+		$('section.manipulation').siblings().css('opacity','0.2');
+		$('img.manipulation').show();
+		if ($(this).hasClass('btnDeletemember')){
+			$('section.manipulation').hide();
+			$(this).parent().siblings().children('.check').prop( "checked", true );
+			var agree = confirm("Xóa tất cả dữ liệu về công việc, báo cáo, thông báo liên quan đến thành viên. Bạn có muốn xóa không ?!");
+			if (true == agree)			
+				$('input[name=deletemember]').click();
+			else {
+				$('section.manipulation').fadeOut(1000);
+				$('section.manipulation').siblings().css('opacity','1');
+			}
+			
+		}
+		else if ($(this).hasClass('btnRegister')){
+			$('#register').show();
+		}
+		else if ($(this).hasClass('btnAddmember')){
+			$('#flag').attr('value', 'addmember');
+			
+			var TEN_MH = $(this).parent().siblings('.TEN_MH').html();
+			
+			$('#addmember > form > h1 span').html('<br/>' + TEN_MH);
+			G_MA_LOPHOCPHAN = $(this).parent().siblings('.check').children('.check').attr('value');
+			
+			var STT_NHOM = $(this).parent().siblings().children('.STT_NHOM').attr('value');
+			$('input.hide.STT_NHOM').attr('value', STT_NHOM);
+			
+			$('input.hide.MA_LOPHOCPHAN').attr('value', G_MA_LOPHOCPHAN);
+			
+			$('input[name=getclassmate]').click();
+		}
+		else if ($(this).hasClass('btnModifygroup')){
+			$('#modifygroup').show();
+			var MOTA = $(this).parent().siblings('.MOTA').html();
+			var DETAI = $(this).parent().siblings('.DETAI').html();
+			var MA_LOPHOCPHAN = $(this).parent().siblings().children('.check').attr('value');
+			var STT_NHOM = $(this).parent().siblings().children('.STT_NHOM').attr('value');
+			$('#modifygroup > form > p > label > .DETAI').attr('value', DETAI);
+			$('#modifygroup > form > p > label > .MOTA').html(MOTA);
+			
+			$('#modifygroup > form > .STT_NHOM').attr('value', STT_NHOM);
+			$('#modifygroup > form > .MA_LOPHOCPHAN').attr('value', MA_LOPHOCPHAN);
+			var TEN_MH = $(this).parent().siblings('.TEN_MH').html();
+			
+			$('#modifygroup > form > h1 > p > span').html(TEN_MH);
+			
+		}
+		
+		else if ($(this).hasClass('btnLeavegroup')){
+			$(':checked').prop("checked",false);
+			$(this).parent().siblings('.check').children().prop( "checked", true );
+			var agree = confirm("Xóa tất cả dữ liệu về công việc, báo cáo, thông báo liên quan đến thành viên. Bạn có muốn xóa không ?!");
+			if (true == agree)			
+				$('input[name=leavegroup]').click();
+			else {
+				$('section.manipulation').fadeOut(1000);
+				$('section.manipulation').siblings().css('opacity','1');
+			}
+		}
+		
+	});
+	
+	
+	/* end ----------------*/
+	
+	/* img manipulation           */
+	$('img.manipulation').click(function (){
+		$('section.manipulation').hide(500);
+		$('#iframe_login').slideUp(500);
+		$(location).attr('href','http://localhost/cit-quanlynhom/sinhvien/quanlynhom');
+		
+		$(this).hide();
+	});
+	
+	$('#iframe_login div.iframe_login_up img').click(function(){
+		$('#iframe_login').slideUp(500);
+		$('section.manipulation').hide(500);
+	});
+	
+	
+	
+	/* end ------------------*/
+	
+	
+	
+});
+

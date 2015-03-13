@@ -1,0 +1,156 @@
+﻿<section id='cit_wrapper' >
+<?php
+	function tim_so_ngay($date1, $date2){ 
+	$songay = 0;
+	  if ($date1<$date2){ 
+		$dates_range[]=$date1; 
+		$date1=strtotime($date1); 
+		$date2=strtotime($date2); 
+		$songay=0; 
+		while ($date1!=$date2){ 
+		  $date1=mktime(0, 0, 0, date("m", $date1), date("d", $date1)+1, date("Y", $date1)); 
+		  $dates_range[]=date('Y-m-d', $date1); 
+		  $songay++; 
+		} 
+	  } 
+	  return $songay; 
+	}
+	
+	//echo tim_so_ngay('2010-11-21', '2010-11-28');
+?>
+	<div class="thongke">
+        <form action="" method="post">
+            <p>Biểu đồ tiến độ công việc nhóm</p>
+            <div>
+            <label id="chonmon"label>Chọn môn học</label>
+            <?php 
+				//Hien thi combobox chon mon hoc giang vien dang phu trachs
+				if(isset($LayMonHoc_GiangVien) && !empty($LayMonHoc_GiangVien)){
+					 
+					echo "<select id='sl_mh' class='form-control' name='ma_mh'>";
+					foreach ($LayMonHoc_GiangVien as $row) {
+						echo "<option value='".$row['MA_MH']."' ";
+							 if($row['MA_MH'] == $ma_mh) echo 'selected';
+						echo ">".$row['MA_MH']." - ".$row['TEN_MH']."</option>";
+					}
+					echo " </select>";
+					
+				} 
+			?>
+            <input style="margin-left: 5px" type="submit" name="btn_thongke" title="Xem biểu đồ"  class="btn btn-primary" value="Xem biểu đồ" />
+            </div>
+        </form>
+    </div>
+    
+    
+    
+    
+      <?php
+	
+	   if (isset($_POST['btn_thongke'])) {
+		   
+	   echo "<form id='link_form' action='' method='post'>";
+	   echo "<input type='hidden' value='' id='hidden_cv' name='data[hidden_macv]' />";
+	   echo "<input type='hidden' value='' id='hidden_nhom' name='data[hidden_sttnhom]' />";
+	   echo "<input type='hidden' value='$sl_nhom' id='hidden_sl' name='data[hidden_slnhom]'  />";
+	   echo "<input type='hidden' value='$sl_nhom' id='hidden_sl_x' name='data[hidden_slnhom_x]'  />";
+
+	   if ($sl_nhom == 0) { echo "<div class='cv'>Không có công việc trong nhóm</div>"; }
+	   else echo "<div class='tongsonhom'>TỔNG SỐ NHÓM: $sl_nhom NHÓM</div>";
+	   
+	   for ($i = 1 ; $i <= $sl_nhom; $i++) {
+		   echo "<br>";
+					echo "<table id='example1' class='table-bordered table-hover table_nguoidung'>
+					<tbody>";
+
+						$j = 0;
+						if(!empty($BieuDoCongViec[$i])){
+						$j = 1;
+					
+						echo '<ul class="verticalBarGraph">';				
+
+            			$width_col = 0;
+        
+		
+						foreach($BieuDoCongViec[$i] as $row) {
+							$all_time = tim_so_ngay($row->NGAYBD, $row->NGAYKT);
+							$current_time = tim_so_ngay($row->NGAYBD, date('Y-m-d'));
+							$phantram = ($current_time / $all_time)*100;
+							if ($phantram > 100) $phantram = 100;
+							
+							echo '	<li class="set1" style="height: '.$phantram.'px; max-height: 100px; width: 27px; left: '.($width_col + 26).'px;">'.$phantram.'</li>
+								<li class="set2" style="height: '.$row->HOANTHANH.'px;  width: 27px; left: '.$width_col.'px">'.$row->HOANTHANH.'</li>';
+
+							$j++;
+							$width_col += 65;
+						} 
+						echo '</ul>';
+					} else  echo "<tr><td colspan='8'>Nhóm chưa cập nhật tiến độ công việc</td></tr>";
+					echo "<input name='data[hidden_ma_mh]'  type='hidden' value='".$ma_mh."' />";
+					echo "</tbody>
+					</table>";
+					if ($j > 0)
+						echo "<div class='tongsocongviec'>Tổng số công việc nhóm $i là: ".($j-1)." công việc</div>";
+				}
+				echo "</form>";	
+   		
+			}//if ngoai cung
+			?> 
+    
+    
+    
+    
+    
+    
+    
+    
+	<p>% Thời gian</p>
+	<p>% hoàn thành công việc</p>
+    <div id='group1'>
+        <span class='span_title'>Nhóm 1</span>
+        <ul class="verticalBarGraph">  				
+            <li class="set1" style="height: 150px; width: 30px; left: 0px;">57</li>
+            <li class="set2" style="height: 100px;  width: 27px; left: 0px;">27</li>
+            
+            <li class="set1" style="height: 74px; width: 30px; left: 50px;">74</li>
+            <li class="set2" style="height: 54px; width: 27px; left: 50px;">54</li>
+            
+            <li class="set1" style="height: 24px; width: 30px; left: 100px;">24</li>
+            <li class="set2  setspecial" style="height: 54px; width: 27px; left: 100px;">54</li>
+            
+        </ul> 
+    
+        <ul class='verticalBarGraph barname'>  				
+            <li  style="height: 100px; left: 0px;">Phân tích yêu cầu</li>
+            <li  style="height: 100px; left: 80px;">Thiết kế dữ liệu</li>
+            <li  style="height: 100px; left: 160px;">Thiết kế kiến trúc</li>		
+        </ul> 
+    </div>
+    
+    <div id='group2'>
+        <span class='span_title'>Nhóm 1</span>
+        <ul class="verticalBarGraph">  				
+            <li class="set1" style="height: 57px; left: 0px;">57</li>
+            <li class="set2" style="height: 27px; left: 0px;">27</li>
+            
+            <li class="set1" style="height: 74px; left: 80px;">74</li>
+            <li class="set2" style="height: 54px; left: 80px;">54</li>
+            
+            <li class="set1" style="height: 24px; left: 160px;">24</li>
+            <li class="set2  setspecial" style="height: 54px; left: 160px;">54</li>
+            
+        </ul> 
+    
+        <ul class='verticalBarGraph barname'>  				
+            <li  style="height: 100px; left: 0px;">Phân tích yêu cầu</li>
+            
+            
+            <li  style="height: 100px; left: 80px;">THiết kế dữ liệu</li>
+            
+            
+            <li  style="height: 100px; left: 160px;">Thiết kế kiến trúc</li>
+            
+            
+        </ul> 
+    </div>
+</section>

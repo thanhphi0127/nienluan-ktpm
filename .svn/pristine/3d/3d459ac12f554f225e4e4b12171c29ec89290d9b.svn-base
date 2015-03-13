@@ -1,0 +1,17 @@
+<section class='full_notification'>
+	<ul>
+		<li><a href='#'><b>Báo cáo ti?n d? nhóm 5</b></a><br/>
+			<i>Ngu?i g?i:</i>Nguy?n Vuong Thành Tâm<br/>
+			<span class='senddate'>Ngày g?i</span>3/2/2014</li>
+		<li><a href='#'><b>Báo cáo ti?n d? nhóm 4</b></a><br/>
+			<i>Ngu?i g?i:</i>Nguy?n Thanh Phi<br/>
+			<span class='senddate'>Ngày g?i</span>3/1/2014</li>
+		<li><a href='#'>Báo cáo ti?n d? nhóm 3</a><br/>
+			<i>Ngu?i g?i:</i>Hu?nh Thanh Nhã<br/>
+			<span class='senddate'>Ngày g?i</span>3/4/2014</li>
+		<li><a href='#'>Báo cáo ti?n d? nhóm 2</a><br/>
+			<i>Ngu?i g?i:</i>Tr?nh Sa Lem<br/>
+			<span class='senddate'>Ngày g?i</span>3/3/2013</li>
+		
+	</ul>
+</section>

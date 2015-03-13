@@ -1,0 +1,257 @@
+@import "manipulation.css";
+@import "../common_header.css";
+
+/*-------------------------------------Genarally--------------------------------------------*/
+a {
+	text-decoration:none;
+}
+a:hover {
+	color:blue;
+}
+body {
+	color:black;
+}
+
+ul {
+	list-style:none;
+	font-weight:13px;
+	
+}
+body{
+	background-color: #EFF8FF;
+	
+}
+
+.tasklist ul, .reportlist ul {
+	line-height:30px;
+}
+/*------------------------------------------------------------------------------------------*/
+
+#calendar{
+	width:100%;
+	z-index:400;
+}
+
+form input[type=number], form input[type=date] {
+margin: 8px 98px 0px 67px;
+width: 156px;
+}
+
+
+.center{
+	text-align:center;
+}
+
+
+section.manipulation, #deltetask{
+	display:none;
+	
+}
+
+section.manipulation {
+	position: absolute;
+	top: 68px;
+	left: 0%;
+	z-index: 7;
+}
+
+form select[multiple] {
+	height:154px;
+}
+
+
+#iframe_login div.iframe_login_up {
+	background:#FFF;
+	border-bottom:5px solid #0080FF;
+	text-align:center;
+	width:100%;
+	height:50px;
+	margin:-40px 0px 0px 0px;
+}
+
+#iframe_login div.iframe_login_up  img{
+	margin:2px auto;
+}
+
+
+
+.hide{
+	display:none;
+}
+
+.hideinput {
+	background:none;
+	border:none;
+}
+
+.w60 {
+	width:60px;
+}
+.w50p {
+	width:50%;;
+}
+.hide{
+	display:none;
+}
+.check {
+	float:none;
+}
+
+section.manipulation #addtask form ,section.manipulation #modifytask form {
+width: 50%;
+position: absolute;
+top: 10%;
+left: 22%;
+right: 35%;
+}
+
+section.manipulation table tr td {
+	width:50%;
+	padding:10px;
+	vertical-align:top;
+}
+
+	
+
+section.manipulation #addtask form fieldset{
+	height:181px;
+}
+
+ div.list {
+width: 100%;
+text-align: center;
+padding: 0px;
+background: #FFF;
+}
+
+textarea {
+	height:80px;
+}
+
+div.bar_tilehoanthanh, div.bar_tilehoanthanh2 {
+	width:100%;
+	border:1px solid #ccc;
+	height:40px;
+	margin: 0px 0px 0px 7px;
+}
+div.bar_tilehoanthanh  > div, div.bar_tilehoanthanh2 > div{
+	background:green;
+	height:40px;
+	width:0px;
+	margin:0px;
+}
+
+div.list.tasklist table  {
+	/*font-size:12px;*/
+}
+
+
+div.list.tasklist table tr td:nth-child(1){
+	width:3%;
+}
+div.list.tasklist table tr td:nth-child(2){
+	width:10%;
+}
+div.list.tasklist table tr td:nth-child(3){
+	width:10%;
+}
+div.list.tasklist table tr td:nth-child(4), div.list.tasklist table tr td:nth-child(5){
+	width:7%;
+}
+div.list.tasklist table tr td:nth-child(6) {
+	width:3%;
+}
+div.list.tasklist table tr td:nth-child(7) {
+	width:16%;
+}
+div.list.tasklist table tr td:nth-child(8) {
+	width:3%;
+}
+div.list.tasklist table tr td:nth-child(9) {
+	width:15%;
+}
+div.list.tasklist table tr td:nth-child(10), div.list.tasklist table tr td:nth-child(11), div.list.tasklist table tr td:nth-child(12){
+	width:6%;
+}
+div.list.tasklist table tr td:last-child{
+	width:10%;
+}
+
+
+div.list.tasklist table tr td:nth-child(1){
+	width:5px;
+}
+
+.error {
+	color:red;
+	font-style:italic;
+}
+
+.form label span {
+	float:none;
+}
+span.manipulation img {
+	width:30px;
+	height:30px;
+	cursor:pointer;
+	margin:4px;
+}
+
+section.advance table tr td{
+	padding:8px;
+	
+}
+
+section.advance table tr td select{
+	width:200px;
+	
+}
+
+section.advance table tr td select option{
+	text-align:center;
+}
+
+
+
+section.manipulation img.manipulation {
+position: absolute;
+right: 490px;
+top: 5%;
+z-index: 998;
+margin-top: 62px;
+width: 26px;
+
+}
+
+table.filter select{
+	font-weight: 200;
+font-size: 14px;
+height: 34px;
+line-height: 1;
+width: 100%;
+padding:6px 12px;
+
+border: 1px solid #E5E5E5;
+background: #FBFBFB;
+color: #555555;
+outline: none;
+vertical-align: middle;
+-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+border: 1px solid #cccccc;
+border-radius: 4px;
+ -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+}
+table.filter select:focus {
+border-color:#66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+	

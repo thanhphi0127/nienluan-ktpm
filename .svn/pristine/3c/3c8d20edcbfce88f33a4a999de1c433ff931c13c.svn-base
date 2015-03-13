@@ -1,0 +1,34 @@
+﻿<section class='short_notification'>
+
+	<ul>
+		<li>
+			<div class='underline'>
+				<a href='#'><b>Báo cáo tiến độ Nhóm 5</b></a><br/>
+				<sender>Người gửi:</sender> Nguyễn Vương Thành Tâm<br/>
+				<span class='senddate'>Ngày gửi: </span>3/2/2014
+			</div>
+		</li>
+		<li>
+			<div class='underline'>
+				<a href='#'><b>Báo cáo tiến độ Nhóm 4</b></a><br/>
+				<sender>Người gửi:</sender> Nguyễn Thanh Phi<br/>
+				<span class='senddate'>Ngày gửi: </span>3/1/2014
+			</div>
+		</li>
+		<li>
+			<div class='underline'>
+				<a href='#'><b>Báo cáo tiến độ Nhóm 5</b></a><br/>
+				<sender>Người gửi:</sender> Huỳnh Thanh Nhã<br/>
+				<span class='senddate'> Ngày gửi: </span></span>3/4/2014
+			</div>
+		</li>
+		<li>
+			<div class='underline'>
+				<a href='#'><b>Báo cáo tiến độ Nhóm 5</b></a><br/>
+				<sender>Người gửi:</sender> Trịnh Sa Lem<br/>
+				<span class='senddate'>Ngày gửi: </span>3/3/2013
+			</div>
+		</li>
+		<input type='submit' name='seemore' value='Xem thêm >>' /><br/>
+	</ul>
+</section>

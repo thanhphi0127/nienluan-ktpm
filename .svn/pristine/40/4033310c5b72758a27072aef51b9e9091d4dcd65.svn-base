@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- Get keyword by $data['seo']['keyword']-->
+<meta name='keyword' content="<?php echo isset($seo['keyword']) ? htmlspecialchars($seo['keyword']) : '';?>" />
+    
+<!-- Get description by $data['seo']['description'] -->
+<meta name='description' content="<?php echo isset($seo['description']) ? htmlspecialchars($seo['description']) : '';?>" />
+    
+<!-- Get title by $data['seo']['title'] -->
+<title>
+    <?php echo isset($seo['title']) ? htmlspecialchars($seo['title']) : '';?>
+</title>
+    
+<meta name="viewport" content="width=device-width" />
+
+<base href="<?php echo CIT_BASE_URL;?>" />
+
+<link rel="stylesheet" type="text/css" href="public/template/css/login.css">
+<link rel="stylesheet" type="text/css" href="public/template/css/standardform.css">
+<link rel="stylesheet" type="text/css" href="public/template/css/standardcontrol.css">
+<link rel="stylesheet" type="text/css" href="public/template/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="public/template/css/common_header.css">
+<link rel="stylesheet" type="text/css" href="public/template/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="public/template/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="public/template/css/cssmenu.css">
+<script language='javascript' src="public/template/js/cssmenu.js" ></script>
+
+<link rel='stylesheet' href='public/template/css/home_index.css' />
+<script language='javascript' src="public/template/js/home.js" ></script>
+
+<script src='public/template/js/jquery-2.1.1.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+
+<!-- Load which is css/js -->
+<?php
+        if ('giangvien/diendan' == $template || 'sinhvien/diendan' == $template || 'admin/diendan' == $template) {
+            echo "<script src='public/template/js/diendan.js' language='javascript'></script>";
+            echo "<link rel='stylesheet' type='text/css' href='public/template/css/diendan.css'>";
+			echo "<link rel='stylesheet' type='text/css' href='public/template/css/diendan.css'>";
+		} else if ('giangvien/xemchude' == $template || 'sinhvien/xemchude' == $template || 'admin/xemchude' == $template) {
+            echo "<link rel='stylesheet' type='text/css' href='public/template/css/diendan.css'>";
+        }
+
+		
+?> <!-- End load css / js -->
+    
+<script>
+	$(document).ready(function(){
+  $("#notice span").click(function(){
+    $("#giangvien_top iframe").fadeToggle("slow");
+  });
+});
+
+</script>
+</head>
+<body>
+
+<!-- Load which is top in use? -->
+<?php 
+	$this->load->view ('layout/bluesky/login_top');
+	$this->load->view ('layout/bluesky/giangvien_top');
+	$this->load->view ($template, isset($data)?$data:NULL);
+	$this->load->view ('layout/bluesky/bottom.php');
+?>
+</body>
+</html>

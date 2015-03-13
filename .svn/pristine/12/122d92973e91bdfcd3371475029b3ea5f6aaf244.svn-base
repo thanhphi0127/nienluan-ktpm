@@ -1,0 +1,8 @@
+.widthPanel {
+    max-width: 100%;
+    height: 135px;
+}
+
+table > td {
+    padding-top: 20px;
+}

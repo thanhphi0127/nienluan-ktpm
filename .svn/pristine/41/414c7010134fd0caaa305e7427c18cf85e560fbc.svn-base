@@ -1,0 +1,377 @@
+$(document).ready(function(){
+	if ('addreport' == $('#flag').val()){
+		$('section.manipulation').show();		
+		$('#addreport').show();
+		
+	}
+	else if ('addtask' == $('#flag').val()){
+		
+		$('section.manipulation').fadeIn(1000);
+		$('section.manipulation').children().hide();
+		$('#black').show();
+		$('section.manipulation').siblings().css('opacity','0.2');
+		$('#addtask').show();
+		$('#flag').attr('value','');
+	
+	}
+	else if('modifytask' == $('#flag2').val()){
+		$('section.manipulation').fadeIn(1000);
+		$('section.manipulation').children().hide();
+		$('#black').show();
+		$('section.manipulation').siblings().css('opacity','0.2');
+		$('#modifytask').show();
+		$('#flag2').attr('value','');
+	
+	}
+	
+	if ('1' == (window.location.href.substr(-1))) {
+		$('section.tasklist').hide();
+		$('section.reportlist').show();
+		$('header.quanly span.title').html("Báo cáo tiến độ");
+		$('div.reportlist').fadeIn(1000);
+	}
+	else {
+		$('#calendar').hide();
+		$('div.tasklist').fadeIn(1000);
+		$('header.quanly span.title').html("Quản lý công việc");
+		$('section.tasklist').show();
+		$('section.reportlist').hide();
+	}
+	
+	$('.view_calendar').click(function(){
+		$('section.tasklist').show();
+		$('section.reportlist').hide();
+		$('div.tasklist').hide();
+		$('#calendar').fadeIn(1000);
+		
+	});
+	$(".view_list, .view_common_list").click(function(){
+		$('#calendar').hide();
+		$('div.tasklist').fadeIn(1000);
+		$('header.quanly span.title').html("Quản lý công việc");
+		$('section.tasklist').show();
+		$('section.reportlist').hide();
+	});
+	
+	$('#TILEHOANTHANH2').change(function(){
+		var TILEHOANTHANH = $('#TILEHOANTHANH2').val();
+		$('div.bar_tilehoanthanh > div').css('width', TILEHOANTHANH+'%');
+	});
+	
+	$('.view_report').click(function(){
+		$('section.tasklist').hide();
+		$('section.reportlist').show();
+		$('header.quanly span.title').html("Báo cáo tiến độ");
+		$('div.reportlist').fadeIn(1000);
+	});
+	
+	$('#addreport form').submit(function(){
+		var result = $(this).children('label').children('select').val();
+		if ('0-0' == result) {
+			alert("Chưa chọn môn học");
+			return false;
+		}
+		return true;
+		
+	});
+	
+	// Add task
+	//
+	//
+	//
+	//
+	$('#subject select').change(function(){
+			$('#flag').attr('value', 'addtask');
+			$('input[name=getgroupmate]').click();
+	});
+	
+	$('#TEN_CV').focus(function(){
+		$('span.error.ten_cv').html('');
+	});
+	
+	$('#TEN_CV').blur(function(){
+		if ('' == $('#TEN_CV').val())
+				$('span.error.ten_cv').html('Vui lòng nhập tên công việc');
+				
+			
+	});
+	
+	
+	$('#NGUOIDUOCGIAO').blur(function(){
+		if ('' == $('#NGUOIDUOCGIAO > option:selected').text()){
+				$('span.error.nguoiduocgiao').html('Vui lòng chọn ít nhất một người');			
+			}
+			
+	});
+	
+	$('#NGUOIDUOCGIAO').focus(function(){
+		$('span.error.nguoiduocgiao').html('');
+	});
+	
+	$('#NGAYKT').focus(function(){
+		$('span.error.thoigian').html('');
+	});
+	
+	$('#NGUOIDUOCGIAO').blur(function(){
+		if ('' == $('#NGAYKT').val())			
+				$('span.error.thoigian').html('Vui lòng chọn ngày kết thúc');
+
+	});
+	
+	$('#addtask form').submit(function(){
+		var valid = true;
+		if ('0-0' != $('#subject select').val() && '' == $('#flag').val()) {
+			$('span.error.monhoc').html('');
+			
+			if ('' == $('#NGUOIDUOCGIAO > option:selected').text()){
+				$('span.error.nguoiduocgiao').html('Vui lòng chọn ít nhất một người');
+				valid = false;
+			}
+			if ('' == $('#TEN_CV').val()){				
+				$('span.error.ten_cv').html('Vui lòng nhập tên công việc');
+				valid = false;
+			}
+			
+			if ('' == $('#NGAYKT').val()){				
+				$('span.error.thoigian').html('Vui lòng chọn ngày kết thúc');
+				valid = false;
+			}
+			
+			if (new Date($('#NGAYKT').val()).getDate() < new Date($('#NGAYBD').val()).getDate()){
+				$('span.error.thoigian').html('Ngày kết thúc phải sau ngày bắt đầu');
+				valid = false;
+			}
+			
+		}
+		else if ('0-0' == $('#subject select').val()) {
+			if ($('span.error.monhoc').text() == ''){
+				$('span.error.monhoc').html('Vui lòng chọn môn học');
+			}
+			$('#subject').focus();
+			valid = false;
+		}
+		return valid;
+		
+	});
+	
+	//Modify
+	//
+	//
+	//
+	//
+	
+	$('#subject2 select').change(function(){
+			$('#flag2').attr('value', 'modifytask');
+			
+			$('input[name=getgroupmate2]').click();
+	});
+	
+	$('#TEN_CV2').focus(function(){
+		$('span.error.ten_cv').html('');
+	});
+	
+	$('#TEN_CV2').blur(function(){
+		if ('' == $('#TEN_CV2').val())
+				$('span.error.ten_cv').html('Vui lòng nhập tên công việc');
+				
+			
+	});
+	
+	
+	$('#NGUOIDUOCGIAO2').blur(function(){
+		if ('' == $('#NGUOIDUOCGIAO2 > option:selected').text()){
+				$('span.error.nguoiduocgiao').html('Vui lòng chọn ít nhất một người');			
+			}
+			
+	});
+	
+	$('#NGUOIDUOCGIAO2').focus(function(){
+		$('span.error.nguoiduocgiao').html('');
+	});
+	
+	$('#NGAYKT2').focus(function(){
+		$('span.error.thoigian').html('');
+	});
+	
+	$('#NGUOIDUOCGIAO2').blur(function(){
+		if ('' == $('#NGAYKT2').val())			
+			$('span.error.thoigian').html('Vui lòng chọn ngày kết thúc');
+
+	});
+	
+	$('#modifytask form').submit(function(){
+		var valid = true;
+		if ('0-0' != $('#subject2 select').val() && '' == $('#flag2').val()) {
+			$('span.error.monhoc').html('');
+			
+			if ('' == $('#NGUOIDUOCGIAO2 > option:selected').text()){
+				$('span.error.nguoiduocgiao').html('Vui lòng chọn ít nhất một người');
+				valid = false;
+			}
+			if ('' == $('#TEN_CV2').val()){				
+				$('span.error.ten_cv').html('Vui lòng nhập tên công việc');
+				valid = false;
+			}
+			
+			if ('' == $('#NGAYKT2').val()){				
+				$('span.error.thoigian').html('Vui lòng chọn ngày kết thúc');
+				valid = false;
+			}
+			
+			if (new Date($('#NGAYKT2').val()).getDate() < new Date($('#NGAYBD2').val()).getDate()){
+				$('span.error.thoigian').html('Ngày kết thúc phải sau ngày bắt đầu');
+				valid = false;
+			}
+			
+		}
+		else if ('0-0' == $('#subject2 select').val()) {
+			if ($('span.error.monhoc').text() == ''){
+				$('span.error.monhoc').html('Vui lòng chọn môn học');
+			}
+			$('#subject2').focus();
+			valid = false;
+		}
+		return valid;
+		
+	});
+	/* //Manipulation
+		//
+		//
+	*/
+	$('span.manipulation').click(function() {
+		
+		$('section.manipulation').fadeIn(1000);
+		$('section.manipulation').children().hide();
+		$('#black').show();
+		$('section.manipulation').siblings().css('opacity','0.2');
+		if ($(this).hasClass('btnAddtask')){
+			$('#addtask').show();
+			
+		}
+		else if ($(this).hasClass('btnModifytask')){
+			//$('#modifytask').show();
+			
+			var TEN_MH = $(this).parent().siblings('.TEN_MH').children().text();
+			var TEN_CV = $(this).parent().siblings('.TEN_CV').children().text();
+			var TEN_MUCDO = $(this).parent().siblings('.TEN_MUCDO').children().text();
+			var TEN_TINHCHAT = $(this).parent().siblings('.TEN_TINHCHAT').children().text();
+			var TEN_TRANGTHAI = $(this).parent().siblings('.TEN_TRANGTHAI').children().text();
+			var THOIGIANUL = $(this).parent().siblings('.THOIGIANUL').children().text();
+			var NGAYBD = $(this).parent().siblings('.NGAYBD').children().text().substr(0,10);
+			var NGAYKT = $(this).parent().siblings('.NGAYKT').children().text().substr(0,10);
+			var MOTA = $(this).parent().siblings('.MOTA').children().text();
+			$('#subject2 option').each(function (){
+				if (TEN_MH == $(this).text()) {
+					$(this).prop('selected', true);
+				}
+			});
+			
+			var i = 0;
+			
+			if ('Không quan trọng' == TEN_MUCDO)
+				$("fieldset.MA_MUCDO > p > label > input[type=radio]").attr('value','1');
+			else if ('Bình thường' == TEN_MUCDO)
+				$("fieldset.MA_MUCDO > p > label > input[type=radio]").attr('value','2');
+			else if ('Quan trọng' == TEN_MUCDO)
+				$("fieldset.MA_MUCDO > p > label > input[type=radio]").attr('value','3');	
+				
+				
+			if ('Nhiệm vụ' == TEN_TINHCHAT)
+				$("fieldset.MA_TINHCHAT > p > label > input[type=radio]").attr('value','NV');
+			else if ('Khó khăn' == TEN_TINHCHAT)
+				$("fieldset.MA_TINHCHAT > p > label > input[type=radio]").attr('value','KK');
+			/*$("fieldset.MA_MUCDO > p > label > input[type=radio]").each(function (){
+				i ++;
+				alert($(this).text());
+				if (TEN_MUCDO == $(this).text()) {
+					//$(this).prop('checked', true);
+					alert('desd');
+				}
+				
+				
+			});*/
+			
+			$("fieldset.MA_TINHCHAT input[type=radio]").each(function (){
+				if (TEN_TINHCHAT == $(this).text()) {
+					$(this).prop('checked', true);
+				}
+				
+				
+			});
+			
+			$("fieldset.MA_TRANGTHAI input[type=radio]").each(function (){
+				if (TEN_TRANGTHAI == $(this).text()) {
+					$(this).prop('checked', true);
+				}
+				
+				
+			});
+			$('#THOIGIANUL2').attr('value', THOIGIANUL);
+			$('#NGAYBD2').attr('value', NGAYBD);
+			$('#NGAYKT2').attr('value', NGAYKT);
+			$('#TEN_CV2').attr('value', TEN_CV);
+			$('#flag2').attr('value','modifytask');
+			$('input[name=getgroupmate2]').click();
+			
+		}
+		else if ($(this).hasClass('btnDeletetask')){
+			$("#iframe_login").slideDown("slow");
+		}
+		else if ($(this).hasClass('btnAddreport')){	
+			$('#addreport').show();
+			
+		}
+		
+	});
+	
+	$('section.reportlist.view > section.advance > div.search > select').change(function(){
+		var TEN_MH = $(this).children(':selected').html();
+		$('div.reportlist > table > tbody > tr').hide();
+		if ('--Tất cả--' == TEN_MH){
+			$('div.reportlist > table > tbody > tr').show(300);
+		}
+		else {
+			
+			$('div.reportlist > table > tbody > tr > td:contains(' + TEN_MH+')').parent().show(300);
+			
+		}
+		$('div.reportlist > table > tbody > tr > th').parent().show(300);
+		
+	});
+	
+	$('section.tasklist.view > section.advance > div.search > select').change(function(){
+		
+		var TEN_MH = $(this).children(':selected').html();
+		$('div.tasklist > table > tbody > tr').hide();
+		if ('--Tất cả--' == TEN_MH){
+			$('div.tasklist > table > tbody > tr').show(300);
+		}
+		else {
+			
+			$('div.tasklist > table > tbody > tr > td:contains(' + TEN_MH+')').parent().show(300);
+			
+		}
+		$('div.tasklist > table > tbody > tr > th').parent().show(300);
+		
+	});
+	/* end ----------------*/
+	
+	/* img manipulation           */
+	/*$('img.manipulation').click(function (){
+		
+		$('section.manipulation').hide(500);
+		$('section.manipulation').siblings().css('opacity','1');
+		$('#addtask').hide();
+		$('#modifytask').hide();
+		$("#iframe_login").slideUp("slow");
+		$('img.manipulation').hide();
+	});
+	*/
+	/*--------------------------*/
+	/* title */
+	$('a').attr('title','Click để xem chi tiết');
+		
+	
+	
+});
+

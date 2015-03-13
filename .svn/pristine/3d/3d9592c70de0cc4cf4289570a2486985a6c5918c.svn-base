@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Sheet 1">
+<Table>
+<Row>
+<Cell><Data ss:Type="String">Ng&agrave;y in danh s&aacute;ch:</Data></Cell>
+<Cell><Data ss:Type="String">21-10-2014</Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">Danh s&aacute;ch m&ocirc;n:</Data></Cell>
+<Cell><Data ss:Type="String">Tất cả</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">Nh&oacute;m:</Data></Cell>
+<Cell><Data ss:Type="String">Tất cả</Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">Số TT</Data></Cell>
+<Cell><Data ss:Type="String">T&ecirc;n m&ocirc;n học</Data></Cell>
+<Cell><Data ss:Type="String">Nh&oacute;m</Data></Cell>
+<Cell><Data ss:Type="String">T&ecirc;n đề t&agrave;i</Data></Cell>
+<Cell><Data ss:Type="String">M&ocirc; tả</Data></Cell>
+<Cell><Data ss:Type="String">Số lượng th&agrave;nh vi&ecirc;n</Data></Cell>
+<Cell><Data ss:Type="String">T&ecirc;n trưởng nh&oacute;m</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">1</Data></Cell>
+<Cell><Data ss:Type="String">Cấu tr&uacute;c dữ liệu</Data></Cell>
+<Cell><Data ss:Type="String">1</Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">1</Data></Cell>
+<Cell><Data ss:Type="String">Nguyễn Thanh Phi</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">2</Data></Cell>
+<Cell><Data ss:Type="String">Cấu tr&uacute;c dữ liệu</Data></Cell>
+<Cell><Data ss:Type="String">2</Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">1</Data></Cell>
+<Cell><Data ss:Type="String">Nguyễn Vương Th&agrave;nh T&acirc;m</Data></Cell>
+</Row>
+</Table>
+</Worksheet>
+</Workbook>

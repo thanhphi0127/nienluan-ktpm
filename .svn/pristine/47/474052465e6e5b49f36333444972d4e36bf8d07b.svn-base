@@ -1,0 +1,529 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Mgiangvien extends CI_Model{
+	public function __construct() {
+		parent::__construct();
+	}
+
+	//---------------------------------------------------------------------------
+	// Name          	: DanhSachGiangVien()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function DanhSachGiangVien()
+	{
+		$query = $this -> db -> query("SELECT a.mscb, a.hoten, a.gioitinh, a.ngaysinh, a.diachi, 
+											  a.sdt, a.mail,  b.ten_bm, c.ten_td
+										FROM giangvien as a, bomon as b, trinhdo as c
+										WHERE a.ma_bm = b.ma_bm and a.ma_td = c.ma_td AND a.trangthai = 1
+										ORDER BY a.mscb");
+		return $query -> result();
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: LayBoMon()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function LayBoMon(){
+		$query = $this->db->query('SELECT ma_bm, ten_bm FROM bomon');
+		return $query->result_array();
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: LayTrinhDo()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function LayTrinhDo(){
+		$query = $this->db->query('SELECT ma_td, ten_td FROM trinhdo');
+		return $query->result_array();
+	}
+
+	
+		
+	//---------------------------------------------------------------------------
+	// Name          	: CapNhatGiangVien($data)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function CapNhatGiangVien($data){
+		/*
+		$this->db->set('hoten',$data['hoten']);
+		$this->db->set('gioitinh',$data['gioitinh']);
+		$this->db->set('ma_nganh',$data['manganh']);
+		$this->db->set('diachi',$data['diachi']);
+		$this->db->set('sdt',$data['sdt']);
+		$this->db->set('ngaysinh',$data['ngaysinh']);
+		$this->db->set('gioitinh',$data['gioitinh']);
+		*/
+		$this->db->where('mscb', $data['mscb']);
+		$result = $this->db->update('giangvien', $data);
+		return $result;
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: XoaGiangVien($mscb)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function XoaGiangVien($mscb){
+		$this->db->where('mscb', $mscb)
+			     ->set('trangthai', 0);
+		$result = $this->db->update('giangvien'); 
+		return $result;
+	}
+	
+	function LayTenGiangVien($mscb) {
+		$result = $this->db->query("SELECT hoten FROM giangvien WHERE mscb = '".$mscb."'");
+		return $result->result();
+	}
+
+	
+	//---------------------------------------------------------------------------
+	// Name          	: LayNhom_TheoMon($magv, $mahk, $manh, $ma_mh)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function LayNhom_TheoMon($magv, $mahk, $manh, $ma_mh){
+		$query = $this->db->query("SELECT b.TEN_MH, b.MA_MH
+									FROM lophocphan as a, monhoc as b, dsgiangvien as c, chitietnhom as d, sinhvien as e
+									WHERE   c.MSCB = '".$magv."' and
+											c.MA_LOPHOCPHAN = a.MA_LOPHOCPHAN and
+											d.MA_LOPHOCPHAN = c.MA_LOPHOCPHAN and
+											d.NHOMTRUONG = e.MSSV and
+											b.MA_MH = a.MA_MH and
+											b.MA_MH ='".$ma_mh."' and
+											a.MA_HK ='".$mahk."' and
+											a.MA_NH = '".$manh."'");
+		return $query->result();
+	}
+
+	//---------------------------------------------------------------------------
+	// Name          	: ThongTinGiangVien($MSCB)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function ThongTinGiangVien($mscb) {
+		$query = $this -> db -> query("SELECT a.mscb, a.hoten, a.gioitinh, a.ngaysinh, a.diachi, 
+											  a.sdt, a.mail,  b.ten_bm, c.ten_td
+										FROM giangvien as a, bomon as b, trinhdo as c
+										WHERE a.ma_bm = b.ma_bm and 
+											  a.ma_td = c.ma_td and
+											  a.mscb = '".$mscb."'");
+		return $query -> result();
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: ThongKeTheoNhom($nhom)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function ThongKeCacNhom() {
+		$query = $this -> db -> query("SELECT DISTINCT a.MA_CV, a.TEN_CV, a.NGUOIDUOCGIAO, a.MOTA, MAX(b.hoanthanh) as HOANTHANH, c.STT_NHOM
+									   FROM congviec as a, chitietchinhsuacv as b, nhom_dscongviec as c
+									   WHERE a.ma_cv = b.ma_cv and a.ma_cv = c.ma_cv
+									   GROUP BY c.STT_NHOM");
+		return $query -> result();
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: ($mscb, $ma_mh, $nhom, $hk, $nh)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function ThongKeMoiNhom($mscb, $ma_mh, $nhom, $nh) {
+		$query = $this -> db -> query("SELECT DISTINCT a.MA_CV, a.TEN_CV, a.NGUOIDUOCGIAO, a.MOTA, MAX(e.TILEHOANTHANH) as HOANTHANH, c.STT_NHOM, f.TEN_TINHCHAT 
+								FROM congviec AS a, dscongviec AS b, nhom_dscongviec AS c, lophocphan AS d, chitietchinhsuacv as e,
+								tinhchat as f, maunhom as g 
+								WHERE a.MA_CV = b.MA_CV AND b.ma_dscv = c.ma_dscv 
+								AND d.ma_lophocphan = c.ma_lophocphan 
+								AND a.ma_cv = e.ma_cv 
+								AND c.STT_NHOM = ".$nhom."
+								AND d.ma_mh = '".$ma_mh."' 
+								AND a.ma_tinhchat = f.ma_tinhchat 
+								AND b.ma_dscv = c.ma_dscv
+								AND g.MA_MAUNHOM = d.MA_MAUNHOM 
+								AND d.MA_NH = '".$nh."' 
+								AND g.MSCB = '".$mscb."' 
+								GROUP BY a.MA_CV");
+		return $query -> result();
+	}
+
+
+	//---------------------------------------------------------------------------
+	// Name          	: ($mscb, $ma_mh, $nhom, $hk, $nh)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function ThongKeMoiNhom1($mscb, $ma_mh, $nhom, $hk, $nh) {
+		$query = $this -> db -> query("SELECT DISTINCT a.MA_CV, a.TEN_CV, a.NGUOIDUOCGIAO, a.MOTA, MAX(e.TILEHOANTHANH) as HOANTHANH, c.STT_NHOM, f.TEN_TINHCHAT 
+								FROM congviec AS a, dscongviec AS b, nhom_dscongviec AS c, lophocphan AS d, chitietchinhsuacv as e,
+								tinhchat as f, maunhom as g 
+								WHERE a.MA_CV = b.MA_CV AND b.ma_dscv = c.ma_dscv 
+								AND d.ma_lophocphan = c.ma_lophocphan 
+								AND a.ma_cv = e.ma_cv 
+								AND c.STT_NHOM = ".$nhom."
+								AND d.ma_mh = '".$ma_mh."' 
+								AND a.ma_tinhchat = f.ma_tinhchat 
+								AND b.ma_dscv = c.ma_dscv
+								AND g.MA_MAUNHOM = d.MA_MAUNHOM 
+								AND d.MA_HK = '".$hk."' AND d.MA_NH = '".$nh."' 
+								AND g.MSCB = '".$mscb."' 
+								GROUP BY a.MA_CV");
+		echo $query;
+		$congviec['dscongviec'] = $this->db->query($query)->result_array();
+		
+		$i = 0;
+		$array_MSSV_nguoiduocgiao = array();
+		$array_HOTEN_nguoiduocgiao = array();
+		foreach ($congviec['dscongviec'] as $row) {
+			$chuoi_nguoiduocgiao = $this->db->query("SELECT NGUOIDUOCGIAO
+													FROM congviec
+													WHERE MA_CV =".$row['MA_CV'])-> result_array();
+													
+			$array_MSSV_nguoiduocgiao = explode('-', $chuoi_nguoiduocgiao);
+			foreach ($array_MSSV_nguoiduocgiao as $MSSV_nguoiduocgiao) {
+				$HOTEN = $this->db->query("SELECT HOTEN
+										   FROM sinhvien
+										   WHERE mssv='".$MSSV_nguoiduocgiao."'")->result_array();
+				array_push($array_HOTEN_nguoiduocgiao, $HOTEN);
+			}
+			$chuoi_HOTEN_nguoiduocgiao = implode(',', $array_HOTEN_nguoiduocgiao);
+			$congviec['dscongviec']['NGUOIDUOCGIAO'] = $chuoi_HOTEN_nguoiduocgiao;
+			$i++;
+		}
+		return $congviec;
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: BieuDoCongViec($mscb, $ma_mh, $nhom, $hk, $nh)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function BieuDoCongViec($mscb, $ma_mh, $nhom, $nh) {
+		$query = $this -> db -> query("SELECT DISTINCT a.MA_CV, a.NGAYBD, a.NGAYKT, a.TEN_CV, a.NGUOIDUOCGIAO, a.MOTA, MAX(e.TILEHOANTHANH) as HOANTHANH, c.STT_NHOM, f.TEN_TINHCHAT 
+								FROM congviec AS a, dscongviec AS b, nhom_dscongviec AS c, lophocphan AS d, chitietchinhsuacv as e,
+								tinhchat as f, maunhom as g 
+								WHERE a.MA_CV = b.MA_CV AND b.ma_dscv = c.ma_dscv 
+								AND d.ma_lophocphan = c.ma_lophocphan 
+								AND a.ma_cv = e.ma_cv 
+								AND c.STT_NHOM = ".$nhom."
+								AND d.ma_mh = '".$ma_mh."' 
+								AND a.ma_tinhchat = f.ma_tinhchat 
+								AND b.ma_dscv = c.ma_dscv
+								AND g.MA_MAUNHOM = d.MA_MAUNHOM 
+								AND d.MA_NH = '".$nh."' 
+								AND g.MSCB = '".$mscb."' 
+								GROUP BY a.MA_CV");
+		return $query -> result();
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: XemChiTietCongViec($nhom)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function XemChiTietCongViec($ma_cv, $nhom) {
+		$query = $this -> db -> query("SELECT DISTINCT b.TILEHOANTHANH AS HOANTHANH, c.STT_NHOM, d.HOTEN, b.THOIGIANSUA, a.MA_CV, b.GHICHU
+										FROM congviec as a, chitietchinhsuacv as b, nhom_dscongviec as c, sinhvien as d, dscongviec as e
+										WHERE a.ma_cv = b.ma_cv AND b.nguoisua = d.mssv AND c.stt_nhom = ".$nhom."
+										AND c.ma_dscv = e.ma_dscv AND a.ma_cv = e.ma_cv AND a.ma_cv = '".$ma_cv."'
+									   ORDER BY b.TILEHOANTHANH");
+		return $query -> result();
+	}
+
+	//---------------------------------------------------------------------------
+	// Name          	: LayThanhVien($nhom)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function LayThanhVien($ma_mh, $nhom) {
+		$query = $this -> db -> query("SELECT c.mssv, c.hoten
+										FROM lophocphan as a, dssinhvien as b, sinhvien as c
+										WHERE a.ma_lophocphan = b.ma_lophocphan AND b.mssv = c.mssv
+										AND a.ma_mh = '".$ma_mh."' and b.stt_nhom = ".$nhom."");
+		return $query -> result();
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: ThongKeTheoNhom($nhom)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function LayDanhSachNhom($ma_mh) {
+		$query = $this -> db -> query("SELECT DISTINCT c.STT_NHOM
+									  FROM congviec AS a, dscongviec AS b, nhom_dscongviec AS c, lophocphan AS d
+									  WHERE a.ma_cv = b.ma_cv
+									  AND b.ma_dscv = c.ma_dscv
+									  AND d.ma_lophocphan = c.ma_lophocphan
+									  AND d.ma_mh = '".$ma_mh."'");
+		return $query -> num_rows();
+	}	
+	
+	//---------------------------------------------------------------------------
+	// Name          	: LayThanhVien($nhom)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function ThemThongBao($data) {
+		$result = $this->db->insert("thongbao", $data);
+		if ($result) {
+			return TRUE;
+		}
+		else return FALSE;
+	}
+	
+	
+	
+	
+	function lay_thongtincanhan($MSCB) {
+		return $this->db->get_where('giangvien',array('MSCB'=>$MSCB))->result_array();
+	}
+
+	
+
+
+
+	//---------------------------------------------------------------------------
+	// Name          	: ThemGiangVien()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function ThemGiangVien($data){
+		$result = $this->db->insert("giangvien", $data);
+		if ($result) {
+			return TRUE;
+		}
+		else return FALSE;
+	}
+	
+	
+	
+
+
+	//---------------------------------------------------------------------------
+	// Name          	: LayMonHoc_GiangVien($mscb)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function LayMonHoc_GiangVien($magv, $manh){
+		$query = $this->db->query('SELECT TEN_MH, monhoc.MA_MH
+									FROM lophocphan, monhoc, dsgiangvien
+									WHERE   dsgiangvien.MSCB = '.$magv.' and
+											dsgiangvien.MA_LOPHOCPHAN = lophocphan.MA_LOPHOCPHAN and
+											monhoc.MA_MH = lophocphan.MA_MH and
+											MA_NH = '.$manh.'');
+		return $query->result_array();
+	}
+	
+	//---------------------------------------------------------------------------
+	// Name          	: LayNhom_CacMon($magv, $mahk, $manh)
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//---------------------------------------------------------------------------
+	function LayNhom_CacMon($magv, $manh){
+		$query = $this->db->query('SELECT b.TEN_MH, b.MA_MH, d.STT_NHOM, d.MOTA, d.DETAI, d.SLTV, e.HOTEN, a.MA_HK, a.MA_LOPHOCPHAN
+									FROM lophocphan as a, monhoc as b, dsgiangvien as c, chitietnhom as d, sinhvien as e
+									WHERE   c.MA_LOPHOCPHAN = a.MA_LOPHOCPHAN and
+											d.MA_LOPHOCPHAN = c.MA_LOPHOCPHAN and
+											d.NHOMTRUONG = e.MSSV and
+											b.MA_MH = a.MA_MH and
+											a.MA_NH = '.$manh.' and
+											c.mscb = '.$magv.'
+									ORDER BY b.TEN_MH, d.STT_NHOM');
+		return $query->result_array();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	function lay_maunhom($magv, $dsmonhoc){
+	
+		$array_monhoc = array();
+		foreach ($dsmonhoc as $row) {
+			array_push($array_monhoc, '"'.$row['MA_MH'].'"');
+		}
+		
+		$query = $this->db->query('SELECT TEN_MH, maunhom.MA_MH, SLN_TOIDA, SLTV_TOIDA, MOTA , MA_MAUNHOM
+									FROM maunhom, monhoc
+									WHERE   maunhom.MSCB = "'.$magv.'" and
+											maunhom.MA_MH in ('.join(",",$array_monhoc).') and
+											maunhom.MA_MH = monhoc.MA_MH
+								');
+		
+		return $query->result_array();
+	}
+	
+	function lay_maunhom_bang_malophocphan($MA_LOPHOCPHAN){
+	
+		
+		$query = $this->db->query('SELECT *
+									FROM maunhom, lophocphan
+									WHERE   lophocphan.MA_LOPHOCPHAN = '.$MA_LOPHOCPHAN.' and
+											lophocphan.MA_MAUNHOM = maunhom.MA_MAUNHOM 
+								');
+		
+		return $query->result_array();
+	}
+	
+	
+	function lay_monhoc($magv, $mahk, $manh){
+	
+		$query = $this->db->query('SELECT TEN_MH, monhoc.MA_MH
+									FROM lophocphan, monhoc, dsgiangvien
+									WHERE   dsgiangvien.MSCB = '.$magv.' and
+											dsgiangvien.MA_LOPHOCPHAN = lophocphan.MA_LOPHOCPHAN and
+											monhoc.MA_MH = lophocphan.MA_MH and
+											MA_HK ='.$mahk.' and
+											MA_NH = '.$manh.'
+								');
+		
+		return $query->result_array();
+	}
+	
+	function lay_tatca_monhoc($magv){
+	
+		$query = $this->db->query('SELECT TEN_MH, monhoc.MA_MH
+									FROM monhoc
+								');
+		
+		return $query->result_array();
+	}
+	
+	function tao_maunhom($data){
+		$this->db->insert('maunhom',$data);
+	}
+	
+	function sua_maunhom($data){
+		$this->db->where('MSCB',$data['MSCB']);
+		$this->db->where('MA_MH',$data['MA_MH']);
+		$this->db->update('maunhom',$data);
+		
+	}
+	
+	function delete_maunhom($data){
+		$this->db->delete('maunhom', array('MSCB' => $data['MSCB'], 'MA_MH' => $data['MA_MH'])); 
+
+	}
+	
+	function kttontai_maunhom($ma_mh, $mscb) {
+		$count = $this->db->from('maunhom')->where('MA_MH',$ma_mh)->where('MSCB',$mscb)->get()->num_rows();
+
+		return $count >= 1 ? TRUE : FALSE;
+	}
+	
+	
+	function xoa_maunhom($MA_MAUNHOM){
+		// update lophocphan 
+		$array = array('MA_MAUNHOM' => null);
+		$this->db->update('lophocphan', $array, array('MA_MAUNHOM' => $MA_MAUNHOM));
+		
+		//xoa maunhom
+		$this->db->delete('maunhom', array('MA_MAUNHOM' => $MA_MAUNHOM));
+	}
+	
+	public function lay_dsbaocao($MA_LOPHOCPHAN, $STT_NHOM){
+		$query = $this->db->query('select * 
+														from baocao, sinhvien, dssinhvien, monhoc, lophocphan
+														where baocao.MA_LOPHOCPHAN = '. $MA_LOPHOCPHAN.' and
+															  baocao.STT_NHOM = '. $STT_NHOM.' and
+															  baocao.MA_LOPHOCPHAN = dssinhvien.MA_LOPHOCPHAN and
+															  dssinhvien.MA_LOPHOCPHAN = lophocphan.MA_LOPHOCPHAN and
+															  lophocphan.MA_MH = monhoc.MA_MH and
+															  dssinhvien.MSSV = sinhvien.MSSV and
+															  dssinhvien.MSSV = baocao.NGUOIGUI 
+															  ')->result_array();
+		return $query;
+	}
+	
+}
