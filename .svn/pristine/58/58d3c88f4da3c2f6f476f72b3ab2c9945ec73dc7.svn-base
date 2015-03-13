@@ -1,0 +1,40 @@
+
+<header id='giangvien_top'>
+	<div id='bar'>
+		<div id='cssmenu'>
+			<ul>
+				<li><a href="<?php echo CIT_BASE_URL; ?>giangvien/">Trang chủ</a></li>
+				<li class='last'><a href='<?php echo CIT_BASE_URL; ?>diendan/diendan'><span>Diễn đàn</span></a></li> 
+                <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/thongtingiangvien'><span>Giảng viên</span></a></li>         
+			   <li class='has-sub'><a  href='<?php echo CIT_BASE_URL; ?>giangvien/tiendocongviec'><span>Thông tin nhóm</span></a>
+				  <ul>
+						 <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/tiendocongviec'><span>Xem danh sách nhóm</span></a>
+						 </li>
+						 <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/xembaocaotiendo'><span>Xem báo cáo tiến độ</span></a>
+						 </li>
+					</ul>
+				</li>
+				<li class='has-sub'><a  href='<?php echo CIT_BASE_URL; ?>giangvien/quanlymaunhom'><span>Quản lý mẫu nhóm</span></a>
+				  <ul>
+						 <li class='last'><a ><span class='addgrouptemplate'>Tạo mẫu nhóm</span></a>
+						 </li>
+						 <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/quanlymaunhom'><span>Xem danh sách mẫu nhóm </span></a>
+						 </li>
+					</ul>
+				</li>
+				<li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/thongke'><span>Thống kê</span></a>
+				 </li>
+				<li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/download'><span>Download</span></a>
+				 </li>
+                <li class='last'><a href='<?php echo CIT_BASE_URL; ?>giangvien/'><span>Gửi thông báo</span></a>
+				 </li>
+			</ul>
+		</div>
+			
+	</div>
+	
+		<iframe id='frame_notification' class='arrow_box' src="<?php echo CIT_BASE_URL;?>notification/index" scrolling="auto"></iframe>
+				
+		
+	
+</header>

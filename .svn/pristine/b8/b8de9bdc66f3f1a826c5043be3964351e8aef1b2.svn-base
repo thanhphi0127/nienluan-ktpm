@@ -1,0 +1,36 @@
+<html><head>
+<title>Tạo Login Form giống WordPress Admin với CSS3 và jQuery</title>
+<link href="standardform.css" rel="stylesheet" type="text/css">
+<link rel="icon" href="http://www.thuthuatweb.net/wp-content/themes/HostingSite/favicon.ico" type="image/x-ico">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<div class="form">
+			<div class="message">
+			Đăng nhập
+									<!-- this get the query log variable if is set or not. -->
+					</div>
+		
+		<form method="post" action="index.php">
+			<p>
+				<label for="username">Username<br>
+				<input type="text" id="username" name="username" class="input" value="" size="20" tabindex="10"></label>
+			</p>
+			<p>
+				<label for="password">Password<br>
+				<input type="password" id="password" name="password" class="input" value="" size="20" tabindex="20"></label>
+			</p>
+			<p class="submit">
+				<input type="submit" name="submit" id="submit" class="submit-button" value="Log In" tabindex="100">
+				<input type="hidden" name="task" value="login">
+			</p>
+		</form>
+	    
+</div>
+
+
+
+</body></html>

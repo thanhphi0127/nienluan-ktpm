@@ -1,0 +1,21 @@
+﻿		
+<p><span>Giảng viên: <?php if (isset($giangvien))
+								echo $giangvien[0]['HOTEN'];
+								?>
+	</span>
+</p>
+<p>
+	<span>Số thành viên tối đa: 
+		<?php if (isset($maunhom))
+								echo $maunhom[0]['SLTV_TOIDA'];
+								?>
+	</span>
+</p>
+<p>
+	<span>Mô tả:
+		<?php if (isset($maunhom))
+				echo $maunhom[0]['MOTA'];
+		?>	
+	
+	</span>
+</p>

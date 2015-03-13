@@ -1,0 +1,86 @@
+
+/*-------------------------------------Genarally--------------------------------------------*/
+a {
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+	color:blue;
+}
+
+
+/*------------------------------------------------------------------------------------------*/
+section.group_info {
+	border: 1px solid #D1D1D1;
+	min-height: 368px;
+	margin: 0px 0px 5px 0px;
+	overflow: hidden;
+	background: #F4F4F4;
+	padding: 10px;
+}
+
+body {
+	background-color: #EFF8FF;
+}
+
+
+#tab_subject {
+	margin:36px auto 0px;
+	
+}
+
+#tab_subject  tr td, #tab_subject tr th{
+	padding:10px;
+	border:1px solid gray;
+	cursor:pointer;
+}
+#tab_subject tr th{
+	background-color:gray;
+}
+#tab_subject tr td:nth-child(1) {
+	background-color:yellow;
+}
+#tab_subject tr td:nth-child(2) {
+	background-color:pink;
+}
+
+
+#modifygrouptemplate, #deletegrouptemplate #addgrouptemplate, section.manipulation{
+	display:none;
+}
+
+span.manipulation img {
+	width:26px;
+	height:26px;
+	margin-right:5px;
+	margin-bottom:-7px;
+	cursor:pointer;
+	
+}
+.form input[type=text]{
+	width: 94%;
+	padding: 2px 12px;
+}
+
+section.manipulation img.manipulation{
+	position:absolute;
+	right:493px;
+	top:0%;
+	margin-top:63px;
+}
+
+
+section.manipulation{
+	position: absolute;
+	top: 68px;
+	left: 0%;
+	z-index: 7;
+}
+
+header.tab{
+	min-height:80px;
+}
+
+header.tab fieldset {
+	height:48px !important;
+}

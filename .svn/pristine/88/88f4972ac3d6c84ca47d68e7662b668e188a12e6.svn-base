@@ -1,0 +1,62 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Diendan extends MY_Controller {
+	
+	public function __construct(){
+		parent::__construct();	
+	}
+	
+	
+	
+	//---------------------------------------------------------------------------
+    // Name          	: index()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------
+	public function index() {
+		$data['seo']['title'] = "Danh sách chủ đề";
+		$data['seo']['keyword'] = 'Chủ đề';
+		$data['seo']['description'] = 'Thông tin chủ đề thảo luận';
+		$data['template'] = 'diendan/danhsachchude'; //Chuyen den file dien dan trong view
+
+		//Load model lay du lieu
+		$this->load->model('mdiendan');
+		$data['ds'] = $this->mdiendan->mdanhsachchude();
+		$this->load->view('diendan', isset($data) ? $data : NULL);
+	}
+	
+	
+	//---------------------------------------------------------------------------
+    // Name          	: danhsachchude()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------
+	public function danhsachchude() {
+		$data['seo']['title'] = "Danh sách chủ đề";
+		$data['seo']['keyword'] = 'Chủ đề';
+		$data['seo']['description'] = 'Thông tin chủ đề thảo luận';
+		$data['template'] = 'diendan/danhsachchude'; //Chuyen den file dien dan trong view
+
+		//Load model lay du lieu
+		$this->load->model('mdiendan');
+		$data['ds'] = $this->mdiendan->mdanhsachchude();
+		$this->load->view('diendan', isset($data) ? $data : NULL);
+	}
+	
+	
+	//---------------------------------------------------------------------------
+    // Name          	: themchude()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------
+	public function themchude() {
+
+	}
+	
+	
+}

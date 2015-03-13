@@ -1,0 +1,57 @@
+﻿<section id='cit_wrapper' >
+
+	<p>% Thời gian</p>
+	<p>% hoàn thành công việc</p>
+<div id='group1'>
+	<span class='span_title'>Nhóm 1</span>
+	<ul class="verticalBarGraph">  				
+		<li class="set1" style="height: 57px; left: 0px;">57</li>
+		<li class="set2" style="height: 27px; left: 0px;">27</li>
+		
+		<li class="set1" style="height: 74px; left: 80px;">74</li>
+		<li class="set2" style="height: 54px; left: 80px;">54</li>
+		
+		<li class="set1" style="height: 24px; left: 160px;">24</li>
+		<li class="set2  setspecial" style="height: 54px; left: 160px;">54</li>
+		
+	</ul> 
+
+	<ul class='verticalBarGraph barname'>  				
+		<li  style="height: 100px; left: 0px;">Phân tích yêu cầu</li>
+		
+		
+		<li  style="height: 100px; left: 80px;">THiết kế dữ liệu</li>
+		
+		
+		<li  style="height: 100px; left: 160px;">Thiết kế kiến trúc</li>
+		
+		
+	</ul> 
+</div>
+<div id='group2'>
+	<span class='span_title'>Nhóm 1</span>
+	<ul class="verticalBarGraph">  				
+		<li class="set1" style="height: 57px; left: 0px;">57</li>
+		<li class="set2" style="height: 27px; left: 0px;">27</li>
+		
+		<li class="set1" style="height: 74px; left: 80px;">74</li>
+		<li class="set2" style="height: 54px; left: 80px;">54</li>
+		
+		<li class="set1" style="height: 24px; left: 160px;">24</li>
+		<li class="set2  setspecial" style="height: 54px; left: 160px;">54</li>
+		
+	</ul> 
+
+	<ul class='verticalBarGraph barname'>  				
+		<li  style="height: 100px; left: 0px;">Phân tích yêu cầu</li>
+		
+		
+		<li  style="height: 100px; left: 80px;">THiết kế dữ liệu</li>
+		
+		
+		<li  style="height: 100px; left: 160px;">Thiết kế kiến trúc</li>
+		
+		
+	</ul> 
+</div>
+</section>

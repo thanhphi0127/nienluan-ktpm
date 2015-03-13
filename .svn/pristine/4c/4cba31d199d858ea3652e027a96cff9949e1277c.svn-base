@@ -1,0 +1,198 @@
+﻿<section id='cit_wrapper'>
+	<header class='quanly'>
+		<img src='public/img/quanlycongviec_logo.png'></img>
+		<span class='title'>Quản lý nhóm</span>
+	</header>
+	<section class='quanlynhom'>
+		<header class='tab'>
+			<ul>
+			<li>
+			<span  class="btnAMD btnRegister manipulation">Đăng kí nhóm</span>
+			</li>
+			</ul>
+			
+		</header>
+		
+		<section class='group_info'>
+			<table id='tab_subject' cellpadding="10"  class='tab_blue'>
+				<tr>
+					<th>Môn học đã tham gia</th>		 				 			   <th>Nhóm - Vị trí</th>
+				</tr>
+				
+				<tr><td><span name='pttkht_n5'><a>Phân tích yêu cầu phần mềm</a></span></td>  <td>5 - Nhóm trưởng</td></tr>
+				<tr><td><span name='dbclpm_n4'><a>Đảm bảo chất lượng phần mềm</a></span></td> <td>4 - Thành viên</td></tr>
+				<tr><td><span ><a>Niên luận</span></a></td>					 <td>5 - Thành viên</td></tr>
+				<tr><td><span ><a>Kiểm thử phần mềm</span></a></td>					 <td>--</td></tr>
+				
+			</table>
+			<section id='group_detail'>
+				<subtitle>Phân tích yêu cầu phần mềm</subtitle>
+				<div id='memberfn'>
+									<span  class="btnAMD btnLeave manipulation">Rút khỏi nhóm</span>
+									<span  class="btnAMD btnAddmember manipulation">Thêm thành viên</span>
+								   <span  class="btnAMD btnModifygroup manipulation">Sửa thông tin nhóm</span>
+								   <span  class="btnHidedetail manipulation"><a>Ẩn</a></span>
+				</div>
+				<p><label><span>Đề tài:</span><p>Quản lý nhà trọ</p></label></p>
+				<p><label><span>Mô tả: </span><p>Hệ thống cho phép quản lý các phòng, thiết bị khách sạn và thủ tục thuê khách sạn</p>.</label></p>
+				<p><label><span>Số thành viên:</span><span>1/5</span></label></p><br/>
+				<p>
+				<table>
+					<tr><th>STT</th>	<th>Họ tên</th>							<th>Chức vụ</th>		<th>Thao tác</th></tr>
+					<tr><td>1</td>		<td>Nguyễn Vương Thành Tâm</td>			<td>Thành viên</td>		<td>
+																												</td></tr>
+					<tr><td>2</td>		<td>Nguyễn Thanh Phi</td>				<td>Nhóm trưởng</td>	<td><span class='manipulation btnDeletemember'><img src='public/img/deleteicon.png'></img></span>
+																											<span class='manipulation btnSendmail'><img src='public/img/sendmailicon.png'></img></span>
+																												</td></tr>
+					<tr><td>3</td>		<td>Huỳnh Thanh Nhã</td>				<td>Thành viên</td>		<td><span class='manipulation btnDeletemember'><img src='public/img/deleteicon.png'></img></span>
+																											<span class='manipulation btnSendmail'><img src='public/img/sendmailicon.png'></img></span>
+																												</td></tr>
+					<tr><td>4</td>		<td>Trịnh Sa Lem</td>					<td>Thành viên</td>		<td><span class='manipulation btnDeletemember'><img src='public/img/deleteicon.png'></img></span>
+																											<span class='manipulation btnSendmail'><img src='public/img/sendmailicon.png'></img></span></td></tr>
+					
+				</table>
+				</p>
+			</section>
+		</section>
+	</section>
+	<section class='manipulation'>
+		<img class='manipulation' src='public/img/iconclose.png'></img>
+		<div id='register' class='smart-green'>
+			<form action="" method="post">
+			<h1>ĐĂNG KÍ NHÓM</h1>
+						
+					
+					
+						<p>
+							<select name='subject' >
+								<optgroup label='Hệ thống thông tin'>
+									<option value="mon1">Chọn môn học</option>
+									  <option value="mon1">Phân tích thiết kế hệ thống thông tin</option>
+									  <option value="mon2">Nhập môn công nghệ phần mềm</option>
+									  <option value="mon3">Lập trình web</option>
+									  <option value="mon4">Luận văn</option>
+								</optgroup>
+								<optgroup label='Kỹ thuật phần mềm'>
+									  <option value="mon1">Phân tích yêu cầu phần mềm</option>
+									  <option value="mon2">Nhập môn công nghệ phần mềm</option>
+									  <option value="mon3">Lập trình web</option>
+									  <option value="mon4">Luận văn</option>
+								</optgroup>
+								<optgroup label='Khoa học máy tính'>
+									  <option value="mon1">Phân tích thiết kế hệ thống thông tin</option>
+									  <option value="mon2">Nhập môn công nghệ phần mềm</option>
+									  <option value="mon3">Lập trình web</option>
+									  <option value="mon4">Luận văn</option>
+								</optgroup>
+								<optgroup label='Mạng máy tính và truyền thông'>
+									  <option value="mon1">Phân tích thiết kế hệ thống thông tin</option>
+									  <option value="mon2">Nhập môn công nghệ phần mềm</option>
+									  <option value="mon3">Lập trình web</option>
+									  <option value="mon4">Luận văn</option>
+								</optgroup>
+								<optgroup label='Công nghệ thông tin'>
+									  <option value="mon1">Phân tích thiết kế hệ thống thông tin</option>
+									  <option value="mon2">Nhập môn công nghệ phần mềm</option>
+									  <option value="mon3">Lập trình web</option>
+									  <option value="mon4">Luận văn</option>
+								</optgroup>
+							</select>
+					
+						</p>
+						<fieldset class='register_info'>
+							<legend>THÔNG TIN</legend>
+							<p><span>Môn học: Phân tích yêu cầu phần mềm</span></p>
+							<p><span>Số thành viên tối đa: 10</span></p>
+							<p><span>Ghi chú: (trống)</span></p>
+						</fieldset>
+						<p><label>Tên đề tài: </p><input type="text" name='seminar'  ></label></p> 
+						 <p><label>Mô tả: </p><textarea ></textarea></label></p> 
+						 <p>
+						 <label>
+						<input type="submit" class='submit-button'  value='Đăng kí'/>
+						<input type='reset' class='submit-button'  value='Làm lại'/>
+						</label>
+						</p>
+					</fieldset>
+			</form>
+
+		
+		</div>
+	
+	
+		<div id='addmember' class='smart-green'>
+			<form  action="" method="post">
+				
+				<h1>THÊM THÀNH VIÊN
+						<span>Điền đầy đủ thông tin.</span>
+					</h1>
+						<p><label><span> Tìm kiếm: </span><input type="text" name='search' placeholder='Nhập mã số sinh viên hoặc họ tên sinh viên' ></label></p>
+						<p ><label><span >Hoặc</span></label></p>
+						
+						<label>
+						<select name='memberlist' >
+								<option value="mon1">Chọn từ danh sách</option>
+								  <option value="mon1">1111336 - Nguyễn Văn A</option>
+								  <option value="mon2">111223 - Trần Thị B</option>
+								  <option value="mon3">111144 - Phạm Văn C</option>
+								  <option value="mon4">113399 - Ngô Thị D</option>
+								<option value="mon4">1112332 - Ngô Thị D</option>
+								<option value="mon2">1144336 - Trần Thị B</option>
+								<option value="mon4">1155336 - Ngô Thị D</option>
+								<option value="mon3">1166336 - Phạm Văn C</option>
+								<option value="mon4">1112336 - Ngô Thị D</option>
+								<option value="mon4">11116 - Ngô Thị D</option>
+								<option value="mon3">1111336 - Phạm Văn C</option>
+								<option value="mon4">1111336 - Ngô Thị D</option>
+								<option value="mon1">1111336 - Nguyễn Văn A</option>
+								<option value="mon2">1111336 - Trần Thị B</option>
+								<option value="mon4">1111336 - Ngô Thị D</option>
+								<option value="mon1">1111336 - Nguyễn Văn A</option>
+						</select>
+						</label>
+					
+					
+					<label>
+					<input type="submit" class='submit-button' value='THÊM'/>
+					<input type='reset' class='submit-button' value='Làm lại'/>
+					
+				`	</label>
+					
+				
+			</form>
+
+		</div>
+	
+		<div id='modifygroup' class='smart-green'>
+			<form  action="" method="post">
+				
+				<h1>CHỈNH SỦA THÔNG TIN NHÓM
+						
+					</h1>
+						<fieldset>
+							<legend>THÔNG TIN</legend>
+							<p><span>Môn học: Phân tích yêu cầu phần mềm</span></p>
+							<p><span>Số thành viên tối đa: 10</span></p>
+							<p><span>Ghi chú: (trống)</span></p>
+						</fieldset>
+						<p><label>Tên đề tài: </p><input type="text" name='seminar'  ></label></p> 
+						 <p><label>Mô tả: </p><textarea ></textarea></label></p> 
+						 <p>
+						 <label>
+						<input type="submit" class='submit-button'  value='Lưu'/>
+						<input type='reset' class='submit-button'  value='Làm lại'/>
+						</label>
+						</p>
+					
+				
+			</form>
+
+		</div>
+		<div id='iframe_login'>
+			<div class='verify'><?php $this->load->view('auth/login');?></div>
+			<div  class='iframe_login_up' >
+				<img src='public/img/buttonup.png'></img>
+			</div>
+		</div>
+	</section>
+</section>

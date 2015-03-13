@@ -1,0 +1,250 @@
+@import "manipulation.css";
+@import "../common_header.css";
+/*-------------------------------------Genarally--------------------------------------------*/
+a {
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+	color:blue;
+}
+
+
+/*------------------------------------------------------------------------------------------*/
+section.group_info {
+	border: 1px solid #D1D1D1;
+	min-height: 368px;
+	margin: 0px 0px 5px 0px;
+	overflow: hidden;
+	background: #F4F4F4;
+	padding: 10px;
+}
+
+body {
+	background-color: #EFF8FF;
+}
+
+
+#tab_subject {
+	margin:36px auto 0px;
+	
+}
+
+#tab_subject  tr td, #tab_subject tr th{
+	padding:10px;
+	border:1px solid gray;
+	cursor:pointer;
+}
+#tab_subject tr th{
+	background-color:gray;
+}
+#tab_subject tr td:nth-child(1) {
+	background-color:yellow;
+}
+#tab_subject tr td:nth-child(2) {
+	background-color:pink;
+}
+
+#group_detail {
+	color: black;
+	text-align: center;
+	padding:0px 30px;
+	width: 50%;
+	display: none;
+	float:left;
+	margin:0px 0px 0px 0px;
+}
+
+#group_detail p {
+	text-align:left;
+}
+#group_detail  label {
+	margin-top:-13px;
+	text-align:left;
+}
+
+#group_detail label span{
+	float:left;
+	margin-right:10px;
+	font-weight:bold;
+	font-size:14px;
+}
+
+subtitle {
+	
+	font-weight:bold;
+	font-size:20px;
+}
+
+
+#group_detail table {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+	text-align:left;
+}
+
+#group_detail table th{
+	background-color:gray;
+}
+
+#group_detail table tr td{
+	padding:5px;
+	border:1px solid #333;
+}
+
+#group_detail table tr td:nth-child(1){
+	text-align:center;
+}
+
+/* register */
+#register {
+	display:none;
+}
+
+#iframe_login  {
+	width:100%;
+	height:90%;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:1999;
+	background-color:white;
+	
+}
+
+#iframe_login div.verify {
+	width:100%;
+	height:100%;
+	margin:0px;
+}
+
+#iframe_login div.iframe_login_up {
+	background:#FFF;
+	border-bottom:5px solid #0080FF;
+	text-align:center;
+	width:100%;
+	height:50px;
+	margin:-40px 0px 0px 0px;
+}
+
+#iframe_login div.iframe_login_up  img{
+	margin:2px auto;
+}
+
+#register, #addmember, #iframe_login , section.manipulation{
+	display:none;
+}
+
+.khung{
+	border-radius: 5px;
+	padding: 5px; 
+	margin: auto;
+	width: 87%;
+	min-width: 800px !important;
+	max-width: 87%;
+	border: 1px solid #E6EBE6;
+	background-color: #FFF;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	z-index: 0;
+	margin-top: 72px;
+}
+
+.thongke p {
+	margin: 10px;
+	text-align: center;
+	color:#C00;
+	font-size: 20pt;
+	font-weight:bold;
+}
+
+.thongke label{
+	margin-left: 10px;
+}
+
+th.header_thongke{
+	background-color:#127DCA;
+	color: #FFF;
+	border: 1px solid #142889;
+	font-weight:bold;
+	font-size:14px;
+	height: 30px;
+	padding:5px;
+	width: 97%;
+	margin:auto;
+	margin-top: -6px;
+	margin-bottom: 5px;
+	text-align:center;
+	
+}
+
+.progress-bar.progress-bar-infor{
+	border-radius: 0px;
+}
+
+#hienthichitiet {
+	margin: 5% 20% 5% 20%;
+}
+
+div.cv{
+	margin-left: 20px;
+	font-weight:bold;
+	color:red;
+	font-size: 10pt;
+}
+label#chonmon{
+	margin-left: 28px;
+}
+
+.tongsocongviec{
+	margin-left: 37px;
+	margin-bottom: 5px;
+	font-weight:bold;
+	font-size: 9.5pt;
+	color:#006;	
+}
+
+.tongsonhom {
+	margin-left: 37px;
+	font-weight:bold;
+	font-size: 10pt;
+	color:#006;	
+}
+
+#table_chitiet th{
+	width:inherit;
+}
+.table_nguoidung tr{
+	height: 20px;
+}
+
+.table_nguoidung tr td{
+	padding: 0px 2px 0px 5px;
+}
+
+#guithongbao{
+	margin: 5% 34% 5% 32%;
+	width: 400px;
+}
+
+label{
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+div.form-group{
+	margin-left: 10px;
+}
+
+div.thongke > form > p{
+	color:#C00;
+	font-size: 14pt;
+	text-align:center;
+}
+
+.example1{
+	font-size: 10pt;
+}
+.thongke{
+	margin-bottom: 10px;
+}

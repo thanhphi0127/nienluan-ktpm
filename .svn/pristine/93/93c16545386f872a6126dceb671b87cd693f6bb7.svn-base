@@ -1,0 +1,80 @@
+﻿<section class='body' style="width:87%; background-color:#FFF; border-radius: 5px; border: 1px solid #999; margin-top: 42px; min-height: 800px; height:auto">	
+<section>
+	<div id='title' style="color:#C00; font-weight:bold;"> <h2> In danh sách sinh viên</h2> </div>
+	<section class='config_download form'>
+		<form action="" method="post">
+			<fieldset>
+				<legend>Cấu hình download</legend>
+				<p><label>Chọn môn học: (Giữ Ctrl + Click) 
+					<select name='subject' multiple size='3'>
+						<option value="desc">Tất cả</option>
+						<option value="desc">môn 1</option>
+						<option value="desc">môn 2</option>
+						<option value="desc">môn 3</option>
+						<option value="desc">môn 4</option>
+					</select>
+				</label>
+				</p>
+				<p><label>Tên môn học:<input type="checkbox"  name='subjectname' checked='checked' ></label></p>
+				<fieldset class='config_list' name='student'>
+					<legend>
+						<label>Danh sách sinh viên </label>
+					</legend>
+					<p><label>Sắp xếp:
+						<select name='orderby'>
+						  <option value="groupname">Nhóm</option>
+						  <option value="username">Mã số sinh viên</option>
+						  <option value="class">Mã lớp</option>
+						</select>
+						</label>
+					</p>
+						<span> <label> <p id='detail'> Xem / Ẩn chi tiết >> </p></label> </span>
+						<p><label>Nhóm: <input type="checkbox"  name='groupname' checked='checked' ></label> </p>
+						<p><label>Đề tài:<input type="checkbox" name='seminar' checked='checked' ></label></p>
+						<p><label>Điểm: <input type="checkbox" name='mark' checked='checked' ></label></p>
+						<p><label>Ghi chú:<input type="checkbox" name='notification' checked='checked' ></label></p>
+						
+
+				</fieldset>
+			
+				<input type="submit" class='submit-button'  value='Download'/>
+				<input type='reset' value='Làm lại'/>
+			</fieldset>
+		</form>
+	</section>
+		
+	<section class='review_download'>
+		<br/><p>Xem trước bản download</p> <br/>
+		<section class='review_area'>
+			<br/><br/><span class='subjectname'> TÊN MÔN HỌC </span> <br />
+			<span class='list'>Danh sách sinh viên</span><br/><br/><br/>
+			<table border='1' class='list'>
+				<tr><td>MSSV</td><td>Họ tên</td><td>Lớp</td><td>Nhóm</td><td>Đề tài</td><td>Điểm</td><td>Ghi chú</td></tr>
+				<tr> 
+					<td>1111111</td>
+					<td>Nguyễn Văn A</td>
+					<td>DI1196A1</td>
+					<td>1</td>
+					<td>Website quản lý nhóm sinh viên khoa CNTT</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>1112222</td>
+					<td>Trần Thị B</td>
+					<td>DI1196A2</td>
+					<td>2</td>
+					<td>Ứng dụng phân loại rác</td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+				
+			
+			
+			</table>
+		</section>
+	</section>
+</section>
+
+</section>

@@ -1,0 +1,128 @@
+section.dsthongbao {
+	width: 100%;
+	margin: 0px;
+	float: left;
+}
+div.tomtat {
+	width: 34%;
+	margin: 0px;
+	float: left;
+	margin-left:20px;
+}
+div.chitiet {
+	width: 63%;
+	float: right;
+}
+
+p{
+	
+	word-wrap: break-word;
+}
+
+table.tomtat tr td, table.chitiet tr td {
+	width:450px;
+}
+
+
+div.taothongbao{
+	width:100%;
+	height:43px;
+	padding:3px 30% 3px 0px;
+	border-bottom:4px solid gray;
+}
+a.taothongbao{
+	float:right;
+}
+.hoten {
+	float:left;
+	font-weight:bold;
+}
+.ngaytb {
+	font-weight:bold;
+	float:right;
+}
+.tieude {
+	font-size:16px;
+
+}
+
+.noidung {
+	font-weight:lighter;
+}
+
+tr.TB_DAXEM p label span{
+	font-weight: lighter !important;
+}
+
+tr.TB_CHUAXEM  p label span{
+	font-weight:bold ;
+	
+}
+
+
+
+#taothongbao {
+	display:none;
+	width:500px;
+}
+
+
+#tips {
+	display:none;
+	position: absolute;
+top: 141;
+right: 119;
+width: 223px;
+padding: 7px;
+background: white;
+border: 1px solid red;
+border-radius: 4px;
+}
+
+.error {
+	color:red;
+	font-style:italic;
+}
+
+a span.tieude {
+	color:black;
+}
+
+table.chitiet tr{
+	display:none;
+}
+
+tr.tbnhansv:first-child{
+	display:block;
+}
+
+.form h1 {
+	width:110%;
+}
+
+img.close{
+	width:30px;
+	height:30px;
+	position:absolute;
+	top: 24%;
+	right: 17%;
+}
+
+
+
+section.dsthongbaogui{
+	display:none;
+}
+
+a.thongbaoden, a.thongbaogui{
+	float:right;
+	padding:5px 20px 0px 0px;
+}
+
+.lighter {
+	font-weight:lighter !important;
+}
+
+label {
+	font-weight:lighter;
+}

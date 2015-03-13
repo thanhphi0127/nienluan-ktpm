@@ -1,0 +1,7 @@
+/* CSS Document */
+body{
+	background-color: #EFF8FF;
+}
+.row{
+	min-height:0px;
+}

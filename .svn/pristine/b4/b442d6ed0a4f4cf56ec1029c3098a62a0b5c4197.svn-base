@@ -1,0 +1,430 @@
+<script type="text/javascript">
+	function toggle(source) {
+	  checkboxes = document.getElementsByName('item');
+	  for(var i=0, n=checkboxes.length;i<n;i++) {
+		checkboxes[i].checked = source.checked;
+	  }
+	}
+</script>
+
+
+<!-- NOI DUNG -->
+<div class="container khung" style="font-family:'Times New Roman'">
+    <div class="row">
+    <div class="col-md-12 nguoidung">
+			
+ <div class="box">
+
+    <div class="box-body table-responsive">
+        <table id="example1" class="table-bordered table-hover table_nguoidung">
+        
+               <thead>
+               
+                   <tr>
+                   	   <th><input type="checkbox" onclick="toggle(this)"/></th>
+                       <th>STT</th>
+                       <th>MSSV</th>
+                       <th>Họ tên</th>
+                       <th>Giới tính</th>
+                       <th>Ngày sinh</th>
+                       <th>Địa chỉ</th>
+                       <th>Mail</th>
+                       <th>Ngành</th>
+                       <th>Khóa học</th>
+                   </tr>
+               </thead>
+			<tbody>
+				<?php
+                    session_start();
+                    $user = new sinhvien();
+                    $i = 1;
+                    foreach ($ds as $user)
+                    {
+                          echo "<tr>";  
+                          echo "<td><input type='checkbox' name='item' value='$user->mssv'/></td>";  
+                          echo "<td>$i</td>";         
+                          echo "<td>$user->mssv</td>";                
+                          echo "<td>$user->hoten_sv</td>";         
+                          echo "<td>$user->gioitinh</td>";       
+                          echo "<td>$user->ngaysinh</td>";   
+                          echo "<td>$user->diachi</td>";   
+                          echo "<td>$user->mail</td>";
+                          echo "<td>$user->manganh</td>";    
+                          echo "<td>$user->khoahoc</td>";       
+                          echo "</tr>";     
+                        $i++;
+                    }
+                ?>
+            </tbody>
+            <tfoot>
+                   <tr>
+                   	  <th><input type="checkbox" onclick="toggle(this)"/></th>
+                       <th>STT</th>
+                       <th>MSSV</th>
+                       <th>Họ tên</th>
+                       <th>Giới tính</th>
+                       <th>Ngày sinh</th>
+                       <th>Địa chỉ</th>
+                       <th>Mail</th>
+                       <th>Ngành</th>
+                       <th>Khóa học</th>
+                   </tr>
+            </tfoot>
+        </table>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+
+		   
+           <div class="row">
+				<div class="col-md-4"><p class="tongso">Hiển thị từ 1 đến 10 trong tổng số 293 người dùng</p></div>
+				<div class="col-md-8">
+						<p class="sotrang">
+							<input type="button"  class="btn btn-info list_btn" value="<< Trang đầu"</input>
+							<input type="button" class="btn btn-default btn-xs" value="Trước"</input>
+							<input type="button" class="btn btn-success btn-xs" value="1"</input>
+							<input type="button" class="btn btn-default btn-xs" value="2"</input>
+							<input type="button" class="btn btn-default btn-xs" value="3"</input>
+							<input type="button" class="btn btn-default btn-xs" value="4"</input>
+							<input type="button" class="btn btn-default btn-xs" value="5"</input>
+							<input type="text" style="width: 35px; height:25px"/>
+							<input type="button" class="btn btn-default btn-xs" value="Chuyển đến"</input>
+							<input type="button" class="btn btn-default btn-xs" value="Kế tiếp"</input>
+							<input type="button" class="btn btn-info list_btn" value=">> Trang cuối"</input></p>
+				</div><!--end div col-md-8-->
+			</div><!--end div row-->
+         
+         <div class="row btn_border">
+			<div class="col-md-2"></div>
+			
+         	<div class="col-md-8 btn_nguoidung">
+				<button class="btn btn-default"><i class="fa fa-refresh"></i> Làm mới</button>
+				<button id="btn_add" class="btn btn-default" data-toggle="modal" data-target="#add_Student"><i class="fa fa-dedent"></i> Thêm</button>
+                <button class="btn btn-default" data-toggle="modal" data-target="#modify_Student"><i class="fa fa-edit"></i> Cập nhật</button>
+				<button class="btn btn-default"><i class="fa fa-pencil"></i> Xóa</button>
+                <div style="background-color:#CCC"></div>
+            
+			</div>
+			
+			<div class="col-md-2"></div>
+         </div><!--end div row -->
+         
+        </div>
+        <!--end div col-md-12-->
+
+        
+    	</div><!--end div row-->
+	</div><!--end div contener-->
+
+
+
+
+<!-- ----------------------------------------------------------------------------------
+                    COMPOSE ADD STUDENT MODAL 
+-------------------------------------------------------------------------------------->
+<input type="hidden" id="active_add" value="" />
+
+<div class="modal fade" id="add_Student" tabindex="-1" role="dialog" aria-hidden="false">
+  <div class="modal-dialog">
+      <div class="modal-content">
+      
+          <div class="modal-header">
+              <button id="btn-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title"><i class="fa fa-envelope-o"></i>Thêm mới sinh viên</h4>
+          </div>
+          
+          <form action="" method="post">
+          	<?php echo "<span style='color:red;'>".common_showerror(validation_errors())."</span>"; ?>
+            <span style='color:red;'><ul class = "error"></ul></span>
+              <div class="modal-body" style="margin: 0px padding: 3px;">            
+                 <!-- text input -->
+                  <div class="form-group">
+                      <label>MSSV (*)</label>
+                      <input type="text" class="form-control" name="add[mssv]" placeholder="Nhập mã số sinh viên" />
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Họ tên (*)</label>
+                      <input type="text" class="form-control" name="add[hoten]" placeholder="Nhập họ tên"/>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Giới tính (*)</label>
+                      <select class="form-control" name="add[gioitinh]">
+                          <option>Nam</option>
+                          <option>Nữ</option>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group" >
+                      <label style="display:inline">Ngày sinh (*)</label>
+                      <div class="input-group" style="">
+                          <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                          </div>
+                          <input name="add[ngaysinh]" type="text" class="form-control" placeholder="dd/mm/yyyy" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                      </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  
+                  <!-- textarea -->
+                  <div class="form-group">
+                      <label>Địa chỉ (*)</label>
+                      <textarea name="add[diachi]" class="form-control" rows="2" placeholder="Nhập địa chỉ"></textarea>
+                  </div>
+    
+                  <div class="form-group">
+                      <label>Số điện thoại (*)</label>
+                      <input name="add[sodt]" type="text" class="form-control" placeholder="Nhập số điện thoại"/>
+                  </div>	
+                  
+                  <div class="form-group">
+                      <label>Mail (*)</label>
+                      <input name="add[mail]" type="text" class="form-control" placeholder="ai_do@examble.com"/>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Ngành (*)</label>
+                      <select class="form-control" name="add[manganh]">
+                          <option value="1">Kĩ thuật phần mềm</option>
+                          <option value="2">Hệ thống thông tin</option>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Khóa (*)</label>
+                      <select class="form-control" name="add[khoahoc]">
+                          <option value="37">37</option>
+                          <option value="36">36</option>
+                      </select>
+                  </div>			
+              
+                  <div class="form-group">
+                      <label>Quyền (*)</label>
+                      <select class="form-control" name="add[maquyen]">
+                          <option value="2">Mức 2 (mức sinh viên)</option>
+                          <option value="1">Mức 1 (mức giảng viên)</option>
+                          <option value="3">Mức 3 (mức admin)</option>
+                      </select>
+                  </div>
+                  <span style="color: red">(*) Là các trường bắt buộc nhập</span>
+                  
+<!--
+                  <div class="form-group">
+                      <div class="btn btn-success btn-file">
+                          <i class="fa fa-paperclip"></i> Attachment
+                          <input type="file" name="attachment"/>
+                      </div>
+                      <p class="help-block">Max. 32MB</p>
+                  </div>
+-->
+              </div>
+              <div class="modal-footer clearfix">
+
+                  <button id="btn_cancel" type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Thoát</button>
+				<input id="btn_save" name="add_student" type="submit" class="btn btn-primary pull-left" value="Lưu lại"/>
+                  <!--<button name="add_student" type="submit" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Lưu lại</button>-->
+                  
+              </div>
+
+          </form>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- ----------------------------------------------------------------------------------
+                    COMPOSE MODIFY STUDENT MODAL 
+-------------------------------------------------------------------------------------->
+<div class="modal fade" id="modify_Student" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+      
+          <div class="modal-header">
+              <button id="btn-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title"><i class="fa fa-envelope-o"></i>Cập nhật sinh viên</h4>
+          </div>
+          
+          <form action="<?php echo CIT_BASE_URL; ?>admin/capnhatsinhvien" method="post">
+              <div class="modal-body" style="margin: 0px padding: 3px;">            
+                 <!-- text input -->
+                  <div class="form-group">
+                      <label>MSSV (*)</label>
+                      <input type="text" class="form-control" name="mssv" value="<?php echo $user->mssv; ?>" placeholder="Nhập mã số sinh viên"/>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Họ tên (*)</label>
+                      <input type="text" class="form-control" name="hoten" placeholder="Nhập họ tên"/>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Giới tính (*)</label>
+                      <select class="form-control" name="gioitinh">
+                          <option>Nam</option>
+                          <option>Nữ</option>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group" >
+                      <label style="display:inline">Ngày sinh (*)</label>
+                      <div class="input-group" style="">
+                          <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                          </div>
+                          <input name="ngaysinh" type="text" class="form-control" placeholder="dd/mm/yyyy" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                      </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  
+                  <!-- textarea -->
+                  <div class="form-group">
+                      <label>Địa chỉ (*)</label>
+                      <textarea style="" class="form-control" rows="2" placeholder="Nhập địa chỉ"></textarea>
+                  </div>
+    
+                  <div class="form-group">
+                      <label>Số điện thoại (*)</label>
+                      <input type="text" class="form-control" placeholder="Nhập số điện thoại"/>
+                  </div>	
+                  
+                  <div class="form-group">
+                      <label>Mail (*)</label>
+                      <input type="text" class="form-control" placeholder="ai_do@examble.com"/>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Ngành (*)</label>
+                      <select class="form-control">
+                          <option>Kĩ thuật phần mềm</option>
+                          <option>Hệ thống thông tin</option>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Khóa (*)</label>
+                      <select class="form-control">
+                          <option>37</option>
+                          <option>36</option>
+                      </select>
+                  </div>			
+              
+                  <div class="form-group">
+                      <label>Quyền (*)</label>
+                      <select class="form-control">
+                          <option>Mức 2 (mức sinh viên)</option>
+                          <option>Mức 1 (mức giảng viên)</option>
+                          <option>Mức 3 (mức admin)</option>
+                      </select>
+                  </div>
+                  <span style="color: red">(*) Là các trường bắt buộc nhập</span>
+                  
+<!--
+                  <div class="form-group">
+                      <div class="btn btn-success btn-file">
+                          <i class="fa fa-paperclip"></i> Attachment
+                          <input type="file" name="attachment"/>
+                      </div>
+                      <p class="help-block">Max. 32MB</p>
+                  </div>
+-->
+              </div>
+              <div class="modal-footer clearfix">
+
+                  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Thoát</button>
+
+                  <button name="modify_student" type="submit" class="btn btn-primary pull-left"><i class="fa fa-envelope"></i> Lưu lại</button>
+              </div>
+          </form>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<!--
+
+			<h5>Thông tin người dùng</h5>
+			<table id="table_nguoidung" border="1">
+               <thead>
+                   <tr>
+                   	   <th><input type='checkbox' name='1'/></th>
+                       <th>STT</th>
+                       <th>MSSV</th>
+                       <th>Họ tên</th>
+                       <th>Giới tính</th>
+                       <th>Ngày sinh</th>
+                       <th>Địa chỉ</th>
+                       <th>Mail</th>
+                       <th>Ngành</th>
+                       <th>Khóa học</th>
+                   </tr>
+               </thead>
+				<tbody>
+    <?php
+  		session_start();
+		$user = new sinhvien();
+		$i = 1;
+		foreach ($ds as $user)
+		{
+              echo "<tr>";  
+			  echo "<td><input type='checkbox' name='$user->mssv'/></td>";  
+              echo "<td>$i</td>";         
+              echo "<td>$user->mssv</td>";                
+              echo "<td>$user->hoten_sv</td>";         
+              echo "<td>$user->gioitinh</td>";       
+			  echo "<td>$user->ngaysinh</td>";   
+			  echo "<td>$user->diachi</td>";   
+			  echo "<td>$user->mail</td>";
+			  echo "<td>$user->manganh</td>";    
+			  echo "<td>$user->khoahoc</td>";       
+              echo "</tr>";     
+			$i++;
+		}
+	?>
+    		</tbody>
+				  <tfoot>
+						   <th><input type='checkbox' name=''/></th>
+						   <th>STT</th>
+						   <th>MSSV</th>
+						   <th>Họ tên</th>
+						   <th>Giới tính</th>
+						   <th>Ngày sinh</th>
+						   <th>Địa chỉ</th>
+						   <th>Mail</th>
+						   <th>Ngành</th>
+						   <th>Khóa học</th>
+				  </tfoot>
+           </table>
+   
+   
+    <div class="box-header">
+        <h5 class="box-title">DANH SÁCH SINH VIÊN</h5>
+    </div>
+   
+   
+   
+               <div class="row">
+			
+				<div class="col-md-4">
+				<p style="margin-top:10px;"><span> Chọn số lượng hiển thị&nbsp;&nbsp;</span>
+				<select class="form-control">
+					<option>10</option>
+					<option>20</option>
+					<option>50</option>
+				</select>
+				</p>
+				</div>
+				
+				<div class="col-md-8">
+					 <div class="form-group input-group">
+						 <input type="text" class="form-control" placeholder="Nhập thông tin tìm kiếm">
+						 <span class="input-group-btn">
+						 <button class="btn btn-default" type="button"><i class="fa fa-search"></i> Tìm kiếm</button>
+						 </span>
+					  </div>
+				</div>
+			
+            </div>
+           
+-->
+           

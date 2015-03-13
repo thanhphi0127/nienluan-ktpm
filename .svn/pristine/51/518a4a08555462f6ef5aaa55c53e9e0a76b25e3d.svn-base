@@ -1,0 +1,106 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Giangvien extends MY_Controller {
+	private $auth;
+	public function __construct(){
+		parent::__construct();
+		$this->auth = $this->lib_authentication->check_cookie();			
+	}
+
+	
+	public function download(){
+		$data['seo']['title'] = 'Xuất danh sách sinh viên';
+		$data['seo']['keyword'] = 'download';
+		$data['seo']['description'] = 'Download';
+		$data['template'] = 'giangvien/download';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+	}
+
+
+	//---------------------------------------------------------------------------
+    // Name          	: Thongke()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------	
+	public function Thongke(){
+		$data['seo']['title'] = 'Thống kê tiến độ công việc của mỗi nhóm';
+		$data['seo']['keyword'] = 'Thống kê';
+		$data['seo']['description'] = 'Thống kê tiến độ công việc của mỗi nhóm';
+		
+		
+		$data['template'] = 'giangvien/thongke';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+	}
+	
+	
+	public function tiendocongviec(){
+		$data['seo']['title'] = 'Tiến độ công việc';
+		$data['seo']['keyword'] = 'working process';
+		$data['seo']['description'] = 'Theo dõi tiến độ làm việc nhóm của sinh viên';
+		$data['template'] = 'giangvien/tiendocongviec';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+	}
+	
+	public function bieudocongviec(){
+		$data['seo']['title'] = 'Biểu đồ tiến độ';
+		$data['seo']['keyword'] = 'working process';
+		$data['seo']['description'] = '';
+		$data['template'] = 'giangvien/bieudocongviec';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+	}
+	public function quanlymaunhom(){
+		$data['seo']['title'] = 'Quản lý mẫu nhóm';
+		$data['seo']['keyword'] = 'group sample management';
+		$data['seo']['description'] = '';
+		
+		
+		$data['query_monhoc']  = $this->mgiangvien->lay_monhoc('1111','1','2014');
+		
+		$data['query_maunhom'] = $this->mgiangvien->lay_maunhom('1111', $data['query_monhoc']);
+		
+		if ($this->input->post('creategrouptemplate')){
+			
+			
+			$_post = $this->input->post('data');
+			$_post['MSCB'] = '1111'; /* lay tu cookie --------------------------------------/\/\\/\\\/\/\/\////\/\/\/\/\/\/----*/
+			if ($this->mgiangvien->kttontai_maunhom($_post['MA_MH'], $_post['MSCB']))
+				$this->lib_string->alert('Mẫu nhóm của môn này đã có', CIT_BASE_URL.'giangvien/quanlymaunhom');
+			else 
+			{
+				$this->mgiangvien->tao_maunhom($_post);
+				$this->lib_string->alert(NULL, CIT_BASE_URL.'giangvien/quanlymaunhom');	
+			}
+		}
+		if ($this->input->post('modifygrouptemplate')){
+			
+			
+			$_post = $this->input->post('data');
+			$_post['MSCB'] = '1111'; /* lay tu cookie --------------------------------------/\/\\/\\\/\/\/\////\/\/\/\/\/\/----*/
+			
+				$this->mgiangvien->sua_maunhom($_post);
+				$this->lib_string->alert(NULL, CIT_BASE_URL.'giangvien/quanlymaunhom');	
+			
+		}
+		
+		if ($this->input->post('login')){
+			$_post = $this->input->post('data');
+			$_post['MSCB'] = '1111'; /* lay tu cookie --------------------------------------/\/\\/\\\/\/\/\////\/\/\/\/\/\/----*/
+				if ($_post['username'] == '1111' && $_post['password'] == '1')
+				{
+					$this->mgiangvien->delete_maunhom($_post);
+					
+					$this->lib_string->alert(NULL, CIT_BASE_URL.'giangvien/quanlymaunhom');	
+				}
+		}
+		
+		
+		
+		$data['template'] = 'giangvien/quanlymaunhom';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+		
+	}
+	
+	
+}

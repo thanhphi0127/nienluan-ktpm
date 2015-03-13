@@ -1,0 +1,36 @@
+section.manipulation {
+	width:100%;
+	height:100%;
+}
+
+section.manipulation img.manipulation{
+	position:absolute;
+	right:36%;
+	top:5%;
+	z-index:998;
+}
+
+#black {
+	width:100%;
+	height:120%;
+	background-color:#333;
+	opacity:0.2;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+section.manipulation  div.form {
+	float:left;
+	z-index:500;
+	width:100%;
+	height:auto;
+}
+
+section.manipulation  div.form  form{
+	width:23%;
+	position:absolute;
+	top:10%;
+	left:37%;
+	right:35%;
+}

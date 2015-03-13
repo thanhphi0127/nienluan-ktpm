@@ -1,0 +1,51 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.4
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 30, 2014 at 05:30 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `htql_nhom`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chude`
+--
+
+CREATE TABLE IF NOT EXISTS `chude` (
+  `MACHUDE` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `USERNAME` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `TIEUDE` mediumtext COLLATE utf8_unicode_ci,
+  `NGUOITAO` mediumtext COLLATE utf8_unicode_ci,
+  `TRANGTHAI` mediumtext COLLATE utf8_unicode_ci,
+  `NGAYTAO` timestamp NULL DEFAULT NULL,
+  `NOIDUNG` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`MACHUDE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `chude`
+--
+
+INSERT INTO `chude` (`MACHUDE`, `USERNAME`, `TIEUDE`, `NGUOITAO`, `TRANGTHAI`, `NGAYTAO`, `NOIDUNG`) VALUES
+('CD001', '1111319', 'Tài liệu thiết kế', 'Huỳnh Thanh Nhã', 'Đang thảo luận', '2014-09-28 17:24:08', 'Nội dung'),
+('CD002', '111325', 'Code niên luận', 'Nguyễn Thanh Phi', 'Đang thảo luận', '2014-09-29 17:28:15', 'Nội dung'),
+('CD003', '1111352', 'Kiểm thử hộp đen', 'Nguyễn Gia Trang', 'Đóng', '2014-08-31 17:20:02', 'Nội dung');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

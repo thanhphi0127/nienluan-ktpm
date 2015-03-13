@@ -1,0 +1,178 @@
+/* CSS Document */
+
+/* CSS Document */
+.mon {
+	border: 1px solid #CCC;
+	color: #000;
+	width: 560px;
+	border-radius: 3px;
+	float:left;
+	margin: 10px;
+	padding: 5px;
+	margin-right: 0px;
+	background:#FFF;
+	min-height: 266px;
+}
+
+.mon table th, .congviec table th, .nhom table th {
+	background-color: #2969A9;
+	color:#FFF;
+}
+.mon img{
+	width: 80px;
+	height: 80px;
+	float: left;
+}
+.mon h4 {
+	margin-top: 40px;
+	font-weight:bold;
+	color:#428BCA;
+}
+
+.congviec {
+	min-height: 260px;
+	float:right;
+	background:#FFF;
+	min-width: 450px;
+	min-height: 200px;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	margin: 10px;
+	padding: 5px;
+	color: #000;
+	width: 550px;
+	margin-left: 0px;
+}
+
+.khung table{
+	margin: 0px 0px 0px 0px;
+	width: 469px;
+	min-width: 463px;
+}
+
+
+.khung .congviec table{
+	margin: 0px 0px 0px 0px;
+	width: 536px;
+	min-width: 463px;
+}
+
+.khung .capnhat table{
+	margin: 0px 0px 0px 0px;
+	width: 98%;
+	min-width: 1000px;
+	margin-left: 10px;
+}
+
+#table1 {
+	width: 450px;
+	margin: 19px 64px 0px 64px;
+}
+
+.tong_mh{
+	margin: 8px 0px 8px 5px;
+}
+
+.khung.mon {
+	display:inline;
+}
+
+.khung.congviec {
+	display:inline;
+	
+}
+
+body {
+	font-size: 10pt;
+}
+
+.khung {
+	min-height: 468px;
+}
+
+.table_nguoidung {
+	min-width: 500px;
+}
+
+.khung > congviec > table{
+	min-width: 500px;
+
+}
+
+.head_congviec {
+	font-size:14px;
+	margin: 2px 0px 2px 20px;
+	font-weight: bold;
+	color: blue;
+}
+
+table tr th {
+	font-size: 10pt;
+}
+
+.khung{
+	border-radius: 5px;
+	padding: 5px; 
+	margin: auto;
+	width: 87%;
+	min-width: 1100px;
+	max-width: 1300px;
+	border: 1px solid #E6EBE6;
+	background-color: #FFF;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	z-index: 0;
+	margin-top: 72px;
+	min-height: 468px;
+}
+
+.tieudecongviec {
+	background-color:#009;
+	color:#FFF;
+}
+
+.nhom {
+	//height: 260px;
+	float:right;
+	background:#FFF;
+	min-width: 450px;
+	min-height: 200px;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	margin: 10px;
+	padding: 5px;
+	color: #000;
+	width: 550px;
+	margin-left: 0px;
+}
+
+.nhom img, .congviec img {
+	float: left;
+	width: 80px;
+	height: 80px;
+}
+
+.nhom h4, .congviec h4 {
+	margin-top: 40px;
+	font-weight:bold;
+	color:#428BCA;
+}
+
+#example2{
+	margin-top: 0px;
+}
+
+.capnhat{
+	margin-top: 350px;
+
+}
+.capnhat h4{
+	//float:left;
+	//background-color:#2969A9;
+	color: #428BCA;
+	//text-align:center;
+	//width: 100%;
+	width: 1100;
+	height: 30px;
+	margin-left: 10px;
+	margin-top:43px;
+}

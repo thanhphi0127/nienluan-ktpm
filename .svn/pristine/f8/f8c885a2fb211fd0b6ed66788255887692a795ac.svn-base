@@ -1,0 +1,206 @@
+﻿<section id='cit_wrapper'>
+	<header class='quanly'>
+		<img src='public/img/quanlycongviec_logo.png'></img>
+		<span class='title'>Quản lý nhóm</span>
+	</header>
+	<section class='quanlynhom'>
+		<header class='tab'>
+			<ul>
+			<li>
+			<span  class="btnAMD btnRegister manipulation">Đăng kí nhóm</span>
+			<span  class="btnAMD btnLeavegroup manipulation">Rời khỏi nhóm</span>
+			</li>
+			</ul>
+			
+		</header>
+		
+		<div class='list grouplist'>
+		<?php echo "<form action='' method='post'>";?>
+		
+				<table>
+					<tr><th><input type='checkbox' value='checkall'/></th>
+						<th> Môn học </th>
+						<th>Tên nhóm </th>
+						<th>Thành viên </th>
+						<th>Chức vụ</th><th>Đề tài</th><th>Mô tả</th><th>Thao tác</th>
+					</tr>
+					<?php	
+						if (isset($query_chitietnhom) && !empty($query_chitietnhom)){
+							foreach ($query_chitietnhom as $row){
+								
+								echo "<tr> ";
+								echo "<td class='check' ><input class='check' name='check_list[]' type='checkbox' value='".$row['thongtinnhom'][0]['MA_LOPHOCPHAN']."'/></td>";
+								echo "<td class='TEN_MH'><a>".$row['thongtinnhom'][0]['TEN_MH']."</a></td>";
+								echo "<td>Nhóm <input class='hideinput w60' type='text' name='data[STT_NHOM]' value='".$row['thongtinnhom'][0]['STT_NHOM']."' readonly = 'readonly'/></td>";
+								echo "<td>";
+								echo 	"<table>";
+										
+												foreach ($row['thanhvien'] as $thanhvien){
+												echo "<tr style='border-bottom:1px dotted black'>";
+												  echo "<td>";
+
+														echo "<input class='hideinput w60' type='text' name='member' value='".$thanhvien['MSSV']."' readonly = 'readonly'/>";
+													
+													echo $thanhvien['HOTEN'];
+												  echo "</td>";
+												  echo "<td>";
+														if ($row['thongtinnhom'][0]['NHOMTRUONG'] == $MSSV && $thanhvien['MSSV'] != $row['thongtinnhom'][0]['NHOMTRUONG'])
+															echo "<span class='manipulation btnDeletemember'><input type='submit' name='deletemember' value='Xóa thành viên' /></span>";
+														else if ($row['thongtinnhom'][0]['NHOMTRUONG'] == $thanhvien['MSSV'] )
+															echo "Nhóm trưởng";
+												  echo "</td>";
+												echo "</tr>";
+												}
+								echo "</table>";
+								echo "</td>";
+										
+									
+								echo "<td>";
+										if ($row['thongtinnhom'][0]['NHOMTRUONG'] == $MSSV)
+											echo "Nhóm trưởng";
+										else echo "Thành viên";
+								echo "</td>";
+								echo "<td><input type='text' class='hideinput' name='data[DETAI]' value='".$row['thongtinnhom'][0]['DETAI']."'/></td>";
+								echo "<td><input type='text' class='hideinput' name='data[MOTA]' value='".$row['thongtinnhom'][0]['MOTA']."'/></td>";
+								echo "<td><input type='button' name='btnLeavegroup' value='Rời nhóm' />
+										<span class='manipulation btnEmail'><img src='public/img/editicon.png'></img></span>
+										<span class='manipulation btnAddmember'>Thêm thành viên</span>
+									</td>";
+								echo "</tr>";
+								
+								
+							}
+						}
+						echo "<input type='submit' class='hide' value='Rời khỏi nhóm' name='leavegroup'/>";
+						
+						echo "</form>";
+					?>
+					
+				</table>
+				
+				
+		
+	</section>
+	
+	<section class='manipulation'>
+		<img class='manipulation' src='public/img/iconclose.png'></img>
+		<div id='register' class='form'>
+			<form action="" method="post">
+			<h1>ĐĂNG KÍ NHÓM</h1>
+						
+					
+					
+						<p>Môn học chưa có nhóm<?php
+								if (isset($query_monhocthamgia) && !empty($query_monhocthamgia)){
+									echo "<select name='data[MA_LOPHOCPHAN]' >";
+									foreach ($query_monhocthamgia as $row) {
+										echo "<option value='".$row['MA_LOPHOCPHAN']."'>".$row['TEN_MH']."</option>";
+									}
+									echo "</select>";
+								}
+								else 
+									echo "<br />Không có hoặc không tham gia môn học nào trong học kì này";
+								
+							?>
+							
+					
+						</p>
+						<?php
+								if (isset($query_monhocthamgia) && !empty($query_monhocthamgia)){
+						echo "<fieldset class='register_info'>
+							<legend>THÔNG TIN</legend>
+							<iframe src='".CIT_BASE_URL."iframe/thongtinmaunhom/".$query_monhocthamgia[0]['MA_LOPHOCPHAN']."'>
+							</iframe>
+						</fieldset>
+						<p><label>Tên đề tài: </p><input type='text' name='data[DETAI]'  placeholder='Có thể cập nhật sau' ></label></p> 
+						 <p><label>Mô tả: </p><textarea name='data[MOTA]' placeholder='Có thể cập nhật sau'></textarea></label></p> 
+						 <p>
+						 <label>
+						<input type='submit' class='submit-button' name='registergroup' value='Đăng kí'/>
+						<input type='reset' class='submit-button'  value='Làm lại'/>
+						</label>
+						</p>
+					</fieldset>
+			</form>";
+		}
+		?>
+		
+		</div>
+	
+	
+		<div id='addmember' class='form'>
+			<form  action="" method="post">
+				
+				<h1>THÊM THÀNH VIÊN
+						<p>Môn <span></span>.</p>
+					</h1>
+						<p><label><span> Tìm kiếm: </span><input type="text" id='search' name='keyword' placeholder='Nhập mã số sinh viên hoặc họ tên sinh viên' ></label></p>
+						<p ><label><span >Hoặc</span></label></p>
+						
+						<label>
+						<select name='memberlist' >
+								<option value="mon1">Chọn từ danh sách</option>
+								  <option value="mon1">1111336 - Nguyễn Văn A</option>
+								  <option value="mon2">111223 - Trần Thị B</option>
+								  <option value="mon3">111144 - Phạm Văn C</option>
+								  <option value="mon4">113399 - Ngô Thị D</option>
+								<option value="mon4">1112332 - Ngô Thị D</option>
+								<option value="mon2">1144336 - Trần Thị B</option>
+								<option value="mon4">1155336 - Ngô Thị D</option>
+								<option value="mon3">1166336 - Phạm Văn C</option>
+								<option value="mon4">1112336 - Ngô Thị D</option>
+								<option value="mon4">11116 - Ngô Thị D</option>
+								<option value="mon3">1111336 - Phạm Văn C</option>
+								<option value="mon4">1111336 - Ngô Thị D</option>
+								<option value="mon1">1111336 - Nguyễn Văn A</option>
+								<option value="mon2">1111336 - Trần Thị B</option>
+								<option value="mon4">1111336 - Ngô Thị D</option>
+								<option value="mon1">1111336 - Nguyễn Văn A</option>
+						</select>
+						</label>
+					
+					
+					<label>
+					<input type="submit" class='submit-button' value='THÊM'/>
+					<input type='reset' class='submit-button' value='Làm lại'/>
+					
+				`	</label>
+					
+				
+			</form>
+
+		</div>
+	
+		<div id='modifygroup' class='smart-green'>
+			<form  action="" method="post">
+				
+				<h1>CHỈNH SỦA THÔNG TIN NHÓM
+						
+					</h1>
+						<fieldset>
+							<legend>THÔNG TIN</legend>
+							<p><span>Môn học: Phân tích yêu cầu phần mềm</span></p>
+							<p><span>Số thành viên tối đa: 10</span></p>
+							<p><span>Ghi chú: (trống)</span></p>
+						</fieldset>
+						<p><label>Tên đề tài: </p><input type="text" name='seminar'  ></label></p> 
+						 <p><label>Mô tả: </p><textarea ></textarea></label></p> 
+						 <p>
+						 <label>
+						<input type="submit" class='submit-button'  value='Lưu'/>
+						<input type='reset' class='submit-button'  value='Làm lại'/>
+						</label>
+						</p>
+					
+				
+			</form>
+
+		</div>
+		<div id='iframe_login'>
+			<div class='verify'><?php $this->load->view('auth/login');?></div>
+			<div  class='iframe_login_up' >
+				<img src='public/img/buttonup.png'></img>
+			</div>
+		</div>
+	</section>
+</section>

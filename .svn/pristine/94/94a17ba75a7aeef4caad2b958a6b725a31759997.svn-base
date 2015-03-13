@@ -1,0 +1,61 @@
+$(document).ready(function(){
+	
+	$('.view_calendar').click(function(){
+		$('section.tasklist').show();
+		$('section.reportlist').hide();
+		
+		$('div.tasklist').hide();
+		$('#calendar').fadeIn(1000);
+		
+	});
+	$(".view_list, .view_common_list").click(function(){
+		$('#calendar').hide();
+		$('div.tasklist').fadeIn(1000);
+		$('header.quanly span.title').html("Quản lý công việc");
+		$('section.tasklist').show();
+		$('section.reportlist').hide();
+	});
+	
+	$('.view_report').click(function(){
+		$('section.tasklist').hide();
+		$('section.reportlist').show();
+		$('header.quanly span.title').html("Báo cáo tiến độ");
+		$('div.reportlist').fadeIn(1000);
+	});
+	
+	
+	/*                         */
+	$('span.manipulation').click(function() {
+		
+		$('section.manipulation').show(1000);
+		$('section.manipulation').siblings().css('opacity','0.2');
+		if ($(this).hasClass('btnAddtask')){
+			$('#addtask').show();
+			$('img.manipulation').show();
+		}
+		else if ($(this).hasClass('btnModifytask')){
+			$('#modifytask').show();
+			$('img.manipulation').show();
+		}
+		else if ($(this).hasClass('btnDeletetask')){
+			$("#iframe_login").slideDown("slow");
+		}
+	});
+	/* end ----------------*/
+	
+	/* img manipulation           */
+	$('img.manipulation').click(function (){
+		
+		$('section.manipulation').hide(500);
+		$('section.manipulation').siblings().css('opacity','1');
+		$('#addtask').hide();
+		$('#modifytask').hide();
+		$("#iframe_login").slideUp("slow");
+		$('img.manipulation').hide();
+	});
+	
+	/*--------------------------*/
+	/* title */
+	$('a').attr('title','Click để xem chi tiết');
+});
+

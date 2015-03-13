@@ -1,0 +1,10 @@
+<section class='full_notification'>
+	<?php if (!isset($thongbao))
+			echo "Thông báo";
+		  else {
+	?>
+		<div class='ndthongbao'>
+			
+		</div>
+	<?php }?>
+</section>

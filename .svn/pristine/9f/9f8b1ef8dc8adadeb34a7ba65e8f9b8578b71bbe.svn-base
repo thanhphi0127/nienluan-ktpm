@@ -1,0 +1,54 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Giangvien extends MY_Controller {
+	private $auth;
+	public function __construct(){
+		parent::__construct();
+		$this->auth = $this->lib_authentication->check_cookie();			
+	}
+
+	
+	public function download(){
+		$data['seo']['title'] = 'Xuất danh sách sinh viên';
+		$data['seo']['keyword'] = 'download';
+		$data['seo']['description'] = 'Download';
+		$data['template'] = 'giangvien/download';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+	}
+	
+	public function tiendocongviec(){
+		$data['seo']['title'] = 'Tiến độ công việc';
+		$data['seo']['keyword'] = 'working process';
+		$data['seo']['description'] = 'Theo dõi tiến độ làm việc nhóm của sinh viên';
+		$data['template'] = 'giangvien/tiendocongviec';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+	}
+	
+	public function bieudocongviec(){
+		$data['seo']['title'] = 'Biểu đồ tiến độ';
+		$data['seo']['keyword'] = 'working process';
+		$data['seo']['description'] = '';
+		$data['template'] = 'giangvien/bieudocongviec';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+	}
+    
+	public function quanlymaunhom(){
+		$data['seo']['title'] = 'Quản lý mẫu nhóm';
+		$data['seo']['keyword'] = 'group sample management';
+		$data['seo']['description'] = '';
+		$data['template'] = 'giangvien/quanlymaunhom';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+	}
+    
+    public function quanlydiendan(){
+        $this->load->Model('Mdiendan');
+        $data['query'] = $this->Mdiendan->newTopic();
+        
+        $data['seo']['title'] = 'Quản lý diễn đàn';
+		$data['seo']['keyword'] = 'forum management';
+		$data['seo']['description'] = '';
+		$data['template'] = 'giangvien/quanlydiendan';
+		$this->load->view('layout/giangvien', isset($data)?$data:NULL);
+    }
+	
+}

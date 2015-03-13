@@ -1,0 +1,45 @@
+section.manipulation {
+	position: absolute;
+	top: 68px;
+	left: 0%;
+	width: 100%;
+	z-index: 17;
+}
+
+section.manipulation img.manipulation{
+	position:absolute;
+	right:36%;
+	top:5%;
+	z-index:998;
+	display:none;
+	margin-top: 122px;
+}
+
+
+
+#black {
+	width:100%;
+	height:120%;
+	background-color:black;
+	opacity:0.2;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+section.manipulation  div.form {
+	float:left;
+	z-index:500;
+	width:100%;
+	height:auto;
+	margin: 100px 0px 0px 0px;
+	position: absolute;	
+}
+
+section.manipulation  div.form  form{
+	width:23%;
+	position:absolute;
+	top:10%;
+	left:37%;
+	right:35%;
+}

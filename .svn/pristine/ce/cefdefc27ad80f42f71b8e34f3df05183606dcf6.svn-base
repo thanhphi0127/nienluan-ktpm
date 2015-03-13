@@ -1,0 +1,13 @@
+<header class='loginheader'>
+	
+		<img class='logo' src="<?php echo CIT_BASE_URL;?>public/img/home-icon.png" title="Home"/>
+		<span class='org'>CIT</span>GMS
+		<span class='orgfullname'> HỆ THỐNG QUẢN LÝ NHÓM SINH VIÊN CNTT</span>
+        <span class="name-home">
+            <h5>Chào,<?php foreach($hoten as $row) { echo " $row->hoten "; } ?> (<?php echo $username; ?>) <a href="<?php echo CIT_BASE_URL;?>auth/logout" class="btn btn-danger square-btn-adjust" title="Nhấp để đăng xuất">Logout</a></h5>
+           
+        </span>
+
+</header>
+
+

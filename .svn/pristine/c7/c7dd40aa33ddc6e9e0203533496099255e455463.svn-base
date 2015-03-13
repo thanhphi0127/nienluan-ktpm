@@ -1,0 +1,168 @@
+﻿
+
+<section id='cit_wrapper' >
+<?php
+	function tim_so_ngay($date1, $date2){ 
+	$songay = 0;
+	  if ($date1<$date2){ 
+		$dates_range[]=$date1; 
+		$date1=strtotime($date1); 
+		$date2=strtotime($date2); 
+		$songay=0; 
+		while ($date1!=$date2){ 
+		  $date1=mktime(0, 0, 0, date("m", $date1), date("d", $date1)+1, date("Y", $date1)); 
+		  $dates_range[]=date('Y-m-d', $date1); 
+		  $songay++; 
+		} 
+	  } 
+	  return $songay; 
+	}
+?>
+	<div class="thongke">
+        <form action="" method="post">
+            <p>Biểu đồ tiến độ công việc nhóm</p>
+            <div>
+            <label id="chonmon"label>Chọn môn học</label>
+            <?php 
+				//Hien thi combobox chon mon hoc giang vien dang phu trachs
+				if(isset($LayMonHoc_GiangVien) && !empty($LayMonHoc_GiangVien)){
+					 
+					echo "<select id='sl_mh' class='form-control' name='ma_mh'>";
+					foreach ($LayMonHoc_GiangVien as $row) {
+						echo "<option value='".$row['MA_MH']."' ";
+							 if($row['MA_MH'] == $ma_mh) echo 'selected';
+						echo ">".$row['MA_MH']." - ".$row['TEN_MH']."</option>";
+					}
+					echo " </select>";
+					
+				} 
+			?>
+            <input style="margin-left: 5px" type="submit" name="btn_thongke" title="Xem biểu đồ"  class="btn btn-primary" value="Xem biểu đồ" />
+            </div>
+        </form>
+    </div>
+    
+    
+    
+    
+      <?php
+	
+	   if (isset($_POST['btn_thongke'])) {
+		   
+	   echo "<form id='link_form' action='' method='post'>";
+	   echo "<input type='hidden' value='' id='hidden_cv' name='data[hidden_macv]' />";
+	   echo "<input type='hidden' value='' id='hidden_nhom' name='data[hidden_sttnhom]' />";
+	   echo "<input type='hidden' value='$sl_nhom' id='hidden_sl' name='data[hidden_slnhom]'  />";
+	   echo "<input type='hidden' value='$sl_nhom' id='hidden_sl_x' name='data[hidden_slnhom_x]'  />";
+
+	   if ($sl_nhom == 0) { echo "<div class='cv'>Không có công việc trong nhóm</div>"; }
+	   else echo "<div class='tongsonhom'>TỔNG SỐ NHÓM: $sl_nhom NHÓM</div>";
+	   
+	   for ($i = 1 ; $i <= $sl_nhom; $i++) {
+		   echo "<br>";
+					echo "<table id='example1' class='table-bordered table-hover table_nguoidung'>
+					<tbody>";
+
+						$j = 0;
+						if(!empty($BieuDoCongViec[$i])){
+						$j = 1;
+					
+						echo '<ul class="verticalBarGraph">';				
+
+            			$width_col = 0;
+        
+		
+						foreach($BieuDoCongViec[$i] as $row) {
+							$all_time = tim_so_ngay($row->NGAYBD, $row->NGAYKT);
+							$current_time = tim_so_ngay($row->NGAYBD, date('Y-m-d'));
+							$phantram = ($current_time / $all_time)*100;
+							if ($phantram > 100) $phantram = 100;
+							
+							echo '	<li class="set1" style="height: '.$phantram.'px; max-height: 100px; width: 27px; left: '.($width_col + 26).'px;">'.$phantram.'</li>
+								<li class="set2" style="height: '.$row->HOANTHANH.'px;  width: 27px; left: '.$width_col.'px">'.$row->HOANTHANH.'</li>';
+
+							$j++;
+							$width_col += 65;
+						} 
+						echo '</ul>';
+					} else  echo "<tr><td colspan='8'>Nhóm chưa cập nhật tiến độ công việc</td></tr>";
+					echo "<input name='data[hidden_ma_mh]'  type='hidden' value='".$ma_mh."' />";
+					echo "</tbody>
+					</table>";
+					if ($j > 0)
+						echo "<div class='tongsocongviec'>Tổng số công việc nhóm $i là: ".($j-1)." công việc</div>";
+				}
+				echo "</form>";	
+   		
+			}//if ngoai cung
+			?> 
+    
+  
+	  <script>
+      (function ($) {
+          "use strict";
+          var mainApp = {
+              main_fun: function () {
+                  $('#main-menu').metisMenu();
+                  $(window).bind("load resize", function () {
+                      if ($(this).width() < 768) {
+                          $('div.sidebar-collapse').addClass('collapse')
+                      } else {
+                          $('div.sidebar-collapse').removeClass('collapse')
+                      }
+                  });
+				  <?php
+				  	for ($i = 1 ; $i <= $sl_nhom; $i++) {      
+                     echo "Morris.Bar(";
+
+					  echo "{
+						  element: 'morris-bar-chart".$i."',
+						  data: [";
+							  foreach($BieuDoCongViec[$i] as $row) {
+								  $all_time = tim_so_ngay($row->NGAYBD, $row->NGAYKT);
+								  $current_time = tim_so_ngay($row->NGAYBD, date('Y-m-d'));
+								  $phantram = ($current_time / $all_time)*100;
+								  if ($phantram > 100) $phantram = 100;
+								  
+								  echo "{ y: '".$row->TEN_CV."',";
+								  echo "  a: ".$row->HOANTHANH.",";
+								  echo "  b: ".$phantram."},";
+							  } 
+					  echo "],
+						  xkey: 'y',
+						  ykeys: ['a', 'b'],
+						  labels: ['Mức độ hoàn thành ', 'Thời gian '],
+						  hideHover: 'auto',
+						  resize: true
+					  }); ";
+					}
+				  ?>
+				  
+              },
+              initialization: function () {
+                  mainApp.main_fun();
+              }
+          }
+          $(document).ready(function () {
+              mainApp.main_fun();
+          });
+      }(jQuery));
+      </script>
+     
+     
+     <?php
+		for ($i = 1 ; $i <= $sl_nhom; $i++) {   
+		echo '
+		<div class="bieudo_nhom">
+		  <div class="panel-heading">
+			  Biểu đồ công việc nhóm '.$i.'
+		  </div>
+          <div class="panel-body">
+              <div id="morris-bar-chart'.$i.'"></div>
+          </div>
+		</div>';
+		}
+	?>
+
+                            
+</section>

@@ -1,0 +1,61 @@
+﻿
+<div class="khung">
+	<header class='quanly'>
+		
+		In danh sách sinh viên
+		
+	</header>
+	
+	<div class="download">
+        <form action="" method="post">
+            <div>
+            <label id="chonmon" label>Chọn môn học</label>
+            <?php 
+				//Hien thi combobox chon mon hoc giang vien dang phu trachs
+				if(isset($LayMonHoc_GiangVien) && !empty($LayMonHoc_GiangVien)){
+					echo "<select id='sl_mh' class='form-control' name='ma_mh' style='padding: 6px 12px;'>";
+					echo "<option value='all'>Tất cả</option>";
+					foreach ($LayMonHoc_GiangVien as $row) {
+						echo "<option value='".$row['MA_MH']."' ";
+						echo ">".$row['MA_MH']." - ".$row['TEN_MH']."</option>";
+					}
+					echo " </select>";
+					
+				} 
+			?>
+            <!--<input style="margin-left: 5px" type="submit" name="btn_monhoc" title="Danh sách sinh viên"  class="btn btn-primary" value="Danh sách sinh viên" />-->
+            </div>
+			
+        </form>
+		<div style='float: left;margin: -42px 0px 0px 39%;'>
+    	<a id="xuat_excel" style="float:right; margin: 5px" href="giangvien/indanhsanhsv?ma_mh=<?php echo $ma_mh; ?>" class="btnAMD" title="Nhấp để in danh sách nhóm" >Xuất ra file excel</a>
+    </div>
+        
+        <div class='view_download'>
+        	<h4>Xem trước bản download</h4>
+        
+			<table border='1' class='view_download'>
+				<tr><th>MSSV</th><th>Họ tên</th><th>Nhóm</th><th>Đề tài</th><th>Điểm</th><th>Ghi chú</th></tr>
+				<tr> 
+					<td>1111325</td>
+					<td>Nguyễn Thanh Phi</td>
+					<td>1</td>
+					<td>Website quản lý nhóm sinh viên khoa CNTT</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>1111319</td>
+					<td>Huỳnh Thanh Nhã</td>
+					<td>2</td>
+					<td>Ứng dụng Java cho hệ thống Web</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+         </div>
+    </div>
+    
+    <!--   XUAT FILE EXCEL CHO MOI MON GIANG VIEN PHU TRACH  -->
+    
+</div>

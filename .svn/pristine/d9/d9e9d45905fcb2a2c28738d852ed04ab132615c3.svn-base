@@ -1,0 +1,10 @@
+/* CSS Document */
+.doimatkhau{
+	margin-left: 650px;
+}
+
+.hienthisinhvien{
+	margin: 20px 0px 10px 70px;
+	
+}
+

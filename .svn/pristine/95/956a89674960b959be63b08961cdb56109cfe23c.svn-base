@@ -1,0 +1,101 @@
+$(document).ready(function(){
+	var G_MA_LOPHOCPHAN;
+	$('div.form > h2').html("CHỨNG THỰC NGƯỜI DÙNG");
+	$('#login #intro').hide();
+	$('fieldset.register_info').show();
+	$('span.btnDeletemember img').attr('title','Xóa khỏi nhóm');
+	$('span.btnLeave img').attr('title','Rời khỏi nhóm');
+	$('span.btnSendmail').attr('title','Gửi thông báo');	
+	/* iframe notification */
+	$('#register select').change(function(){
+		
+		var MA_LOPHOCPHAN = $(this).val();
+		$('fieldset.register_info > iframe').hide();
+		$('fieldset.register_info > iframe').attr('src','http://localhost/cit-quanlynhom/iframe/thongtinmaunhom/' + MA_LOPHOCPHAN);
+		$('fieldset.register_info > iframe').fadeIn("slow");
+	});
+	$('span.manipulation').click(function() {
+		$('section.manipulation').fadeIn(1000);
+		
+		$('img.manipulation').show();
+		if ($(this).hasClass('btnRegister')){
+			$('#register').show();
+			$('#addmember').hide()
+			$('#modifygroup').hide();
+			
+			
+		}
+		else if ($(this).hasClass('btnAddmember')){
+			$('#addmember').show();
+			$('#register').hide();
+			$('#modifygroup').hide();
+			var TEN_MH = $(this).parent().siblings('.TEN_MH').html();
+			$('#addmember > form > h1 span').html('<br/>' + TEN_MH);
+			G_MA_LOPHOCPHAN = $(this).parent().siblings('.check').children('.check').attr('value');
+			
+		}
+		else if ($(this).hasClass('btnModifygroup')){
+			$('#modifygroup').show();
+			$('#register').hide();
+			$('#addmember').hide()
+			
+		}
+		else if ($(this).hasClass('btnDeletemember')){
+			
+			$('#modifygroup').hide();
+			$('#register').hide();
+			$('#addmember').hide()
+			
+		}
+		else if ($(this).hasClass('btnLeavegroup')){
+			$('input[name=leavegroup]').click();
+		}
+		
+		
+	});
+	
+	$('input[type=button]').click(function(){
+		if ('btnLeavegroup' == $(this).attr('name'))
+			$(':checked').prop("checked",false);
+			$(this).parent().siblings('.check').children().prop( "checked", true );
+			$('input[name=leavegroup]').click();
+	});
+	/* end ----------------*/
+	
+	/* img manipulation           */
+	$('img.manipulation').click(function (){
+		$('section.manipulation').hide(500);
+		$('#iframe_login').slideUp(500);
+		$(this).hide();
+	});
+	
+	$('#iframe_login div.iframe_login_up img').click(function(){
+		$('#iframe_login').slideUp(500);
+		$('section.manipulation').hide(500);
+	});
+	
+	
+	
+	/* end ------------------*/
+	
+	$('#search').keypress(function(e){
+		
+		if (13 == e.which)
+			e.preventDefault();
+			
+		var keyword = $('#search').val();
+		var elements = [];
+		$.getJSON('http://localhost/cit-quanlynhom/sinhvien/lay_sinhvien/' + G_MA_LOPHOCPHAN + '/' + keyword, function(result){
+			$.each(result, function(i, val){
+				elements.push(val.HOTEN);
+				
+			});
+			$('#seach').autocomplete({
+				source : elements
+			});
+			
+		});
+	});
+	
+});
+

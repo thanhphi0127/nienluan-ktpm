@@ -1,0 +1,267 @@
+.form * {
+	margin: 3px 0px;
+	padding: 0;
+}
+
+
+.form{ 
+	width: 50%;
+	padding: 20px 5px 5px 5px;
+	margin: auto;
+	margin-top:3%;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border: 0px solid #000000;
+}	
+
+.form h1 {
+    font: 21px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding: 20px 4px 20px 40px;
+    display: block;
+    margin: -30px -30px 10px -30px;
+    color: #FFF;
+    background: rgb(66, 168, 226);
+    text-shadow: 1px 1px 1px #949494;
+    border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    border-bottom:1px solid #89AF4C;	
+	width: 101%;
+	float: left;
+	margin: -25px 0px 7px -23px;
+}
+.form h1 span {
+    display: block;
+    font-size: 14px;
+    color: #FFF;
+}
+
+.form img.loginuser{
+	margin:0px 25%;
+}
+
+.form fieldset legend {
+	text-decoration:uppercase;
+	font-weight:bold;
+	color:#5E5E5E;
+}
+
+.form label {
+	color: #777;
+	font-size: 14px;
+	cursor: pointer;
+	padding:5px;
+}
+
+.form label p{
+	width:100%;
+	padding:5px;
+}
+
+.form  form{
+	margin:0px;
+	padding: 24px 20px 46px;
+	font-weight: normal;
+	background: white;
+	border: 1px solid #E5E5E5;
+
+	/* add box shadow  */
+	-moz-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;  /*for Mozilla*/
+	-webkit-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px; /*for Chrome and Safari*/
+	box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+}
+
+.form input[type=text], .form textarea,
+.form input[type=password],
+.form select{
+
+	font-weight: 200;
+font-size: 14px;
+height: 34px;
+line-height: 24px;
+width: 100%;
+padding:6px 12px;
+margin: 2px 6px 16px 0px;
+border: 1px solid #E5E5E5;
+background: #FBFBFB;
+color: #555555;
+outline: none;
+vertical-align: middle;
+-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+border: 1px solid #cccccc;
+border-radius: 4px;
+ -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+	
+  
+ 
+}
+
+
+
+.form a {
+	color:#69B7E6;
+	float:right;
+}
+
+input.submit-button, input[type=reset] {
+	float: right;
+	border: 1px solid #298CBA;
+	font-weight: bold;
+	color: white;
+	background: #21759B;
+	text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+	padding: 3px 10px;
+	margin:10px 0px 10px 10px;
+	cursor: pointer;
+	
+	 add submit button a rounded corner 
+	-o-border-radius: 10em;  
+	/*for opera*/
+	-khtml-border-radius: 10em; 
+	-webkit-border-radius: 10em; 
+	border-radius: 10em;
+	
+	
+	/* add background gradient effet 
+	/*for Chrome and Safari*/
+	background: -webkit-gradient(linear, left top, left bottom, from(#298CBA), to(#217096));
+
+	/*for Mozilla*/
+	background: -moz-linear-gradient(top,  #298CBA,  #217096);
+
+	/*for IE*/
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#298CBA', endColorstr='#217096');
+
+}
+input.submit-button:hover { border: 1px solid #000; }
+
+
+.form input[type=radio] , .form input[type='checkbox']{
+	
+	
+	margin:2px 6px 16px 0px;
+	
+
+}
+
+.form input[type=number] {
+	width:50px;
+	font-weight: 200;
+	font-size: 14px;
+	height: 24px;
+	line-height: 1;
+	padding:6px 12px;
+	margin: 2px 6px 16px 0px;
+	border: 1px solid #E5E5E5;
+	background: #FBFBFB;
+	color: #555555;
+	outline: none;
+	vertical-align: middle;
+	-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+	-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+	box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	 -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+			  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+			  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+	
+}
+.form input[type=text] {
+	width:94%;
+	height:24px;
+}
+.form input[type=date] {
+	font-weight: 200;
+	font-size: 15px;
+	height:24px;
+	line-height: 1;
+	width: 185px;
+	padding: 3px;
+	margin:2px 6px 16px 0px;
+	border: 1px solid #E5E5E5;
+	background: #FBFBFB;
+	outline: none;
+	
+	/* add input box a inset shadow  */
+	-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2); /*for Mozilla*/
+	-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2); /*for Chrome and Safari*/
+	box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+}
+
+.form fieldset {
+	padding:10px;
+	width:96%;
+	border: 1px solid #E5E5E5;
+}
+
+
+.form input[type=text]:focus , .form select:focus ,.form input[type=date]:focus, .form input[type=number]:focus  ,.form textarea:focus  {
+	border-color:#66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/* Other style */
+
+
+/*######## Smart Green ########*/
+
+
+.form textarea {
+	width:94%;
+	height:50px;
+}
+
+.form label {
+    display: block;
+    margin: 0px 0px 5px;
+}
+.form label>span {
+    float: left;
+    margin-top: 10px;
+    color: #5E5E5E;
+}
+
+
+.form textarea{
+    height:100px;
+    padding-top: 10px;
+}
+
+.form .button {
+    background-color: #9DC45F;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-border-radius: 5px;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #949494;
+}
+.form .button:hover {
+    background-color:#80A24A;
+}
+
+a {
+	cursor:pointer;
+}
+
+tieude{
+	font-weight:bold;
+}
+
+.hide {
+	display:none;
+}
+

@@ -1,0 +1,28 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Msinhvien extends CI_Model{
+	public function __construct() {
+		parent::__construct();
+	}
+	
+	function DanhsanhSV()
+	{
+		$this -> db -> select('mssv, hoten_sv, gioitinh, sdt_sv, diachi, mail, ngaysinh, manganh, khoahoc');
+		$query = $this -> db -> get('sinhvien');
+		return $query -> result();
+	}
+	
+	function GetTask($data) {
+			if ('ngaybddesc' == $data['orderby'])
+				$query = $this->db->from('congviec')->order_by('ngaybd desc')->get()->result_array();
+			else if ('ngaybdasc' == $data['orderby'])
+				$query = $this->db->from('congviec')->order_by('ngaybd asc')->get()->result_array();
+			else 
+				$query = $this->db->from('congviec')->order_by($data['orderby'].' asc')->get()->result_array();
+				
+			return $query;
+	}
+	
+	
+	
+}

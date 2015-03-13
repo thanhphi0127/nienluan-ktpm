@@ -1,0 +1,37 @@
+$(document).ready(function(){
+	$('input[type=checkbox]').addClass('check');
+	$("section.config_download form fieldset fieldset > p:not('.nothide')").hide();
+	$("#detail").click(function(){
+		$("section.config_download form fieldset fieldset > p:not('.nothide')").toggle(1000);
+	});
+	
+	$('#list').click(function(){
+		if ($(this).is(':checked')) {
+			location.reload();
+		}
+		else
+			$('#list').prop('checked', true);
+			
+		
+	});
+	$('fieldset.config_list p > label > input[type=checkbox]').click(function(){			
+		
+		var des = $(this).val();
+		
+		$(this).prop('disabled', true);
+		$('#list').prop('checked', false);
+		var array_list = ['TEN_CV', 'NGAYBD', 'NGAYKT', 'THOIGIANUL', 'MOTA', 'NGUOIDUOCGIAO', 'TEN_MUCDO', 'TEN_TINHCHAT'];
+
+		$.each (array_list, function(index, val) {
+				if (! $(this).is(':checked')){
+					if (val == des){
+						$('.review_area table.list tr td:nth-child(' + (eval(index) + 1) + ')').css('display','none');
+						return;
+					}
+				}
+		});
+	});
+	$('input[type=reset]').click(function(){
+		location.reload();
+	});
+});

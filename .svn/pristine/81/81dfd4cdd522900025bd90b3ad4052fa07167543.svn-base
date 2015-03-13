@@ -1,0 +1,178 @@
+@import "manipulation.css";
+@import "../common_header.css";
+
+/*-------------------------------------Genarally--------------------------------------------*/
+a {
+	text-decoration:none;
+}
+a:hover {
+	color:blue;
+}
+body {
+	color:black;
+}
+
+ul {
+	list-style:none;
+	font-weight:13px;
+	
+}
+/*------------------------------------------------------------------------------------------*/
+
+
+div.list{
+	width:100%;
+	text-align:center;
+	
+}
+
+section.view {
+	border:1px solid #D1D1D1;
+	min-height:368px;
+	margin:0px 0px 5px 0px;
+	overflow:hidden;
+	background:#F4F4F4;
+	
+}
+
+section.view .advance{
+	float:left;
+	width:100%;
+	
+}
+
+section.view .advance .search{
+	float:left;
+	width:100%;
+	margin:0px 0px 10px 10px;
+}
+div.div_title{
+	padding:5px 30px 5px 0px;
+	width:140px;
+	float:left;
+	font-weight:700;
+}
+
+span.span_title {
+	font-weight:bold;
+	font-size:15px;
+}
+
+
+div.div_title:after{
+	content:":";
+}
+section.view .advance .search form > * {
+	margin:4px;
+} 
+section.view .advance .search form input[type=submit]{
+	margin:-44px 90px 0px 0px;
+}
+
+section.view .advance .search form input {
+	padding:3px;
+}
+
+section.view .advance .search form select {
+	text-align:center;
+	padding:3px;
+}
+
+div.list {
+	border:1px solid #CCCCCC;
+	padding:10px;
+	background:#FFF;
+}
+
+div.list table {
+	border-collapse:collapse;
+	width:100%;
+	
+}
+
+div.list table tr:hover td{
+	background:#CCFFCC !important;
+}
+
+div.list table tr.select td{
+	background:#FFCC99;
+}
+div.list table th{
+	border-bottom:1px solid #999999;
+	background:#CCCCCC;
+	line-height:30px;
+	height:30px;
+	text-align:left;
+	padding:2px;
+}
+div.list table th span.sort{
+	cursor:pointer;
+}
+div.list table th span.sort:hover {
+	text-decoration:underline;
+}
+
+div.list table td{
+	text-align:left;
+	padding:5px auto;
+	line-height:30px;
+	height:30px;
+	padding:0px 0px 0px 0px;
+	margin:0px;
+	vertical-align:middle;
+}
+
+div.list table td input, div.list table th input {
+	margin:10px;
+}
+
+.center{
+	text-align:center;
+}
+
+div.list .pagination {
+	overflow:hidden;
+	margin:10px;
+}
+
+div.list .pagination ul{
+	list-style:none;
+	margin:0px;
+	line-height:30px;
+}
+
+div.list .pagination li{
+	display:inline;
+	padding:5px;
+	float:left;
+	margin:0px 5px 0px 0px;
+	border:1px solid #CCCCCC;
+}
+
+div.list .pagination li{
+	color:#025A8D;
+}
+
+div.list .pagination li:hover {
+	color:black;
+	background:#E7E7E7;
+}
+
+#add, #modifytask, #iframe_login , section.manipulation{
+	display:none;
+}
+
+
+
+#iframe_login div.iframe_login_up {
+	background:#FFF;
+	border-bottom:5px solid #0080FF;
+	text-align:center;
+	width:100%;
+	height:50px;
+	margin:-40px 0px 0px 0px;
+}
+
+#iframe_login div.iframe_login_up  img{
+	margin:2px auto;
+}

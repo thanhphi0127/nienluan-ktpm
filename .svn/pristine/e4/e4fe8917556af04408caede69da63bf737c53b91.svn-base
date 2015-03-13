@@ -1,0 +1,160 @@
+section.body {
+
+	min-height:510px;
+	width: 87%;
+	
+}
+#title {
+	margin:0 auto;
+	text-align:center;
+	text-transform:uppercase;
+	color:#C00;
+	font-weight:bold;
+}
+
+/* Cấu hình download */
+.config_download {
+	margin:10px 2%;
+	width:30%;
+	float:left;
+	margin-left:20px;
+}
+
+
+
+.config_download select {
+	padding: 7px;
+	width: 95%;
+}
+
+.form fieldset {
+	padding: 5px;
+	width: 95%;
+}
+
+#list{
+	margin:2px 0px 0px 5px;
+}
+
+select[name=orderby] {
+	width:200px;
+}
+
+
+select[name=subject] {
+	padding:3px 5px;
+	width:190px;
+	float:left;
+}
+
+#detail {
+	color:blue;
+	text-decoration:underline;
+}
+
+
+
+section.config_download form fieldset legend{
+	text-decoration:uppercase;
+	font-weight:bold;
+}
+
+/**/
+ 
+ /*review download */
+ 
+.review_download {
+	float:left;
+	width:63%;
+	height:auto;
+	text-align:center;
+	margin: 10px 0px;
+	
+}
+
+.review_download  p{
+	text-transform:uppercase;
+	font-weight:bold;
+	color:blue;
+}
+
+.review_area {
+	border:1px solid gray;
+	width:100%;
+	height:auto;
+	padding:6px;
+	background-color:white;
+
+}
+.review_download  section.review_area span{
+	margin: 10px 20px;
+}
+.review_download  section.review_area span.groupname, .review_download  section.review_area span.subjectname {
+	
+	font-weight:bold;
+}
+.review_download  section.review_area span.member, .review_download  section.review_area span.list {
+	font-weight:bold;
+	float:left;
+	margin:20px 20px;
+	color:black;
+	
+}
+
+.review_download section.review_area span.version{
+	
+	text-align:right;
+	float:right;
+	
+}
+.review_download section.review_area table {
+	float:none;
+	margin:20px auto;
+	color:black
+}
+
+.review_download section.review_area table tr td, .review_download section.review_area table tr th{
+	padding:5px;
+	border-spacing:seperate;
+	max-width:250px;
+}
+
+
+.review_download section.review_area table tr td:nth-child(2) {
+	width:100px;
+	max-width:150px;
+	
+}
+
+
+.review_download section.review_area table tr td:nth-child(6) {
+	width:200px;
+	
+}
+.review_download section.review_area table tr td:nth-child(7) {
+	width:150px;
+	
+}
+
+.error {
+	color:red;
+	font-style:italic;
+}
+
+.download{
+	background-color:#009;
+}
+
+ /**/
+ 
+ section.list {
+background: #EEF5F9;
+min-height: 624px;
+}
+.check {
+	margin:0px 18px !important;
+}
+
+.form select{
+	margin-left:6px;
+}

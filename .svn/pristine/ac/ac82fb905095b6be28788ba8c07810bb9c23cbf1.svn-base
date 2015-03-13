@@ -1,0 +1,121 @@
+div {	
+	float:left;
+	
+}
+p {
+	margin:23px;
+}
+
+.verticalBarGraph {
+	border-top: 1px solid #372A27;
+	border-bottom: 1px solid #372A27;
+	 border-right: 1px solid #FFF;
+	 border-left: 1px solid #FFF;
+	height: 100px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:100px;
+	
+	width:500px;
+	position: relative;
+	
+}
+	
+.verticalBarGraph li {
+	border: 1px solid #555;
+	border-bottom: none;
+	bottom: 0;
+	list-style:none;
+	margin:0px 10px;
+	padding: 0;
+	position: absolute;
+	text-align: center;
+	width: 39px;
+	}
+	
+
+	
+.barGraph {
+	
+	border-bottom: 3px solid #333;
+	font: 9px Helvetica, Geneva, sans-serif;
+	height: 200px;
+	margin: 1em 0;
+	padding: 0;
+	position: relative;
+	}
+	
+.barGraph li {
+	border: 1px solid #555;
+	border-bottom: none;
+	bottom: 0; 
+	color: #FFF;
+	margin: 0; 
+	padding: 0 0 0 0;
+	position: absolute;
+	list-style: none;
+	text-align: center;
+	width: 39px;
+}
+	
+.barGraph li.p1{ background-color:#666666 }
+.barGraph li.p2{ background-color:#888888 }
+.barGraph li.p3{ background-color:#AAAAAA }
+
+.barname {
+	margin-top:0px;
+	border:none;
+}
+.barname li {
+	border:none;
+	top:5px;
+}
+.fauxLineGraph {
+	background: url(images/horizontal_line_2.png) bottom left;
+	border-bottom: 3px solid #333; 
+	font: 9px Helvetica, Geneva, sans-serif;
+	height: 200px;
+	margin: 1em 0; 
+	padding: 0;
+	position: relative; 
+	}
+.fauxLineGraph li {
+	border-top: 3px solid #555; 
+	border-bottom: none; 
+	color: #000;
+	bottom: 0; 
+	list-style: none;
+	margin: 0; 
+	padding: 0 0 0 0;
+	position: absolute; 
+	text-align: center; 
+	width: 39px; 
+	}
+
+.fauxLineGraph li.p1{ 
+	background: url(images/blue_shadow.png) repeat-x top right;
+	border-color: #4E536B; 
+	}
+.fauxLineGraph li.p2{ 
+	background: url(images/red_shadow.png) repeat-x top right; 
+	border-color: #355B31;
+	}
+.fauxLineGraph li.p3{ 
+	background: url(images/yellow_shadow.png) repeat-x top right; 
+	border-color: #88262B;
+	}
+	
+.set1 {
+	background:green;
+	color:white;
+	
+}
+
+.set2 {
+	background:white;
+	color:black;
+	
+}
+.setspecial {
+	opacity:0.8;
+}

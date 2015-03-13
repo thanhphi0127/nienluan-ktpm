@@ -1,0 +1,122 @@
+.body {
+	margin: -10px auto 10px;
+	min-height:510px;
+}
+#title {
+	margin:0 auto;
+	text-align:center;
+	text-transform:uppercase;
+	color:#0C3;
+}
+
+/* Cấu hình download */
+.config_download {
+	margin:10px 2%;
+	width:30%;
+	float:left;
+	margin-left:20px;
+}
+
+#list{
+	width:49px;
+	margin-top:-13px;
+	float:right;
+}
+
+select[name=orderby] {
+	float: right;
+	margin: -30px 39px 0px 0px;
+	z-index:3999;
+}
+
+
+select[name=subject] {
+	padding:3px 5px;
+	width:190px;
+	float:left;
+}
+
+#detail {
+	color:blue;
+	text-decoration:underline;
+}
+
+
+
+section.config_download form fieldset legend{
+	text-decoration:uppercase;
+	font-weight:bold;
+}
+
+/**/
+ 
+ /*review download */
+ 
+.review_download {
+	float:left;
+	width:60%;
+	height:auto;
+	text-align:center;
+	margin: 10px 3%;
+	
+}
+
+.review_download  p{
+	text-transform:uppercase;
+	font-weight:bold;
+	color:gray;
+}
+
+.review_area {
+	border:1px solid gray;
+	width:100%;
+	height:auto;
+	background-color:white;
+
+}
+.review_download  section.review_area span{
+	margin: 10px 20px;
+}
+.review_download  section.review_area span.groupname, .review_download  section.review_area span.subjectname {
+	color:blue;
+	font-weight:bold;
+}
+.review_download  section.review_area span.member, .review_download  section.review_area span.list {
+	font-weight:bold;
+	float:left;
+	margin:20px 20px;
+	color:black;
+	
+}
+
+.review_download section.review_area span.version{
+	color:red;
+	text-align:right;
+	float:right;
+	
+}
+.review_download section.review_area table {
+	float:none;
+	margin:20px auto;
+	color:black
+}
+
+.review_download section.review_area table tr td, .review_download section.review_area table tr th{
+	padding:5px;
+	border-spacing:seperate;
+	max-width:250px;
+}
+
+
+.review_download section.review_area table tr td:nth-child(1) {
+	width:100px;
+	max-width:150px;
+	
+}
+
+
+.review_download section.review_area table tr td:nth-child(5) {
+	width:200px;
+	
+}
+ /**/

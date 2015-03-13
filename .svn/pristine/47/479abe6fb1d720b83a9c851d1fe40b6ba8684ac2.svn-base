@@ -1,0 +1,197 @@
+#login {
+	text-align:center;
+}
+
+#login div.form {
+	width:30%;
+	float:right;
+	margin: 2% 3% 0% 5%;
+}
+header.loginheader {
+	background: #23509E;
+	color:#00B200;
+	padding:5px;
+	height: 60px;
+	font-size:20px;
+	font-weight:bold;
+	vertical-align:middle;
+}
+header img.logo {
+	width: 42px;
+	margin: 4px 6px;
+	height:auto;
+	padding: 0px !important;
+}
+header span.logo{
+	color: red;
+	font-size: 29px;
+	margin: 0px 10px 0px 100px;
+	position: absolute;
+	top:18px;
+	
+}
+header span.orgfullname{
+	color:#E1F8FF;
+	font-size:30px;
+	position: absolute;
+	top: 18px;
+	left: 18%;
+}
+
+
+#forgot  {
+	width:400px;
+}
+ul.forgot{
+	float:right;
+	list-style:none;
+	margin:15px 3px;
+	padding:0px;
+}
+ul.forgot li {
+	display:inline;
+	margin:2px 2px;
+}
+
+ul.forgot li a {	
+	text-decoration:underline;
+}
+
+#intro {
+	width:100%;
+	height:405px;
+	margin: 25px 10px;
+	text-align:left;
+	min-width: 80%;
+	max-width: 950%;
+	min-height: 380px;
+	border-radius: 2px;
+}
+
+#intro span{
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border: 0px solid #000000;
+	background-color:#D9534F;
+	padding:10px;
+	color:white;
+	font-weight:700;
+	margin-bottom:20px;
+}
+
+#intro table {
+	border-collapse: collapse;
+	margin-top:20px;
+	height:100%;
+	width:100%;
+	background:#E0EBFF;
+	border-left:4px solid #0066FF;
+}
+#intro table tr td{
+	padding:10px;
+	font-size:14px;
+}
+
+//Login form by Thanh Phi
+
+.form-group label, input, select{
+	display: inline;
+	padding: 0px;
+}
+
+.form-group label{
+	margin-left: 10px;
+				
+}
+
+.form-group_check label{
+	margin-left: 10px;
+				
+}
+			
+.form-group input, .input-group{
+	width: 300px;
+}
+
+.panel{
+	height: 410px;
+	width: 100%;
+	min-width: 350px;
+	max-width: 350px;
+}
+
+p.form-group {
+	margin-bottom: 5px;
+}	
+
+p.p-btn-primary {
+	padding-right:38px;
+	
+}
+
+.btn-primary{
+	margin: 0px 6px 0px;
+	float: right;
+	border-radius: 2px;
+}
+
+
+
+.name-home a {
+	display:inline;
+	margin: 5px;
+	border-radius: 2px;
+}
+a.btn.btn-danger {
+	margin-left: 8px;
+}
+
+.btn-danger {
+  color: #ffffff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+
+.btn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.428571429;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+
+a.atrangchu ,a.atrangchu:hover, a.atrangchu:active{
+	color: rgb(104, 255, 80);
+	margin-left: -68px;
+	text-decoration:none;
+}
+
+span.hello{
+	position:absolute !important;
+	top:21px ;
+	right:16px !important;
+	font-weight:bold !important;
+	margin:0px !important;
+	color:white;
+	font-size:13px;
+}
+
+span.hello a{
+	border-radius: 2px;
+}

@@ -1,0 +1,68 @@
+
+<div class="khung">
+      <div class="row">
+      <div class="ds thongtingiangvien" style="float:left">
+      	<h4>THÔNG TIN CÁ NHÂN</h4>
+          <table class="table_tt">
+              <?php
+                  session_start();
+                  $user = new mgiangvien();
+                  foreach ($thongtingiangvien as $row)
+                  {       
+                        echo "<tr><td>MSSV</td><td>$row->mscb</td><tr>";
+                        echo "<tr><td>Họ tên</td><td>$row->hoten</td><tr>";
+                        echo "<tr><td>Giới tính</td><td>$row->gioitinh</td><tr>";     				  
+                        echo "<tr><td>Ngày sinh</td><td>$row->ngaysinh</td><tr>";
+                        echo "<tr><td>Số điện thoại</td><td>$row->sdt</td><tr>";
+                        echo "<tr><td>Email</td><td>$row->mail</td><tr>";
+                        echo "<tr><td>Trình độ</td><td>$row->ten_td</td><tr>";
+                        echo "<tr><td>Tên bộ môn</td><td>$row->ten_bm</td><tr>";
+                        echo "<tr class='diachi'><td>Địa chỉ</td><td>$row->diachi</td><tr>";
+                  }
+              ?>
+          </table>
+      <br />
+      <div style="float:right"><input id="doimatkhau" class="btn btn-success" type="submit" value="Đổi mật khẩu" /></div>
+	</div> <!-- COL-MD-6 -->
+      
+      
+   <div class="doimatkhau">
+       <div id="hienthi_mk"class="panel panel-primary">
+          <div class="panel-heading">
+              Đổi mật khẩu
+          </div>
+          <form action="" method="post">
+              <div class="form-group">
+                  <label>Tên đăng nhập</label>
+                  <input type="text" name="data[username]" class="form-control" value="<?php echo $username; ?>" disabled/>
+              </div>
+              
+              <div class="form-group">
+                  <label>Mật khẩu (*)</label>
+                  <input type="password" name="data[password]" class="form-control"  placeholder="Nhập mật khẩu">
+                  <?php echo form_error('password'); echo $mk; ?>
+              </div>
+
+              <div class="form-group">
+                  <label>Mật khẩu mới (*)</label>
+                  <input type="password" name="data[newpassword]" class="form-control"  placeholder="Nhập mật khẩu mới">			  <?php echo form_error('newpassword'); ?>
+              </div>
+              
+              <div class="form-group">
+                  <label>Xác nhận mật khẩu (*)</label>
+                  <input type="password" name="data[confirmpassword]" class="form-control"  placeholder="Nhập lại mật khẩu mới">
+                  <?php echo form_error('confirmpassword'); ?>
+              </div>
+              <br />
+              <input type="hidden" name="data[press]" value="<?php echo $press; ?>" id="temp" />
+<hr/>         <div class="box-footer" style="text-align:center">
+              <input id="luulai" name="luulai_form" type="submit" class="btn btn-primary" value="Lưu lại"/><span style="margin-left: 100px"></span>
+               <button name="huybo" type="close" class="btn btn-primary"><i class="fa fa-pencil"></i> Hủy bỏ</button>
+           </div>
+        </form>                     
+			</div>
+          
+       </div> 
+      
+      </div><!--end div row-->
+</div><!--end div contener-->

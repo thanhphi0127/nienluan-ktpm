@@ -1,0 +1,98 @@
+﻿
+<!-- NOI DUNG -->
+<div class="khung" style="margin-top: 43px">
+    <div class="row">
+    <div class="nguoidung_nhom">
+	<div id="header_ttnhom">Thông tin quản lý nhóm</div>
+ 	<div class="box" >
+        <div class=row" id="chon_mh">                                  
+        <label>Chọn môn học hiển thị </label>
+        <?php 
+			if(isset($LayMonHoc_GiangVien) && !empty($LayMonHoc_GiangVien)){
+        		echo "<select id='sl_mh' class='form-control' name='ma_mh'>";
+					echo "<option value='all'>Tất cả</option>";
+				$i = 0;
+				foreach ($LayMonHoc_GiangVien as $row) {
+					echo "<option value='".$row['MA_MH']."'>".$row['TEN_MH']."</option>";
+					$i++;
+				}
+       	        echo " </select>";
+			}
+			//echo "<input id='btn_monhoc' name='btn_monhoc' type='submit' class='btn btn-default' value='Hiển thị' />";
+			echo "<label id='hocki'>Chọn học kì</label>";
+			echo "<select class='form-control'  name='hocki'>
+					<option value='hk1'>Học kì 1</option>
+					<option value='hk2'>Học kì 2</option>
+					<option value='hk3'>Học kì hè</option>
+       			 </select>";
+           // echo "<span class='sum_mh'>TỔNG MÔN HỌC ĐANG PHỤ TRÁCH : ".$i." MÔN HỌC </span>";
+		?>
+
+        </div>
+        
+    <div class="box-body table-responsive">
+        <table id="example1" class="table-bordered table-hover table_nguoidung">
+
+               <thead>
+               		<tr>
+                    <th colspan="7" id="header_mon" >Hiển thị danh sách môn theo nhóm</th>
+                    </tr>
+                   <tr>
+                       <th>STT</th>
+                       <th>Tên môn</th>
+                       <th>Nhóm </th>
+                       <th>Tên đề tài</th>
+                       <th>Mô tả</th>
+                       <th>Số lượng thành viên</th>
+                       <th>Tên trưởng nhóm</th>
+                   </tr>
+               </thead>
+			<tbody>
+			<?php 
+                if(isset($LayThongTinNhom) && !empty($LayThongTinNhom)){
+                    $i = 1;
+                    foreach ($LayThongTinNhom as $row) {
+						echo "<tr>";
+						
+                        echo "<td>$i</td>";
+						
+						echo "<td>$row->TEN_MH</td>";
+						echo "<td>Nhóm $row->STT_NHOM</td>";
+						echo "<td>$row->DETAI</td>";
+						echo "<td>$row->MOTA</td>"; 
+						echo "<td>$row->SLTV</td>";	
+						echo "<td>$row->HOTEN</td>";					
+						echo " </tr>";
+						$i++;
+                    }    
+                }
+            ?>
+            </tbody>
+            <tfoot>
+                   <tr>
+                       <th>STT</th>
+                       <th>Tên môn</th>
+                       <th>Nhóm </th>
+                       <th>Tên đề tài</th>
+                       <th>Mô tả</th>
+                       <th>Số lượng thành viên</th>
+                       <th>Tên trưởng nhóm</th>
+                   </tr>
+            </tfoot>
+        </table>
+       
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+         
+         <div id="choice" class="active"></div>
+         <div class="row btn_border">
+         </div><!--end div row -->
+         
+        </div><!--end div col-md-12-->
+        
+        
+        
+    	</div><!--end div row-->
+
+  
+	</div><!--end div contener-->

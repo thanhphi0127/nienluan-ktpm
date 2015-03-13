@@ -1,0 +1,179 @@
+
+/*-------------------------------------Genarally--------------------------------------------*/
+a {
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+	color:blue;
+}
+body {
+
+}
+
+
+/*------------------------------------------------------------------------------------------*/
+#quanlynhom {
+	text-align: center;
+	float:left;
+	width:100%;
+}
+#quanlynhom h1{
+	color:yellow;
+}
+
+#home_quanlynhom {
+	width:45%;
+	float:none;
+	margin:0 auto;
+}
+
+
+#tab_subject {
+	margin:auto;
+	
+}
+
+#tab_subject  tr td, #tab_subject tr th{
+	padding:10px;
+	border:1px solid gray;
+	cursor:pointer;
+}
+#tab_subject tr th{
+	background-color:gray;
+}
+#tab_subject tr td:nth-child(1) {
+	background-color:yellow;
+}
+#tab_subject tr td:nth-child(2) {
+	background-color:pink;
+}
+
+#group_detail {
+	color: black;
+text-align: center;
+padding: 10px;
+width: 50%;
+display: none;
+float:left;
+margin:124px 0px -15px;
+}
+#group_detail  label {
+	margin-top:-13px;
+	text-align:left;
+}
+#group_detail label span{
+	float:left;
+	margin-right:10px;
+	font-weight:bold;
+	font-size:13px;
+}
+
+subtitle {
+	
+	font-weight:bold;
+	font-size:20px;
+}
+
+#memberfn {
+	margin:auto;
+	width:270px;
+	height:auto;
+}
+add, modify, delete {
+	margin:2px 5px;
+	cursor:pointer;
+	width:80px;
+	height:20px;
+	
+}
+
+add img, modify img, delete img{
+	width:80px;
+	height:20px;
+}
+
+#group_detail table {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+	text-align:left;
+}
+
+#group_detail table th{
+	background-color:gray;
+}
+
+#group_detail table tr td{
+	padding:5px;
+	border:1px solid #333;
+}
+
+#group_detail table tr td:nth-child(1){
+	text-align:center;
+}
+
+
+
+
+/* register */
+#register {
+	display:none;
+}
+div.register {
+	width:100%;
+	height:100%;
+	background-color:#333;
+	opacity:0.2;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+img.register {
+	position:absolute;
+	right:38%;
+	top:37px;
+	width:30px;
+	height:30px;
+	
+}
+
+form.register {
+	position:absolute;
+	top:55px;
+	left:30%;
+	right:30%;
+	margin:auto;
+}
+
+#addmember {
+	display:none;
+}
+
+#iframe_login  {
+	width:100%;
+	height:90%;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:1999;
+	display:none;
+	background-color:white;
+	
+}
+
+#iframe_login div.verify {
+	width:100%;
+	height:100%;
+	margin:0px;
+}
+
+#iframe_login div.div_close {
+	width:100%;
+	height:auto;
+	text-align:center;
+	background:white;
+	margin:-32px 0px 0px 0px;
+	border:1px solid #DFDFDF;
+}

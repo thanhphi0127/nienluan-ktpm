@@ -1,0 +1,426 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.4
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 22, 2014 at 05:09 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `htql_nhom`
+--
+CREATE DATABASE IF NOT EXISTS `cit_quanlynhom` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `htql_nhom`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `binhluan`
+--
+
+CREATE TABLE IF NOT EXISTS `binhluan` (
+  `USERNAME` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MACHUDE` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `THOIGIAN` datetime NOT NULL,
+  `NOIDUNG` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`USERNAME`,`MACHUDE`,`THOIGIAN`),
+  UNIQUE KEY `USERNAME` (`USERNAME`),
+  UNIQUE KEY `MACHUDE` (`MACHUDE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bomon`
+--
+
+CREATE TABLE IF NOT EXISTS `bomon` (
+  `MA_BM` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `TEN_BM` mediumtext COLLATE utf8_unicode_ci,
+  `MOTA` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`MA_BM`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `bomon`
+--
+
+INSERT INTO `bomon` (`MA_BM`, `TEN_BM`, `MOTA`) VALUES
+('BM001', 'Bộ môn Công nghệ phần mềm', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chitietcongviec`
+--
+
+CREATE TABLE IF NOT EXISTS `chitietcongviec` (
+  `MACV` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `MSSV` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `NGAYCAPNHAT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `MUCDOHT` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`MACV`,`MSSV`,`NGAYCAPNHAT`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chitietmonhoc`
+--
+
+CREATE TABLE IF NOT EXISTS `chitietmonhoc` (
+  `MSCB` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_MH` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_NH` char(9) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_HK` char(3) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`MSCB`,`MA_MH`,`MA_NH`,`MA_HK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chitietnhom`
+--
+
+CREATE TABLE IF NOT EXISTS `chitietnhom` (
+  `MA_MAUNHOM` smallint(6) NOT NULL,
+  `STTNHOM` smallint(6) NOT NULL,
+  `MSSV` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`MA_MAUNHOM`,`STTNHOM`,`MSSV`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chitietthongbaogv`
+--
+
+CREATE TABLE IF NOT EXISTS `chitietthongbaogv` (
+  `MSCB` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MS_TB` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`MSCB`,`MS_TB`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chitietthongbaosv`
+--
+
+CREATE TABLE IF NOT EXISTS `chitietthongbaosv` (
+  `MS_TB` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `MSSV` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`MS_TB`,`MSSV`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chitiet_cv_mh`
+--
+
+CREATE TABLE IF NOT EXISTS `chitiet_cv_mh` (
+  `MA_MH` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `MACV` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_NH` char(9) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_HK` char(3) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_MAUNHOM` smallint(6) NOT NULL,
+  `STTNHOM` smallint(6) NOT NULL,
+  PRIMARY KEY (`MA_MH`,`MACV`,`MA_NH`,`MA_HK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chude`
+--
+
+CREATE TABLE IF NOT EXISTS `chude` (
+  `MACHUDE` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `USERNAME` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `TIEUDE` mediumtext COLLATE utf8_unicode_ci,
+  `NGUOITAO` mediumtext COLLATE utf8_unicode_ci,
+  `TRANGTHAI` mediumtext COLLATE utf8_unicode_ci,
+  `NGAYTAO` timestamp NULL DEFAULT NULL,
+  `NOIDUNG` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`MACHUDE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `congviec`
+--
+
+CREATE TABLE IF NOT EXISTS `congviec` (
+  `MACV` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `NGAYBD` timestamp NULL DEFAULT NULL,
+  `NGAYKT` timestamp NULL DEFAULT NULL,
+  `THOIGIANUL` smallint(6) DEFAULT NULL,
+  `MUCDO` mediumtext COLLATE utf8_unicode_ci,
+  `TINHCHAT` mediumtext COLLATE utf8_unicode_ci,
+  `NGUOIDUOCGIAO` mediumtext COLLATE utf8_unicode_ci,
+  `MOTA` mediumtext COLLATE utf8_unicode_ci,
+  `TRANGTHAI` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`MACV`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `giangvien`
+--
+
+CREATE TABLE IF NOT EXISTS `giangvien` (
+  `MSCB` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_MAUNHOM` smallint(6) NOT NULL,
+  `MA_BM` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `USERNAME` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `HOTEN_GV` mediumtext COLLATE utf8_unicode_ci,
+  `GIOITINH` mediumtext COLLATE utf8_unicode_ci,
+  `SDT` decimal(11,0) DEFAULT NULL,
+  `MAIL` char(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `NGAYSINH` date DEFAULT NULL,
+  `TRINHDO` char(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`MSCB`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hocki`
+--
+
+CREATE TABLE IF NOT EXISTS `hocki` (
+  `MA_NH` char(9) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_HK` char(3) COLLATE utf8_unicode_ci NOT NULL,
+  `TEN_HK` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`MA_NH`,`MA_HK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `hocki`
+--
+
+INSERT INTO `hocki` (`MA_NH`, `MA_HK`, `TEN_HK`) VALUES
+('2014-2015', 'HK1', 'Học kỳ 1'),
+('2014-2015', 'HK2', 'Học kỳ 2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `maunhom`
+--
+
+CREATE TABLE IF NOT EXISTS `maunhom` (
+  `MA_MAUNHOM` smallint(6) NOT NULL,
+  `MA_MH` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `SLN_TOIDA` smallint(6) DEFAULT NULL,
+  `SL_TV_TOIDA` smallint(6) DEFAULT NULL,
+  `MOTA` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`MA_MAUNHOM`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `monhoc`
+--
+
+CREATE TABLE IF NOT EXISTS `monhoc` (
+  `MA_MH` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `TEN_MONHOC` mediumtext COLLATE utf8_unicode_ci,
+  `SOTC` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`MA_MH`),
+  UNIQUE KEY `MA_MH` (`MA_MH`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `monhoc`
+--
+
+INSERT INTO `monhoc` (`MA_MH`, `TEN_MONHOC`, `SOTC`) VALUES
+('CT109', 'Phân tích thiết kế HTTT', 3),
+('CT325', 'Thiết kế phần mềm', 3),
+('CT428', 'Lập trình Web', 3),
+('CT438', 'Niên luận Kĩ Thuật Phần Mềm', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `namhoc`
+--
+
+CREATE TABLE IF NOT EXISTS `namhoc` (
+  `MA_NH` char(9) COLLATE utf8_unicode_ci NOT NULL,
+  `TEN_NH` char(9) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`MA_NH`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `namhoc`
+--
+
+INSERT INTO `namhoc` (`MA_NH`, `TEN_NH`) VALUES
+('2013-2014', '2013-2014'),
+('2014-2015', '2014-2015');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nganh`
+--
+
+CREATE TABLE IF NOT EXISTS `nganh` (
+  `MANGANH` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_BM` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `TENNGANH` mediumtext COLLATE utf8_unicode_ci,
+  `MOTA` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`MANGANH`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `nganh`
+--
+
+INSERT INTO `nganh` (`MANGANH`, `MA_BM`, `TENNGANH`, `MOTA`) VALUES
+('N001', 'BM001', 'Kĩ thuật phần mềm', 'Chuyên về lĩnh vực.....');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nguoidung`
+--
+
+CREATE TABLE IF NOT EXISTS `nguoidung` (
+  `USERNAME` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MAQUYEN` int(11) NOT NULL,
+  `PASSWORD` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`USERNAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `nguoidung`
+--
+
+INSERT INTO `nguoidung` (`USERNAME`, `MAQUYEN`, `PASSWORD`) VALUES
+('1101622', 1, 'c963dea05e4687969295ba7af161e74b'),
+('1111319', 1, 'eb24dd59dec4d0a1b3b850e7c60249db'),
+('1111325', 1, 'dc26932da43cfd99eb810162a482245b'),
+('1111336', 1, 'fd6ebbcd3f3776fc8322046223649adc'),
+('admin', 3, '21232f297a57a5a743894a0e4a801fc3'),
+('vhtram', 2, 'e901c4278258ad9166619d017fe4fea0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nhom`
+--
+
+CREATE TABLE IF NOT EXISTS `nhom` (
+  `MA_MAUNHOM` smallint(6) NOT NULL,
+  `STTNHOM` smallint(6) NOT NULL,
+  `MSSV` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `SOTV` smallint(6) DEFAULT NULL,
+  `DETAI` smallint(6) DEFAULT NULL,
+  `CHITIETNHOM` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`MA_MAUNHOM`,`STTNHOM`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phieudangki`
+--
+
+CREATE TABLE IF NOT EXISTS `phieudangki` (
+  `MA_MH` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `MSSV` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_NH` char(9) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_HK` char(3) COLLATE utf8_unicode_ci NOT NULL,
+  `MA_PHIEU` int(11) NOT NULL,
+  PRIMARY KEY (`MA_NH`,`MA_MH`,`MSSV`,`MA_HK`,`MA_PHIEU`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quyen`
+--
+
+CREATE TABLE IF NOT EXISTS `quyen` (
+  `MAQUYEN` int(11) NOT NULL,
+  `TENQUYEN` mediumtext COLLATE utf8_unicode_ci,
+  `MOTA` mediumtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`MAQUYEN`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `quyen`
+--
+
+INSERT INTO `quyen` (`MAQUYEN`, `TENQUYEN`, `MOTA`) VALUES
+(1, 'Sinh viên', 'Mô tả'),
+(2, 'Giảng viên', 'Mô tả'),
+(3, 'Quản trị hệ thống', 'Mô tả');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sinhvien`
+--
+
+CREATE TABLE IF NOT EXISTS `sinhvien` (
+  `MSSV` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MANGANH` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `USERNAME` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `HOTEN_SV` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `GIOITINH` mediumtext COLLATE utf8_unicode_ci,
+  `SDT_SV` decimal(11,0) NOT NULL,
+  `DIACHI` mediumtext COLLATE utf8_unicode_ci,
+  `MAIL` char(40) COLLATE utf8_unicode_ci NOT NULL,
+  `NGAYSINH` date DEFAULT NULL,
+  `KHOAHOC` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`MSSV`),
+  UNIQUE KEY `USERNAME` (`USERNAME`),
+  UNIQUE KEY `MSSV` (`MSSV`),
+  UNIQUE KEY `MAIL` (`MAIL`),
+  UNIQUE KEY `SDT_SV` (`SDT_SV`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `sinhvien`
+--
+
+INSERT INTO `sinhvien` (`MSSV`, `MANGANH`, `USERNAME`, `HOTEN_SV`, `GIOITINH`, `SDT_SV`, `DIACHI`, `MAIL`, `NGAYSINH`, `KHOAHOC`) VALUES
+('1111319', '1', '1111319', 'Huỳnh Thanh Nhã', 'Nữ', '1683536544', 'Trần Đề, TP. Sóc Trăng', 'nha111319@student.ctu.edu.vn', '1993-09-23', 37),
+('1111325', '1', '1111325', 'Nguyễn Thanh Phi', 'Nam', '986233165', 'Thới Hưng, Cờ Đỏ, TP. Cần Thơ', 'phi111325@student.ctu.edu.vn', '1993-01-27', 37);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thongbao`
+--
+
+CREATE TABLE IF NOT EXISTS `thongbao` (
+  `MS_TB` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `USERNAME` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `NOIDUNG` mediumtext COLLATE utf8_unicode_ci,
+  `TRANGTHAI` mediumtext COLLATE utf8_unicode_ci,
+  `NGAYTB` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`MS_TB`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Thông báo - Hệ thống quản lý nhóm</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>template/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>template/assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>template/assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>template/assets/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>template/assets/css/style.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>template/assets/css/UM.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>template/assets/js/tooltip.js"></script>
+    <script src="http://templateplanet.info/modal.js"></script>
+  </head>
+  
+  <body>
+	<!--TIEU DE -->
+	<div class="login-header">
+		<div class="col-md-8">
+            <p style="float:left">
+                <a href="<?php echo base_url();?>index.php/home"><img src="<?php echo base_url();?>template/assets/img/home-icon.png"title="Home"/></a><span>CIT</span><span style="color: #00B200; font-size:18pt;">GMS</span>
+            </p>
+            <div class="title" style="size:30px"><b>HỆ THỐNG QUẢN LÝ NHÓM SINH VIÊN CNTT</b></div>
+		</div> <!--end div col-md-9-->
+        
+        <div class="col-md-4" style="margin-right:0px">
+  			<div class="name-home">
+            	<h5 style="color: white">Hi, Huỳnh Thanh Nhã (<?php echo $username;?>)</h5>
+                <a style="float: right" href="<?php echo base_url();?>index.php/home/logout" class="btn btn-danger square-btn-adjust">Logout</a>
+            </div>
+		</div> <!--end div col-md-3-->
+    </div><!--end div login-header-->
+
+<!--
+	<div class="container" style="padding:0px; border:1px solid red; height:40px">
+        	<div><a href="<?php echo base_url(); ?>index.php/home">Home</a></div>
+            <div>Danh sách người dùng</div>
+            <div>Diễn đàn</div>
+    </div>
+    -->
+    <div class="container" style="padding:0px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel with-nav-tabs panel-default">
+                    <div class="panel-heading" style="padding:0px; border-radius:0px;">
+                            <ul class="nav nav-tabs" style="padding:0px; border-radius:0px;">
+                                <li><a href="#tab1default" data-toggle="tab">Trang chủ</a></li>
+                                <li class="active"><a href="<?php echo base_url(); ?>index.php/home" data-toggle="tab">Diễn đàn</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/home" data-toggle="tab">Quản lý người dùng</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/home" data-toggle="tab">Quản lý công việc</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/home" data-toggle="tab">Quản lý thành viên</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/home" data-toggle="tab">Thống kê</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/home" data-toggle="tab">In danh sách</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/home" data-toggle="tab">Gửi thông báo</a></li>
+                                <li class="dropdown">
+                                    <a href="#" data-toggle="dropdown">Thông báo<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
+                                        <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+    </div>
+	
+	<!-- NOI DUNG -->
+      
+    <div class="container khung" style="padding: 0px; height: 1090px">
+        <!-- Gioi thieu -->
+        <div class="panel panel-success">
+            <div class="panel-heading"><b>CIT_GMS Forum</b></div>
+            <div class="panel-body">
+                Chào mừng đến với diễn đàn trên CIT_GMS
+            </div>
+            <div class="panel-footer">
+                Để có thể tham gia thảo luận trên diễn đàn bạn phải đăng ký làm thành viên. Click vào đây để <a href="admin/home_view.php">đăng ký thành viên</a> diễn đàn. 
+            </div>
+        </div>
+      
+        <!-- Chu de moi nhat-->
+        <div class="panel panel-success">
+            <div class="panel-heading"><b>Chủ đề mới nhất</b></div>
+            <div class="panel-body">
+                <table class="table" style="margin-bottom:0px">
+                    <tr>
+                        <td style="padding-top: 20px;"><a>Báo cáo kiểm thử phần mềm</a></td>
+                        <td> <img style="width: 35px; height: 35px" alt="User Pic" src="<?php echo base_url();?>template/assets/img/cwd-1.png" class="img-rounded">
+                            <a style="padding-top: 20px;">tính1111367</a></td>
+                        <td style="padding-top: 20px;">19-9-2014, 12:45 AM</td>
+                        <td style="padding-top: 20px; color: #FFB84D">Đang thảo luận</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding-top: 20px;"><a>Tài liệu thiết kế niên luận</a></td>
+                        <td> <img style="width: 35px; height: 35px" alt="User Pic" src="<?php echo base_url();?>template/assets/img/cwd-1.png" class="img-rounded">
+                            <a style="padding-top: 20px;">lem1111302</a></td>
+                        <td style="padding-top: 20px;">18-9-2014, 14:45 PM</td>
+                        <td style="padding-top: 20px; color: #FFB84D">Đang thảo luận</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+      
+        <!--Noi dung dien dan -->
+        <!-- Tieu de -->
+        <div class="panel panel-success">
+            <div class="panel-heading" style="font-weight: bold; font-size: 18px">Diễn đàn trao đổi</div>
+        </div>
+      
+        <!--Noi dung-->
+        <div style="margin-bottom: 0px" class="panel panel-primary">
+            <div class="panel-body">
+                
+                <!--Tim kiem-->
+                <div style="margin-bottom: 25px" class="pull-right">
+                    <div class="col-sm-6">
+                        <input class="form-control" placeholder="Chủ đề/Ngày tạo/Người tạo"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <button style="margin-left: 35px" type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                </div>
+                
+                <!--Them bai viet-->
+                <button class="btn btn-primary" type="submit">Thêm bài viết</button>
+                <button style="margin-left: 40px" class="btn btn-primary" type="submit">Cập nhật tên bài viết</button>
+                
+                <!--Table-->
+                <table class="table">
+                    <thead>
+                        <th>Chủ đề</th>
+                        <th>Người khởi tạo</th>
+                        <th>Ngày tạo</th>
+                        <th>Trạng thái</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a>Giao diện niên luận</a></td>
+                            <td>Huỳnh Thanh Nhã</td>
+                            <td>16-9-2014, 10:05 AM</td>
+                            <td>Đóng</td>
+                            <td><p class="glyphicon glyphicon-remove-circle"></p></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><a>Tài liệu đặc tả ĐBCLPM</a></td>
+                            <td>Nguyễn Thanh Phi</td>
+                            <td>12-9-2014, 14:15 PM</td>
+                            <td style="color: #FFB84D">Đang thảo luận</td>
+                            <td><p class="glyphicon glyphicon-remove-circle"></p></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><a>Kế hoạch niên luận</a></td>
+                            <td>Nguyễn Vương Thành Tâm</td>
+                            <td>01-9-2014, 16:56 PM</td>
+                            <td style="color: #FFB84D">Đang thảo luận</td>
+                            <td><p class="glyphicon glyphicon-remove-circle"></p></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><a>Test JUnit trong đọc số KTPM</a></td>
+                            <td>Nguyễn Gia Trang</td>
+                            <td>18-9-2014, 8:05 AM</td>
+                            <td>Đóng</td>
+                            <td><p class="glyphicon glyphicon-remove-circle"></p></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><a>Tài liệu thiết kế niên luận</a></td>
+                            <td>Trịnh Sa Lem</td>
+                            <td>18-9-2014, 14:45 PM</td>
+                            <td style="color: #FFB84D">Đang thảo luận</td>
+                            <td><p class="glyphicon glyphicon-remove-circle"></p></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><a>Giao diện đảm bảo chất lượng phần mềm</a></td>
+                            <td>Phạm Thúy Ngọc</td>
+                            <td>10-9-2014, 9:45 AM</td>
+                            <td style="color: #FFB84D">Đang thảo luận</td>
+                            <td><p class="glyphicon glyphicon-remove-circle"></p></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><a>Báo cáo kiểm thử phần mềm</a></td>
+                            <td>Phạm Trung Tính</td>
+                            <td>19-9-2014, 12:45 AM</td>
+                            <td style="color: #FFB84D">Đang thảo luận</td>
+                            <td><p class="glyphicon glyphicon-remove-circle"></p></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            
+            <!--So trang -->
+            <div style="padding-bottom: 45px" class="panel-footer">
+                <ul style="margin-top: 0px" class="pagination pull-right">
+                  <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left" style="color: #428bca"> Trang 1/30</span></a></li>
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">....</a></li>
+                  <li><a href="#">30</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    
+    <br/>
+    <div style="border: 1px dashed #F0F5F5;">
+    </div>
+		<div style="margin-left: 15px" class="footer">
+			<p>Khoa Công nghệ Thông tin & Truyền thông - Trường Đại học Cần Thơ</p>
+			<p>Số 01 Lý Tự Trọng, Q. Ninh Kiều, TP. Cần Thơ, Việt Nam; Điện thoại: 84 710 3831301; Fax: 84 710 3830841</p>
+        </div>
+    <hr />
+        </div><!--end div container-->
+    </body>
+</html>

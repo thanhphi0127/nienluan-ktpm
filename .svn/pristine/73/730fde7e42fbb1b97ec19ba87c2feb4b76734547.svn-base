@@ -1,0 +1,354 @@
+.form * {
+	margin: 3px 0px;
+	padding: 0;
+}
+
+
+.form{ 
+	width: 50%;
+	padding: 20px 5px 5px 5px;
+	margin: auto;
+	margin-top:3%;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border: 0px solid #000000;
+}	
+
+.form form > h1 {
+    font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding: 20px 0px 20px 40px;
+    display: block;
+    margin: -30px -30px 10px -30px;
+    color: #FFF;
+    background: #9DC45F;
+    text-shadow: 1px 1px 1px #949494;
+    border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    border-bottom:1px solid #89AF4C;
+	
+	width: 101%;
+float: left;
+margin: -25px 0px 7px -23px;
+}
+.form form > h1 span {
+    display: block;
+    font-size: 11px;
+    color: #FFF;
+}
+
+.form img.loginuser{
+	margin:0px 25%;
+}
+.form h2 {
+	padding:2px;
+	margin:0px 0px 10px 0px;
+}
+
+
+.form form fieldset legend {
+	text-decoration:uppercase;
+	font-weight:bold;
+}
+
+.form label {
+	color: #777;
+	font-size: 14px;
+	cursor: pointer;
+	padding:5px;
+}
+
+.form form label p{
+	width:100%;
+	padding:5px;
+}
+
+.form form {
+	margin:0px;
+	padding: 24px 20px 46px;
+	font-weight: normal;
+	background: white;
+	border: 1px solid #E5E5E5;
+
+	/* add form box shadow  */
+	-moz-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;  /*for Mozilla*/
+	-webkit-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px; /*for Chrome and Safari*/
+	box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+}
+
+.form input[type=text],
+.form input[type=password],
+.form select{
+	font-weight: 200;
+font-size: 15px;
+height: 34px;
+line-height: 1;
+width: 100%;
+padding: 0px;
+margin: 2px 6px 16px 0px;
+border: 1px solid #E5E5E5;
+background: #FBFBFB;
+outline: none;
+-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+	
+}
+
+.form input:focus   {
+    background: #fff;
+    box-shadow: 0px 0px 0px 3px #fff38e, inset 0px 2px 3px rgba( 0,0,0,0.2 ), 0px 5px 5px rgba( 0,0,0,0.15 );
+    outline: none;   
+}
+
+
+
+.form form a {
+	color:#69B7E6;
+	float:right;
+}
+
+input.submit-button, input[type=reset] {
+	float: right;
+	border: 1px solid #298CBA;
+	font-weight: bold;
+	color: white;
+	background: #21759B;
+	text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+	padding: 3px 10px;
+	margin:10px 0px 10px 10px;
+	cursor: pointer;
+	
+	 add submit button a rounded corner 
+	-o-border-radius: 10em;  
+	/*for opera*/
+	-khtml-border-radius: 10em; 
+	-webkit-border-radius: 10em; 
+	border-radius: 10em;
+	
+	
+	/* add background gradient effet 
+	/*for Chrome and Safari*/
+	background: -webkit-gradient(linear, left top, left bottom, from(#298CBA), to(#217096));
+
+	/*for Mozilla*/
+	background: -moz-linear-gradient(top,  #298CBA,  #217096);
+
+	/*for IE*/
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#298CBA', endColorstr='#217096');
+
+}
+input.submit-button:hover { border: 1px solid #000; }
+
+/*
+input.submit-button, input[type=reset] {
+	float: right;
+	border: 1px solid #298CBA;
+	font-weight: bold;
+	color: white;
+	background: #21759B;
+	text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+	padding: 3px 10px;
+	margin:10px 0px 10px 10px;
+	cursor: pointer;
+	
+	 add submit button a rounded corner 
+	-o-border-radius: 10em;  /*for opera
+	-khtml-border-radius: 10em; 
+	-webkit-border-radius: 10em; 
+	border-radius: 10em;
+	
+	
+	/* add background gradient effet 
+	/*for Chrome and Safari
+	background: -webkit-gradient(linear, left top, left bottom, from(#298CBA), to(#217096));
+
+	/*for Mozilla
+	background: -moz-linear-gradient(top,  #298CBA,  #217096);
+
+	/*for IE
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#298CBA', endColorstr='#217096');
+
+}
+*/
+
+input.submit-button:hover { border: 1px solid #000; }
+
+.check {
+	float: right;
+	margin-right: 150px;
+}
+
+.form form input[type=radio] {
+	
+	
+	margin:2px 6px 16px 0px;
+	
+
+}
+
+.form form input[type=number] {
+	width:50px;
+	padding:3px;
+	margin:2px;
+}
+
+.form form input[type=date] {
+	font-weight: 200;
+	font-size: 15px;
+	height:24px;
+	line-height: 1;
+	width: 185px;
+	padding: 3px;
+	margin:2px 6px 16px 0px;
+	border: 1px solid #E5E5E5;
+	background: #FBFBFB;
+	outline: none;
+	
+	/* add input box a inset shadow  */
+	-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2); /*for Mozilla*/
+	-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2); /*for Chrome and Safari*/
+	box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+}
+
+.form fieldset {
+	padding:10px;
+	width:96%;
+}
+
+
+
+
+/* Other form style */
+
+
+/*######## Smart Green ########*/
+.smart-green {
+    margin-left:auto;
+    margin-right:auto;
+
+    max-width: 500px;
+    background: #F8F8F8;
+    padding: 30px 30px 20px 30px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #666;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.smart-green h1 {
+    font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding: 20px 0px 20px 40px;
+    display: block;
+    margin: -30px -30px 10px -30px;
+    color: #FFF;
+    background: #9DC45F;
+    text-shadow: 1px 1px 1px #949494;
+    border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    border-bottom:1px solid #89AF4C;
+
+}
+
+.smart-green fieldset{
+	border: 1px solid #E5E5E5;
+}
+
+.smart-green {
+	width:100%;
+}
+
+.smart-green input:focus {
+	background: #fff;
+    box-shadow: 0px 0px 0px 3px #fff38e, inset 0px 2px 3px rgba( 0,0,0,0.2 ), 0px 5px 5px rgba( 0,0,0,0.15 );
+    outline: none;   
+}
+
+.smart-green h1>span {
+    display: block;
+    font-size: 11px;
+    color: #FFF;
+}
+
+.smart-green  label div{
+	width:60%;
+}
+
+.smart-green input[type='checkbox'], .smart-green input[type='radio'] {
+	margin:3px 10px;
+}
+
+textarea {
+	width:100%;
+	height:50px;
+}
+
+.smart-green label {
+    display: block;
+    margin: 0px 0px 5px;
+}
+.smart-green label>span {
+    float: left;
+    margin-top: 10px;
+    color: #5E5E5E;
+}
+.smart-green input[type="text"], .smart-green input[type="email"], .smart-green textarea, .smart-green select {
+    color: #555;
+    height: 30px;
+    line-height:15px;
+    width: 97%;
+    padding: 0px 0px 0px 10px;
+    margin-top: 2px;
+    border: 1px solid #E5E5E5;
+    background: #FBFBFB;
+    outline: 0;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    font: normal 14px/14px Arial, Helvetica, sans-serif;
+}
+
+.smart-green input[type="date"] {
+	margin: 0px 94px 0px 131px;
+	color: #555;
+    height: 30px;
+    line-height:15px;
+    padding: 0px 0px 0px 10px;
+    margin-top: 2px;
+    border: 1px solid #E5E5E5;
+    background: #FBFBFB;
+    outline: 0;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    font: normal 14px/14px Arial, Helvetica, sans-serif;
+}
+.smart-green textarea{
+    height:100px;
+    padding-top: 10px;
+}
+.smart-green select {
+    background: url('down-arrow.png') no-repeat right, -moz-linear-gradient(top, #FBFBFB 0%, #E9E9E9 100%);
+    background: url('down-arrow.png') no-repeat right, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FBFBFB), color-stop(100%,#E9E9E9));
+   appearance:none;
+    -webkit-appearance:none; 
+   -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width:100%;
+    padding: 10px;
+height: 42px;
+}
+.smart-green .button {
+    background-color: #9DC45F;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-border-radius: 5px;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #949494;
+}
+.smart-green .button:hover {
+    background-color:#80A24A;
+}

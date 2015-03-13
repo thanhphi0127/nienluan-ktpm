@@ -1,0 +1,76 @@
+﻿<section id='cit_wrapper' >
+	<header class='quanly'>
+		<img src='public/img/quanlycongviec_logo.png'></img>
+		<span class='title'>Diễn đàn</span>
+		
+	</header>
+	
+	<div class="widthPanel panel panel-success">
+        <div class="panel-heading">CIT_GMS Forum</div>
+        <div class="panel-body">
+            Chào mừng đến với diễn đàn trên CIT_GMS 
+        </div>
+        <div class="panel-footer">
+            Để có thể tham gia thảo luận trên diễn đàn bạn phải đăng ký làm thành viên. Click vào đây để đăng ký thành viên diễn đàn.
+        </div>
+    </div>
+
+        <!-- Chu de moi nhat-->
+        <div class="widthPanel panel panel-success">
+            <div class="panel-heading"><b>Chủ đề mới nhất</b></div>
+            <div class="panel-body">
+                <table class="table" style="margin-bottom:0px">
+                    <thead>
+                        <th>Chủ đề</th>
+                        <th>Username</th>
+                        <th>Người tạo</th>
+                        <th>Ngày tạo</th>
+                        <th>Trạng thái</th>
+                        <th>Nội dung</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($query as $item) {
+                                echo "<tr>";
+                                echo "<td>";
+                                echo $item->tieude;
+                                echo "</td>";
+                                echo "<td>";
+                                echo $item->username;
+                                echo "</td>";
+                                echo "<td>";
+                                echo $item->nguoitao;
+                                echo "</td>";
+                                echo "<td>";
+                                echo $item->ngaytao;
+                                echo "</td>";
+                                echo "<td>";
+                                echo $item->trangthai;
+                                echo "</td>";
+                                echo "<td>";
+                                echo $item->noidung;
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                            
+                        ?>
+                    </tbody>
+                    <!--<tr>
+                        Báo cáo kiểm thử phần mềm
+                        <td> <img style="width: 35px; height: 35px" alt="User Pic" src="<?php echo base_url();?>template/assets/img/cwd-1.png" class="img-rounded">
+                            <a style="padding-top: 20px;">tính1111367</a></td>
+                        <td style="padding-top: 20px;">19-9-2014, 12:45 AM</td>
+                        <td style="padding-top: 20px; color: #FFB84D">Đang thảo luận</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="padding-top: 20px;"><a>Tài liệu thiết kế niên luận</a></td>
+                        <td> <img style="width: 35px; height: 35px" alt="User Pic" src="<?php echo base_url();?>template/assets/img/cwd-1.png" class="img-rounded">
+                            <a style="padding-top: 20px;">lem1111302</a></td>
+                        <td style="padding-top: 20px;">18-9-2014, 14:45 PM</td>
+                        <td style="padding-top: 20px; color: #FFB84D">Đang thảo luận</td>
+                    </tr>-->
+                </table>
+            </div>
+        </div>
+</section>

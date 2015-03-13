@@ -1,0 +1,15 @@
+﻿<div class='dsthongbao'>
+	<?php if (isset($dsthongbao) && !empty($dsthongbao)){
+			foreach ($dsthongbao as $row){
+	?>			
+			<p>
+				<label>Nười<span></span></label>
+				<label><span></span></label>
+				<label><span></span></label>
+			</p>
+	<?php	}
+		  }
+	?>
+	
+	
+</div>

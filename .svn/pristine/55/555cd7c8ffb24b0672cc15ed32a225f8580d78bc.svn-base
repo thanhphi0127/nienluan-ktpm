@@ -1,0 +1,49 @@
+/* CSS Document */
+.mon {
+	border: 1px solid #CCC;
+	color: #000;
+	width: 600px;
+	border-radius: 3px;
+	float:left;
+	margin: 10px;
+	padding: 5px;
+}
+
+.mon table th {
+	background-color: #2969A9;
+	color:#FFF;
+}
+.mon img{
+	width: 80px;
+	height: 80px;
+	float: left;
+}
+.mon h4 {
+	margin-top: 40px;
+}
+
+.lich {
+	float:right;
+	min-width: 500px;
+	min-height: 200px;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	margin: 10px;
+	padding: 5px;
+}
+
+.tong_mh{
+	margin: 8px;
+}
+
+.khung.mon {
+	display:inline;
+}
+
+.khung.lich {
+	display:inline;
+}
+
+.khung {
+	min-height: 300px;
+}

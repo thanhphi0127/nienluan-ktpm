@@ -1,0 +1,156 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Sinhvien extends MY_Controller {
+	private $auth;
+	public function __construct(){
+		parent::__construct();
+		//$this->auth = $this->lib_authentication->check_cookie();			
+	}
+	
+	
+	public function quanlynhom(){
+		$data['seo']['title'] = 'Quản lý nhóm';
+		$data['seo']['keyword'] = 'nhom';
+		$data['seo']['description'] = 'quanlynhom';
+		$data['template'] = 'sinhvien/quanlynhom';
+		$this->load->view('layout/sinhvien', isset($data)?$data:NULL);
+	}
+	
+	
+	public function download(){
+		$data['seo']['title'] = 'Xuất danh sách công việc';
+		$data['seo']['keyword'] = 'download';
+		$data['seo']['description'] = 'Download';
+		if ($this->input->post('download'))
+		{
+		
+			$_post = $this->input->post('data');
+			$result = $this->msinhvien->GetTask($_post);
+			if (isset($result) && !empty($result))		
+				require_once 'application/third_party/PHPExcel/PHPExcel.php';
+			else 
+				$this->lib_string->alert("Có lỗi trong quá trình download", CIT_BASE_URL."sinhvien/download");
+			
+			
+				
+				// Bước 3: Khởi tạo đối tượng mới và xử lý
+				$PHPExcel = new PHPExcel();
+				 
+				// Bước 4: Chọn sheet - sheet bắt đầu từ 0
+				$PHPExcel->setActiveSheetIndex(0);
+				 
+				// Bước 5: Tạo tiêu đề cho sheet hiện tại
+				$PHPExcel->getActiveSheet()->setTitle('Danh sách công việc');
+				 
+				// Bước 6: Tạo tiêu đề cho từng cell excel,
+				// Các cell của từng row bắt đầu từ A1 B1 C1 ...
+				$PHPExcel->getActiveSheet()->setCellValue('D1', 'Tên nhóm');
+				$PHPExcel->getActiveSheet()->setCellValue('A3', 'Danh sách thành viên');
+				$PHPExcel->getActiveSheet()->setCellValue('G3', 'Phien ban');
+				$PHPExcel->getActiveSheet()->setCellValue('B5', 'Mô tả');
+				$PHPExcel->getActiveSheet()->setCellValue('C5', 'Họ tên');
+				$PHPExcel->getActiveSheet()->setCellValue('D5', 'Email');
+				$PHPExcel->getActiveSheet()->setCellValue('E5', 'SDT');
+				$PHPExcel->getActiveSheet()->setCellValue('F5', 'Chức vụ');
+				$PHPExcel->getActiveSheet()->setCellValue('A12', 'Danh sách công việc');
+				
+				
+				
+				$PHPExcel->getActiveSheet()->setCellValue('A14', 'Tên công việc');
+				$PHPExcel->getActiveSheet()->setCellValue('B14', 'Từ ngày');
+				$PHPExcel->getActiveSheet()->setCellValue('C14', 'Đến ngày');
+				$PHPExcel->getActiveSheet()->setCellValue('D14', 'Thời gian (giờ)');
+				$PHPExcel->getActiveSheet()->setCellValue('E14', 'Mô tả');
+				$PHPExcel->getActiveSheet()->setCellValue('F14', 'Người được giao');
+				$PHPExcel->getActiveSheet()->setCellValue('G14', 'Mức độ');
+				$PHPExcel->getActiveSheet()->setCellValue('H14', 'Tính chất');
+				
+				$PHPExcel->getActiveSheet()->getStyle('A14:H14')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB(PHPExcel_Style_Color::COLOR_GREEN);
+				$PHPExcel->getActiveSheet()->getStyle('A14:H14')->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_WHITE);
+				
+				 
+				$PHPExcel->getActiveSheet()->getStyle('A14:H20')->getBorders()->getTop()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
+				$PHPExcel->getActiveSheet()->getStyle('A14:H20')->getBorders()->getBottom()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
+				$PHPExcel->getActiveSheet()->getStyle('A14:H20')->getBorders()->getLeft()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
+				$PHPExcel->getActiveSheet()->getStyle('A14:H20')->getBorders()->getRight()->setBorderStyle(PHPExcel_Style_Border::BORDER_THICK);
+
+				// Bước 7: Lặp data và gán vào file
+				// Vì row đầu tiên là tiêu đề rồi nên những row tiếp theo bắt đầu từ 2
+				$rowNumber = 15;
+			foreach ($result as $task) {
+			
+					$PHPExcel->getActiveSheet()->setCellValue('A' . $rowNumber, $task['TENCONGVIEC']);
+					$PHPExcel->getActiveSheet()->setCellValue('B' . $rowNumber, $task['NGAYBD']);
+					 
+					
+					$PHPExcel->getActiveSheet()->setCellValue('C' . $rowNumber, $task['NGAYKT']);
+					$PHPExcel->getActiveSheet()->setCellValue('D' . $rowNumber, $task['THOIGIANUL']);
+					$PHPExcel->getActiveSheet()->setCellValue('E' . $rowNumber, $task['MOTA']);
+					$PHPExcel->getActiveSheet()->setCellValue('F' . $rowNumber, $task['NGUOIDUOCGIAO']); 
+					$PHPExcel->getActiveSheet()->setCellValue('G' . $rowNumber, $task['MUCDO']); 
+					$PHPExcel->getActiveSheet()->setCellValue('H' . $rowNumber, $task['TINHCHAT']); 
+					
+
+					
+					
+					// Tăng row lên 
+					$rowNumber++;
+			}
+				 
+				// Bước 8: Khởi tạo đối tượng Writer
+				$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
+				 
+				// Bước 9: Trả file về cho client download
+				header('Content-Type: application/vnd.ms-excel');
+				header('Content-Disposition: attachment;filename="Danhsachcongviec.xls"');
+				header('Cache-Control: max-age=0');
+				if (isset($objWriter)) {
+					$objWriter->save('php://output');
+				}
+			
+
+			
+			
+			
+		}
+		$data['template'] = 'sinhvien/download';
+		$this->load->view('layout/sinhvien', isset($data)?$data:NULL);
+	}
+		
+	public function quanlycongviec(){
+		$data['seo']['title'] = 'Quản lý công việc';
+		$data['seo']['keyword'] = 'quanlycongviec';
+		$data['seo']['description'] = 'Quản lý danh sách công việc, cập nhật, thêm, xóa công việc';
+		$data['template'] = 'sinhvien/quanlycongviec';
+		$this->load->view('layout/sinhvien', isset($data)?$data:NULL);
+	}
+	public function verify(){
+		if (NULL == $this->auth){
+			$this->lib_string->alert("Hết thời hạn đăng nhập", CIT_BASE_URL."auth/login");
+		}
+		else {
+			if ($this->input->post('login'))
+			{
+				$_post = $this->input->post('data');
+				$this->form_validation->set_rules('data[username]', 'Tên đăng nhập', 'regex_match[/^([a-z0-9_])+$/i]|trim|required|min_length[3]|max_length[50]|xss_clean');
+				$this->form_validation->set_rules('data[password]', 'Mật khẩu', 'trim|md5');
+				if ($this->form_validation->run())
+				{
+					if ($this->auth['username'] == $_post['username'] && $this->auth['password'] == $_post['password'])
+						$this->lib_string->alert("Sai username hoặc password", CIT_BASE_URL."auth/login");
+					
+					else {
+						setcookie(CIT_PREFIX.'_user_logged', $this->lib_string->encode_cookie(json_encode($user)), time() + 3600, '/');
+						$this->lib_string->alert("Đăng nhập thành công", CIT_BASE_URL.'home/index');
+					}
+				}
+				
+			}	
+		}
+		$data['template'] = 'auth/login';
+		$this->load->view('layout/login', isset($data)?$data:NULL);
+	}
+	
+
+	
+}

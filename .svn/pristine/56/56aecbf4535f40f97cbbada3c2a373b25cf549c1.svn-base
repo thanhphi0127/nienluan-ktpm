@@ -1,0 +1,168 @@
+﻿<!-- * View quản lý mẫu nhóm cho giảng viên
+     * @author: Thành Tâm
+-->
+<section id='cit_wrapper' >
+	<header class='quanly'>
+		<img src='public/img/quanlycongviec_logo.png'></img>
+		<span class='title'> Quản lý mẫu nhóm</span>
+		
+	</header>
+	
+		
+	<section class='list grouplist'>
+		<header class='tab grouplist'>
+			<ul>
+			<li>
+			<span  class="btnAMD manipulation btnAddgrouptemplate">Tạo mẫu nhóm</span>
+			</li>
+			</ul>
+			
+		</header>
+		<section class='view'>
+			<section class='advance'>
+				
+				
+			</section>
+			
+			<div class='list grouplist'>
+			<table>
+					<tr><th><input type='checkbox' value='checkall'/></th>
+						
+						<th><span class='sort'>Môn học </span></th>
+						<th><span class='sort'>Mã môn học </span></th>
+						<th><span class='sort'>Số lượng nhóm tối đa </span></th>
+						<th><span class='sort'>Số thành viên tối đa </span></th>
+						<th><span class='sort'>Mô tả  </span></th>
+						<th>Thao tác</th>
+					</tr>
+					 
+					
+			<?php if (isset($query_maunhom) && !empty($query_maunhom)){
+					
+						foreach ($query_maunhom as $row) {
+							echo "<tr>";
+						
+							echo "<td class='center'><input type='checkbox' value='checkall'/></td>";
+							echo "<td class='TEN_MH'>".$row['TEN_MH']."</td>";
+							echo "<td class='MA_MH'>".$row['MA_MH']."</td>";
+							echo "<td class='SLN_TOIDA'>".$row['SLN_TOIDA']."</td>";
+							echo "<td class='SLTV_TOIDA'>".$row['SLTV_TOIDA']."</td>";
+							echo "<td class='MOTA'>".$row['MOTA']."</td>";
+							echo "<td><span class='manipulation btnDeletegrouptemplate'><img src='public/img/deleteicon.png'></img></span>
+							<span class='manipulation btnModifygrouptemplate'><img src='public/img/editicon.png'></img></span></td>";
+						echo "</tr>";
+						}
+				  }
+				  else 
+					echo "<tr><td colspan='5'>Chưa có mẫu nhóm nào được tạo</td></tr>";
+			?>
+						
+						
+				</table>
+				
+			</div>	
+		</section>
+		
+	</section>
+	
+	<section class='manipulation'>
+		<div id='black'>
+		</div>
+		
+		
+		<div id='addgrouptemplate' class='form'>
+		<form action='' method='post'>
+			<h1>TẠO MẪU NHÓM
+						<span>Điền đầy đủ thông tin.</span>
+					</h1>
+					<label><div class='span_title'>Môn học trong học kì này</div>
+					<?php if (isset($query_monhoc) && !empty($query_monhoc)){
+							echo "<select name='data[MA_MH]'>";	
+								foreach ($query_monhoc as $subject){
+									echo "<option value='".$subject['MA_MH']."'>".$subject['TEN_MH']."</option>";
+								}
+							echo "</select> ";
+							}
+						else 
+							echo "<br/>Chưa có <br/>";
+					?>
+							
+						</label>
+					
+					<?php if (isset($query_monhoc) && !empty($query_monhoc)){
+						echo '<label>
+						<span>Số nhóm tối đa  </span>
+						<input id="data[SLN_TOIDA]" type="text" name="data[SLN_TOIDA]"  />
+					</label>
+					<label>
+						<span>Số thành viên tối đa   </span>
+						<input id="data[SLTV_TOIDA]" type="text" name="data[SLTV_TOIDA]"  />
+					</label>
+					
+					
+							
+					
+					<label><span>Mô tả</span><textarea name="data[MOTA]" placeholder="Nhập đoạn văn bản" ></textarea></label>
+					
+					 
+					 <label>
+						<span>&nbsp;</span> 
+						<input type="submit" value="TẠO" class="button" name="creategrouptemplate" /> 
+					</label>    ';
+					}
+					?>
+					<label>
+						<span>&nbsp;</span> 
+						<input type="button" class='btnClose' value="ĐÓNG"  /> 
+					</label>
+		</form>
+		</div>
+		
+		<div id='modifygrouptemplate' class='form'>
+		
+		<form action='' method='post'>
+			<h1>CHỈNH SỦA MẪU NHÓM cho môn
+						<span > </span>
+					</h1>
+					<label><span>Mã môn học </span>
+						<input class="MA_MH" type="text" name="data[MA_MH]"  />
+					</label>
+					<label>
+						<span>Số nhóm tối đa  </span>
+						<input class='SLN_TOIDA' type="text" name="data[SLN_TOIDA]"  />
+					</label>
+					<label>
+						<span>Số thành viên tối đa   </span>
+						<input class="SLTV_TOIDA" type="text" name="data[SLTV_TOIDA]"  />
+					</label>
+					
+					
+							
+					
+					<label><span class='MOTA'>Mô tả</span><textarea id='MOTA' name='data[MOTA]' placeholder="Nhập đoạn văn bản" ></textarea></label>
+					
+					 
+					 <label>
+						<span>&nbsp;</span> 
+						<input type="submit" value='LƯU' class="button" name="modifygrouptemplate" /> 
+					</label>    
+		</form>
+		</div>
+		
+		
+		
+		<div id='iframe_login'>
+			<div class='verify'>
+				<form action='' method='post'>
+				<input type='text' name='data[MA_MH]'/>
+				<?php $this->load->view('auth/login');?>
+				
+				</form>
+			</div>
+			<div  class='iframe_login_up' >
+				<img src='public/img/buttonup.png'></img>
+			</div>
+		</div>
+		
+	</section>
+</section>

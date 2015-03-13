@@ -1,0 +1,374 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Admin extends MY_Controller {
+	private $auth;
+	public function __construct(){
+		parent::__construct();	
+	}
+
+	//---------------------------------------------------------------------------
+    // Name          	: homeview()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------	
+	public function home_view(){
+		$data['seo']['title'] = 'Home view';
+		$data['seo']['keyword'] = 'home view';
+		$data['seo']['description'] = 'Trang chủ của admin';
+		$data['template'] = 'admin/home_view';
+		$this->load->view('layout/admin', isset($data)?$data:NULL);
+	}
+	
+	
+	//---------------------------------------------------------------------------
+    // Name          	: quanlysinhvien()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------	
+	public function quanlysinhvien(){
+		$data['seo']['title'] = 'Quản lý sinh viên';
+		$data['seo']['keyword'] = 'Quản lý sinh viên';
+		$data['seo']['description'] = 'Thông tin sinh viên';
+		$data['template'] = 'admin/quanlysinhvien';
+		$data['press_add'] = 0;
+		$data['press_modify'] = 0;
+		
+		//Load view
+		//$this -> load -> model('sinhvien');
+		$this -> load -> model('msinhvien');
+		$data['LayNganh'] = $this -> msinhvien -> LayNganh();
+		
+		if (1){ //$this -> session -> userdata('logged_in') Chua rang buoc dang nhap
+			
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			//Xu ly them sinh vien
+			if($this->input->post('add_student')) {
+			
+				//Gan bien de su dung insert
+				$_POST = $this->input->post('add');
+				$data['add']['_POST'] = $_POST;
+				
+				$this->load->helper(array('form', 'url'));
+				$this->load->library('form_validation');
+				$this->form_validation->set_error_delimiters('<div class="error">','</div>');
+				 
+				//Kiểm tra dữ liệu
+				$this->form_validation->set_rules('mssv','Mã sinh viên','trim|required|min_length[5]|max_length[15]');
+				$this->form_validation->set_rules('hoten', 'Họ tên', 'trim|required|min_length[3]|max_length[40]');
+				$this->form_validation->set_rules('sodt', 'Số điện thoại', 'required|trim|regex_match[/^([0-9])+$/i]');
+				$this->form_validation->set_rules('ngaysinh', 'Năm sinh', 'required|birthday');
+				$this->form_validation->set_rules('mail', 'Địa chỉ mail', 'trim|required|valid_email');
+				$this->form_validation->set_rules('diachi', 'Địa chỉ', 'trim|required');
+			
+				if ($this->form_validation->run()) 
+				{
+					// Tạo biến data lưu dữ liệu insert
+					$data = array(
+						'mssv' => $_POST['mssv'],
+						'ma_nganh' => $_POST['manganh'],
+						'hoten' => $_POST['hoten'],
+						'gioitinh' => $_POST['gioitinh'],
+						'sdt' => $_POST['sodt'],
+						'diachi' => $_POST['diachi'],
+						'mail' => $_POST['mail'],
+						'ngaysinh' => $_POST['ngaysinh'],
+						'khoahoc' => $_POST['khoahoc']
+					);
+					
+					//Them vao CSDL
+					$result = $this->msinhvien->ThemSinhVien($data);
+					
+					//Kiem tra insert du lieu
+					if (!$result) {
+						$this->lib_string->alert("Không thể thêm được", CIT_BASE_URL.'admin/quanlysinhvien');
+					}
+					else {
+						$this->lib_string->alert(NULL, CIT_BASE_URL.'admin/quanlysinhvien');
+					}
+				}
+				else {
+					$data['press_add'] = 1;
+
+				}// END IF FORM_VALIDATION
+
+			}
+			else {
+				//Nothing
+			}
+			
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			//XU LY CHINH SUA SINH VIEN
+			if($this->input->post('btn_save')) {
+				if (isset($_POST['checked'])){
+				
+				foreach ($_POST['checked'] as $mssv)
+				{
+					$_POST[$mssv] = $this->input->post($mssv);
+					$this->load->helper(array('form', 'url'));
+					$this->load->library('form_validation');
+					$this->form_validation->set_error_delimiters('<div class="error">','</div>');
+					
+					//Kiểm tra dữ liệu
+					$this->form_validation->set_rules('1111325[hoten]', 'Họ tên', 'trim|required');
+					//$this->form_validation->set_rules($_POST[$check]['sdt'], 'Số điện thoại', 'required|trim|regex_match[/^([0-9])+$/i]');
+					//$this->form_validation->set_rules($_POST[$check]['ngaysinh'], 'Năm sinh', 'required|birthday');
+					//$this->form_validation->set_rules($_POST[$check]['mail'], 'Địa chỉ mail', 'trim|required|valid_email');
+					//$this->form_validation->set_rules($_POST[$check]['diachi'], 'Địa chỉ', 'trim|required');	
+						
+				
+					if ($this->form_validation->run()) {
+						
+						//Bien update_data de cap nhat du lieu xuong model
+						$update_data = array(
+							"mssv" => $mssv,
+							"hoten" => $_POST[$mssv]['hoten'],
+							"ngaysinh" => $_POST[$mssv]['ngaysinh'],
+							"sdt" => $_POST[$mssv]['sdt'],
+							"gioitinh" => $_POST[$mssv]['gioitinh'],
+							"ma_nganh" => $_POST[$mssv]['ma_nganh'],
+							"diachi" => $_POST[$mssv]['diachi'],
+							"mail" => $_POST[$mssv]['mail'],
+							"khoahoc" => $_POST[$mssv]['khoahoc']
+						);
+						
+						//Goi model cap nhat chinh sua
+						$result = $this -> msinhvien -> CapNhatSinhVien($update_data);
+						
+					}
+					else { 
+						echo "No validation";
+						$data['press_modify'] = 1;
+					}
+					
+				}//END FOREACH
+				
+				}
+			} // END IF ADD SINH VIEN
+			
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			//XU LY XOA SINH VIEN
+			if($this->input->post('btn_delete')) {
+				if (isset($_POST['checked'])){
+					foreach ($_POST['checked'] as $mssv)
+					{
+						//Goi model cap nhat chinh sua
+						$result = $this -> msinhvien -> XoaSinhVien($mssv);
+					}
+				}
+			}
+			
+
+			//Chuyen trang quan ly sinh vien
+			$data['template'] = 'admin/quanlysinhvien';
+			$data['ds'] = $this -> msinhvien -> DanhSachSinhVien();
+			$this->load->view('layout/admin', isset($data)?$data:NULL);
+			
+		}
+        else{
+			//Neu chua dang nhap
+			$data['template'] = 'auth/login';
+			$this->load->view('layout/login', isset($data)?$data:NULL);
+        }
+		
+	}
+
+
+	//---------------------------------------------------------------------------
+    // Name          	: quanlygiangvien()
+    // Param         	: none
+    // Global variable	: none
+    // Local variable 	: none
+    // return           : none
+    //---------------------------------------------------------------------------	
+	public function quanlygiangvien(){
+		$data['seo']['title'] = 'Quản lý giảng viên';
+		$data['seo']['keyword'] = 'Quản lý giảng viên';
+		$data['seo']['description'] = 'Thông tin giảng viên';
+		$data['template'] = 'admin/quanlygiangvien';
+		$data['press_add'] = 0;
+		$data['press_modify'] = 0;
+		
+		//Load view
+		$this -> load -> model('mgiangvien');
+		$data['LayBoMon'] = $this -> mgiangvien -> LayBoMon();
+		
+		if (1){ //$this -> session -> userdata('logged_in') Chua rang buoc dang nhap
+			
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			//Xu ly them sinh vien
+			if($this->input->post('add_student')) {
+			
+				//Gan bien de su dung insert
+				$_POST = $this->input->post('add');
+				$data['add']['_POST'] = $_POST;
+				
+				$this->load->helper(array('form', 'url'));
+				$this->load->library('form_validation');
+				$this->form_validation->set_error_delimiters('<div class="error">','</div>');
+				 
+				//Kiểm tra dữ liệu
+				$this->form_validation->set_rules('mscb','Mã sinh viên','trim|required|min_length[5]|max_length[15]');
+				$this->form_validation->set_rules('hoten', 'Họ tên', 'trim|required|min_length[3]|max_length[40]');
+				$this->form_validation->set_rules('sodt', 'Số điện thoại', 'required|trim|regex_match[/^([0-9])+$/i]');
+				$this->form_validation->set_rules('ngaysinh', 'Năm sinh', 'required|birthday');
+				$this->form_validation->set_rules('mail', 'Địa chỉ mail', 'trim|required|valid_email');
+				$this->form_validation->set_rules('diachi', 'Địa chỉ', 'trim|required');
+			
+				if ($this->form_validation->run()) 
+				{
+					// Tạo biến data lưu dữ liệu insert
+					$data = array(
+						'mscb' => $_POST['mscb'],
+						'ma_bm' => $_POST['ma_bm'],
+						'hoten' => $_POST['hoten'],
+						'gioitinh' => $_POST['gioitinh'],
+						'sdt' => $_POST['sodt'],
+						'diachi' => $_POST['diachi'],
+						'mail' => $_POST['mail'],
+						'ngaysinh' => $_POST['ngaysinh'],
+						'ma_td' => $_POST['ma_td']
+					);
+					
+					//Them vao CSDL
+					$result = $this->mgiangvien->ThemGiangVien($data);
+					
+					//Kiem tra insert du lieu
+					if (!$result) {
+						$this->lib_string->alert("Không thể thêm được", CIT_BASE_URL.'admin/quanlysinhvien');
+					}
+					else {
+						$this->lib_string->alert(NULL, CIT_BASE_URL.'admin/quanlysinhvien');
+					}
+				}
+				else {
+					$data['press_add'] = 1;
+
+				}// END IF FORM_VALIDATION
+
+			}
+			else {
+				//Nothing
+			}
+			
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			//XU LY CHINH SUA SINH VIEN
+			if($this->input->post('btn_save')) {
+				if (isset($_POST['checked'])){
+				
+				foreach ($_POST['checked'] as $mscb)
+				{
+					$_POST[$mssv] = $this->input->post($mscb);
+					$this->load->helper(array('form', 'url'));
+					$this->load->library('form_validation');
+					$this->form_validation->set_error_delimiters('<div class="error">','</div>');
+					
+					//Kiểm tra dữ liệu
+					$this->form_validation->set_rules('1111325[hoten]', 'Họ tên', 'trim|required');
+					//$this->form_validation->set_rules($_POST[$check]['sdt'], 'Số điện thoại', 'required|trim|regex_match[/^([0-9])+$/i]');
+					//$this->form_validation->set_rules($_POST[$check]['ngaysinh'], 'Năm sinh', 'required|birthday');
+					//$this->form_validation->set_rules($_POST[$check]['mail'], 'Địa chỉ mail', 'trim|required|valid_email');
+					//$this->form_validation->set_rules($_POST[$check]['diachi'], 'Địa chỉ', 'trim|required');	
+						
+				
+					if ($this->form_validation->run()) {
+						
+						//Bien update_data de cap nhat du lieu xuong model
+						$update_data = array(
+							"mscb" => $mscb,
+							"hoten" => $_POST[$mssv]['hoten'],
+							"ngaysinh" => $_POST[$mssv]['ngaysinh'],
+							"sdt" => $_POST[$mssv]['sdt'],
+							"gioitinh" => $_POST[$mssv]['gioitinh'],
+							"ma_bm" => $_POST[$mssv]['ma_bm'],
+							"diachi" => $_POST[$mssv]['diachi'],
+							"mail" => $_POST[$mssv]['mail'],
+							"ma_td" => $_POST[$mssv]['ma_td']
+						);
+						
+						//Goi model cap nhat chinh sua
+						$result = $this -> mgiangvien -> CapNhatGiangVien($update_data);
+						
+					}
+					else { 
+						echo "No validation";
+						$data['press_modify'] = 1;
+					}
+					
+				}//END FOREACH
+				
+				}
+			} // END IF ADD SINH VIEN
+			
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			//XU LY XOA SINH VIEN
+			if($this->input->post('btn_delete')) {
+				if (isset($_POST['checked'])){
+					foreach ($_POST['checked'] as $mscb)
+					{
+						//Goi model cap nhat chinh sua
+						$result = $this -> mgiangvien -> XoaSinhVien($mscb);
+					}
+				}
+			}
+			
+
+			//Chuyen trang quan ly sinh vien
+			$data['template'] = 'admin/quanlygiangvien';
+			$data['ds'] = $this -> mgiangvien -> DanhSachGiangVien();
+			$this->load->view('layout/admin', isset($data)?$data:NULL);
+			
+		}
+        else{
+			//Neu chua dang nhap
+			$data['template'] = 'auth/login';
+			$this->load->view('layout/login', isset($data)?$data:NULL);
+        }
+		
+	}
+	
+	
+	//---------------------------------------------------------------------------
+	// Name          	: add_student()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: data[], $_POST
+	// return           : none
+	//---------------------------------------------------------------------------
+	public function ChinhSuaSinhVien() {
+		$data['template'] = 'admin/ChinhSuaSinhVien';
+		/////////////////////////////////////////////////////////////////////////////////
+		//Xu ly chinh sua sinh vien
+		//if($this->input->post('btn_modify')) {
+		if (isset($_POST['checked'])){
+			$kq = $_POST['checked'];
+		  
+			foreach ($_POST['checked'] as $check)
+			{
+				//echo $check;
+				$data1 = $check.";";
+				echo $data1;
+			}
+			
+		}
+	}
+	
+
+
+
+}

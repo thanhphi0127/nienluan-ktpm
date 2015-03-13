@@ -1,0 +1,166 @@
+
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+
+/* -------------------------------Genarally------------------------------- */
+a {
+
+	text-decoration:none;
+}
+a:hover {
+	color:blue;
+}
+
+body {
+		margin: 0px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+		background-color:#ECF3FD;
+		background-repeat:repeat;
+		
+}
+
+#cit_wrapper {
+	
+	width:87%;
+	min-height:480px;
+	height:auto;
+	margin: 4px 6.5%;
+	float:left;
+
+	border-radius: 5px;
+	border: 1px solid lightgrey;
+	background-color:#FFFFFF;
+	/*-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;*/
+	
+}
+
+
+/* -------------------------------//////------------------------------- */
+
+
+/* -------------------------------Sinhvien-top------------------------------- */
+#sinhvien_top , #giangvien_top, #admin_top{
+	width:87%;
+	margin: 10px 6.5% -15px;
+	background-color:white;
+}
+
+/* 1. Bar:gồm #cssmenu, #notice  */
+
+/* 		1.1 cssmenu */
+#bar {
+	width:100%;
+	float:left;
+	margin-bottom:0px;
+}
+#bar img {
+	float:left;
+	margin:auto 30px;
+	padding:16px 5px;
+}
+
+#menu {
+	float:left;
+}
+/* menu: duoc viet trong file cssmenu */
+
+#notice {
+	float:right;
+	height:52px;
+	width:30%;
+	background-color:#372E28;
+}
+#notice span {
+	font-weight:bold;
+	color:red;
+	padding:16px 5px;
+	float:right;
+	cursor:pointer;
+}
+
+#notice img {
+	float:right;
+	margin:16px 5px;
+}
+
+#notice:hover span {
+	color:black;
+}
+
+#sinhvien_top iframe, #giangvien_top iframe, #admin_top iframe {
+	
+	position:absolute;
+	top:54px;
+	right:194px;
+	z-index:99;
+	background-color:white;
+	height:350px;
+	display:none;
+	margin:0px 0px 0px 0px;
+}
+
+#sinhvien_top iframe.arrow_box {
+	
+	background: #88b7d5;
+	border: 4px solid #c2e1f5;
+}
+#sinhvien_top iframe.arrow_box:after, .arrow_box:before {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+#sinhvien_top iframe.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #88b7d5;
+	border-width: 20px;
+	margin-left: -20px;
+}
+#sinhvien_top iframe.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: #c2e1f5;
+	border-width: 26px;
+	margin-left: -26px;
+}
+/* -------------------------------//////------------------------------- */
+
+
+/* -------------------------------Footer------------------------------- */
+footer {
+	text-align:center;
+	padding: 5px;
+	border-top: 5px solid #999;
+	width: 100%;
+	height: 66px;
+	//margin:10px 6.5%;
+	margin: 10px 0px 20px 0px;
+	float:left;
+	background-color:#FBFFFF;
+	border-top: 1px dashed #999999;/* them6 vao2*/
+	border-bottom: 1px dashed #999999;
+	color:#000;
+}
+
+
+footer p {
+	font-weight:bold;
+	color:#000;
+	//border-top: 1px dashed #999999;
+	margin:auto 0px 0px;
+	
+}
+
+/* -------------------------------//////------------------------------- */

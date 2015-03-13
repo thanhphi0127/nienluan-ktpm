@@ -1,0 +1,59 @@
+$(document).ready(function(){
+
+	/* iframe notification */
+	$('span.myButton').click(function() {
+		$('#register').fadeIn(1000);
+		
+	});
+	/* end ----------------*/
+	
+	/* form register           */
+	$('img.register').click(function (){
+		$('#register').hide(500);
+		$('#addmember').hide(500);
+		
+	});
+	
+	/*end ------------------*/
+	
+	/*  group detail*/
+	$('span[name=pttkht_n5]').click(function(){
+			$('#home_quanlynhom').css("display","none");
+		$('#home_quanlynhom').css("float","left");
+			$('#home_quanlynhom').fadeIn(1000);
+		$('#group_detail').fadeIn(1000);
+	});
+	
+	$('span[name=dbclmpm_n4]').click(function(){
+			$('#home_quanlynhom').css("display","none");
+		$('#home_quanlynhom').css("float","left");
+			$('#home_quanlynhom').fadeIn(1000);
+		$('#group_detail').fadeIn(1000);
+	});
+
+	
+	/* end ------------------*/
+	
+	/* Thêm thành viên*/
+	$('add > img').click(function (){
+		$('#addmember').show(500);
+	});
+	
+	$('div.col-md-4 > h2').html("CHỨNG THỰC NGƯỜI DÙNG");
+	/* end ------------------*/
+	
+	
+	/* Authenticatiopn */
+	$('delete > img').click(function (){
+		$("#iframe_login").slideDown("slow");
+	});
+	$('#iframe_login div.div_close img').click(function(){
+		$("#iframe_login").slideUp("slow");
+	});
+	/* End authentication-----*/
+	
+	/* COmbobox */
+		
+	/* End combobox-----*/
+});
+

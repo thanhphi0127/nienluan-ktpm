@@ -1,0 +1,426 @@
+﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Sinhvien extends MY_Controller {
+	private $auth;
+	private $MSSV;
+	private $MA_HK;
+	private $MA_NH;
+	private $count_tb;
+	public function __construct(){
+		parent::__construct();
+		date_default_timezone_set('Asia/Ho_Chi_Minh');
+		
+		$this->MA_HK = 1;
+		$this->MA_NH = 2014;
+		$this->auth = $this->lib_authentication->check_cookie();
+		$this->MSSV = $this->auth['username'];			
+		if ($this->auth == NULL) {
+			$this->lib_string->alert("", CIT_BASE_URL."auth/logout");
+		}
+		if (3 != $this->auth['ma_quyen']){
+			$this->lib_string->alert("Bạn không có quyền truy cập!", CIT_BASE_URL."auth/logout");
+		}
+		
+		$this->count_tb = $this->mthongbao->load_thongbaonhan($this->MSSV)['count_tb'];
+		
+	}
+	
+	//***************************************************
+	// Name          	: ttcanhan()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//***************************************************
+	function index()
+	{	
+		$data['count_tb'] = $this->count_tb;
+		$data['username'] =  $this->auth['username'];
+		$this->load->model('msinhvien');
+		$data['hoten'] = $this->msinhvien->LayTenSinhVien($data['username']);
+		$data['template'] = 'sinhvien/index';
+		$this->load->view('layout/sinhvien', isset($data)?$data:NULL);
+	}
+	
+	
+	//***************************************************
+	// Name          	: ttcanhan()
+	// Param         	: none
+	// Global variable	: none
+	// Local variable 	: none
+	// return           : none
+	//***************************************************
+	function ttcanhan()
+	{
+		$data['count_tb'] = $this->count_tb;
+		$data['seo']['title'] = '';
+		$data['seo']['keyword'] = '';
+		$data['seo']['description'] = '';
+		$data['template'] = 'sinhvien/ttcanhan';
+		$data['press'] = 0;
+		$data['mk'] = "";
+		
+		$data['username'] =  $this->auth['username'];
+		$this->load->model('msinhvien');
+		$data['hoten'] = $this->msinhvien->LayTenSinhVien($data['username']);
+			
+		if (1) //$this -> session -> userdata('logged_in')
+		{	
+			if ($this -> input -> post('luulai_form')) {
+				$_POST = $this->input->post('data');
+	
+				$this->load->helper(array('form', 'url'));
+				$this->load->library('form_validation');
+				$this->form_validation->set_error_delimiters('<div class="error">','</div>');
+				$this->form_validation->set_rules('password', 'Mật khẩu', 'trim|required');
+				$this->form_validation->set_rules('newpassword', 'Mật khẩu mới', 'trim|required|min_length[5]');
+				$this->form_validation->set_rules('confirmpassword', 'Xác nhận mật khẩu', 'trim|required|min_length[5]|matches[newpassword]');
+	
+				if (!$this -> msinhvien -> KiemTraMatKhau($data['username'], $_POST['password'])) { //CHINH SUA USERNAME
+					$data['mk'] = "<div class='error'>Mật khẩu nhập không đúng</div>";
+				} else {}
+				
+				
+				if ($this->form_validation->run() && ($this -> msinhvien -> KiemTraMatKhau($data['username'], $_POST['password']))) {
+					//Them vao CSDL
+					$result = $this->msinhvien->DoiMatKhau($data['username'], $_POST['newpassword']);
+					if ($result) {
+						echo "<script>alert('Đổi mật khẩu thành công')</script>";
+						$data['press'] = 0;
+					} else {} //END IF RESULT
+				}
+				else {
+					$data['press'] = 1;
+				} //END IF FORM_VALIDATION
+				
+			}//END IF POST
+			
+			$data['ttcanhan'] = $this -> msinhvien -> ThongTinCaNhan($data['username']); //CHINH SUA USERNAME
+			$this->load->view('layout/sinhvien', isset($data)?$data:NULL);
+
+		}
+		else {
+			$data['template'] = 'auth/login';
+			$this->load->view('layout/login', isset($data)?$data:NULL);
+		}
+	}
+	
+	/*
+	 * Name: quanlynhom()
+	 * @author: Thanh Tam
+	 * Purpose: Trang quản lý nhóm cho người dùng là sinh viên. 
+	 */
+	public function quanlynhom(){
+		$data['count_tb'] = $this->count_tb;
+		$data['seo']['title'] = 'Quản lý nhóm';
+		$data['seo']['keyword'] = 'nhom';
+		$data['seo']['description'] = 'quanlynhom';
+		
+		$data['username'] =  $this->MSSV;
+		
+		$data['hoten'] = $this->msinhvien->LayTenSinhVien($this->MSSV);
+		
+		$data['MSSV'] = $this->auth['username'];
+		$data['query_chitietnhom'] = $this->msinhvien->lay_chitietnhom($this->MSSV, $this->MA_HK, $this->MA_NH);
+		
+		$data['query_monhocthamgia'] = $this->msinhvien->lay_lhpchuaconhom($this->MSSV, $this->MA_HK, $this->MA_NH);
+		$_post['MSSV'] = $data['username'];
+
+		// registergroup
+		if ($this->input->post('registergroup')) {
+			$_post = $this->input->post('data');
+			
+			
+			$_post['STT_NHOM'] = $this->msinhvien->kt_nhomdangki($_post);
+			
+			if (-1 == $_post['STT_NHOM']) 
+				$this->lib_string->alert("Hết nhóm để đăng kí", CIT_BASE_URL.'sinhvien/quanlynhom');
+			else {
+				$this->msinhvien->dangki_nhom($_post, $this->MSSV);
+				$this->lib_string->alert(NULL, CIT_BASE_URL.'sinhvien/quanlynhom');
+			}
+			
+		}
+		// leavegroup
+		else if ($this->input->post('leavegroup')){
+			$count = 0;
+			$check_list = $this->input->post('check_list');
+			if (!empty($check_list))
+			{
+				$_post['MSSV'] = $data['username'];
+				
+				
+				foreach ($check_list as $item){
+					$count++;
+					$_post['STT_NHOM'] = $this->input->post('data')['STT_NHOM'];
+					$_post['MA_LOPHOCPHAN'] = $item;
+					$this->msinhvien->roi_nhom($_post, $this->MSSV);
+				}
+				$this->lib_string->alert("Đã rời ".$count."nhóm", CIT_BASE_URL.'sinhvien/quanlynhom');
+				
+			}
+			else 
+				$this->lib_string->alert("Chưa có nhóm được chọn", CIT_BASE_URL.'sinhvien/quanlynhom');
+				
+			
+			
+			
+		}
+		// modifygroup
+		else if ($this->input->post('modifygroup')){
+			$_post['DETAI'] = $this->input->post('data')['DETAI'];
+			$_post['MOTA'] = $this->input->post('data')['MOTA'];
+			$_data['STT_NHOM'] = $this->input->post('data')['STT_NHOM'];
+			$_data['MA_LOPHOCPHAN'] = $this->input->post('data')['MA_LOPHOCPHAN'];
+			$this->msinhvien->sua_chitietnhom($_post, $_data);
+			$this->lib_string->alert(NULL, CIT_BASE_URL.'sinhvien/quanlynhom');
+		}
+		// getclassmate
+		else if ($this->input->post('getclassmate')){
+			$_post = $this->input->post('data');
+			$data['flag_post'] = $_post['flag'];
+			$data['STT_NHOM'] = $_post['STT_NHOM'];
+			$data['MA_LOPHOCPHAN'] = $_post['MA_LOPHOCPHAN'];
+			$data['sinhviencunglop'] = $this->msinhvien->lay_sinhviencunglop($_post['MA_LOPHOCPHAN'], $_post['STT_NHOM']);
+			$data['TEN_MH'] = $this->msinhvien->lay_tenmonhoc($data['MA_LOPHOCPHAN'] )[0]['TEN_MH'];
+			
+		}
+		// addmember
+		else if ($this->input->post('addmember')){
+			$_post = $this->input->post('data');
+			
+			if (!isset($_post['MSSV']) || empty($_post['MSSV']) || '' == $_post['MSSV'])
+				$this->lib_string->alert("Vui lòng chọn thành viên", CIT_BASE_URL.'sinhvien/quanlynhom');
+			else {
+				$success = $this->msinhvien->them_thanhvien($_post);
+				if ($success)
+					$this->lib_string->alert(NULL, CIT_BASE_URL.'sinhvien/quanlynhom');
+				else 
+					$this->lib_string->alert('Nhóm đã đủ người', CIT_BASE_URL.'sinhvien/quanlynhom');
+			}
+		}
+		// deletemember
+		else if ($this->input->post('deletemember')){
+			$_post['data'] = $this->input->post('data');
+			$_post['check_mssv'] = $this->input->post('check_mssv');
+			$this->msinhvien->xoa_thanhvien($_post, $this->MSSV, $this->MA_HK, $this->MA_NH);
+			$this->lib_string->alert(NULL, CIT_BASE_URL.'sinhvien/quanlynhom');
+			
+		}
+		
+		
+		$data['template'] = 'sinhvien/quanlynhom';
+		$this->load->view('layout/sinhvien', isset($data)?$data:NULL);
+		
+	}
+	
+	/*
+	 * Name: download()
+	 * @author: Thanh Tam
+	 * Purpose: Phục vụ download danh sách công việc cho người dùng là sinh viên.
+	 */
+	
+	public function download(){
+		$data['count_tb'] = $this->count_tb;
+		$data['seo']['title'] = 'Xuất danh sách công việc';
+		$data['seo']['keyword'] = 'download';
+		$data['seo']['description'] = 'Download';
+		
+		$data['query_lhpconhom'] = $this->msinhvien->lay_lhpconhom($this->MSSV, $this->MA_HK, $this->MA_NH);
+		$data['username'] =  $this->MSSV;
+		$this->load->model('msinhvien');
+		$data['hoten'] = $this->msinhvien->LayTenSinhVien($data['username']);
+			
+		if ($this->input->post('download')){
+			
+			$_post = $this->input->post('data');
+			if (isset($_post['MA_LOPHOCPHAN']) && !empty($_post['MA_LOPHOCPHAN'])){
+				$array = explode('-', $_post['MA_LOPHOCPHAN']);
+				$_post['MA_LOPHOCPHAN'] = $array[0];
+				$_post['check_list'] = $this->input->post('check_list');
+				$_post['STT_NHOM'] = $array[1];
+				$data['query_dsthanhvien'] = $this->msinhvien->lay_dsthanhvien($_post['MA_LOPHOCPHAN'], $_post['STT_NHOM'] );
+				$data['query_dscongviec'] = $this->msinhvien->lay_dscongviec($_post, $this->MSSV, $this->MA_HK, $this->MA_NH);
+				$data['check_list'] = $_post['check_list'];
+				$exist_thanhvien = isset($data['query_dsthanhvien']) && !empty($data['query_dsthanhvien']);
+				$exist_congviec  = isset($data['query_dscongviec']) && !empty($data['query_dscongviec']);
+				
+				if ($exist_thanhvien && $exist_congviec)
+					$this->load->view('download', $data);
+				else 
+					$this->lib_string->alert("Không tìm thấy công việc", CIT_BASE_URL.'sinhvien/download');
+			}
+		}
+		else {
+			$data['template'] = 'sinhvien/download';
+			$this->load->view('layout/sinhvien', isset($data)?$data:NULL);
+		}
+	}
+		
+	/*
+	 * Name: quanlycongviec()
+	 * @author: Thanh Tam
+	 * Purpose: Quản lý các công việc và các báo cáo cho người dùng là sinh viên.
+	 */	
+	 
+	public function quanlycongviec($function = 0){
+		$data['count_tb'] = $this->count_tb;
+		$data['username'] =  $this->auth['username'];
+		$this->load->model('msinhvien');
+		$data['hoten'] = $this->msinhvien->LayTenSinhVien($data['username']);
+		
+		$data['seo']['title'] = 'Quản lý công việc';
+		$data['seo']['keyword'] = 'quanlycongviec';
+		$data['seo']['description'] = 'Quản lý danh sách công việc, cập nhật, thêm, xóa công việc và báo cáo';
+		$data['dsbaocao'] = $this->msinhvien->lay_baocao($this->MSSV, $this->MA_HK, $this->MA_NH);
+		$data['MA_NH'] = $this->MA_NH;
+		$data['MA_HK'] = $this->MA_HK;
+		$data['HOTEN'] = $this->msinhvien->lay_hotensinhvien($this->MSSV);
+		
+		$data['tatcamonhocthamgia'] = $this->msinhvien->lay_lhpconhom($this->MSSV, $this->MA_HK, $this->MA_NH);
+		
+		$DS_MA_LOPHOCPHAN = $this->msinhvien->lay_lhpconhom($this->MSSV, $this->MA_HK, $this->MA_NH);
+		foreach ($DS_MA_LOPHOCPHAN as $row) {
+			$data['query_dscongviec'][$row['MA_LOPHOCPHAN']] = $this->msinhvien->load_dscongviec($row, $this->MSSV, $this->MA_HK, $this->MA_NH);
+		}
+		
+		//tạo công việc
+		if ($this->input->post('addtask')){
+			$_post = $this->input->post('data');
+			$this->msinhvien->them_congviec($_post, $this->MSSV);
+			$this->lib_string->alert(NULL, CIT_BASE_URL.'sinhvien/quanlycongviec');
+		}
+		
+		//sửa công việc
+		else if ($this->input->post('modifytask')){
+			$_post = $this->input->post('data');
+			
+			$this->msinhvien->sua_congviec($_post, $this->MSSV);
+			$this->lib_string->alert(NULL, CIT_BASE_URL.'sinhvien/quanlycongviec');
+		}
+		// xóa công việc
+		else if ($this->input->post('deletetask')) {
+			$check_list = $this->input->post('check_list');
+			if (null == $check_list) 
+				$this->lib_string->alert("Chưa chọn công viêc để xóa", CIT_BASE_URL.'sinhvien/quanlycongviec');	
+			else {
+				foreach ($check_list as $item){
+					$this->msinhvien->xoa_congviec($item);
+				}
+				$this->lib_string->alert(NULL, CIT_BASE_URL.'sinhvien/quanlycongviec');	
+			}	
+			
+		}
+		
+		// lấy sinh vien cùng nhóm để thêm
+		else if ($this->input->post('getgroupmate')){
+			$_post = $this->input->post('data');
+			$data['_post'] = $_post;
+			$data['flag_post'] = $_post['flag'];
+			$data['tatcamonhocthamgia'] = $this->msinhvien->lay_lhp($this->MSSV, $this->MA_HK, $this->MA_NH);
+			$array_LOPHOCPHAN_STTNHOM = explode('-', $_post['MA_LOPHOCPHAN']);
+			$data['query_dsthanhvien'] = $this->msinhvien->lay_dsthanhvien($array_LOPHOCPHAN_STTNHOM[0], $array_LOPHOCPHAN_STTNHOM[1] );
+			
+		}
+		// lấy sinh vien cùng nhóm để sửa
+		else if ($this->input->post('getgroupmate2')){
+			$_post = $this->input->post('data');
+			$data['_post'] = $_post;
+			$data['flag_post2'] = $_post['flag2'];
+			$data['MACV_POST'] = $_post['MA_CV'];
+			
+			$data['tatcamonhocthamgia'] = $this->msinhvien->lay_lhp($this->MSSV, $this->MA_HK, $this->MA_NH);
+			$array_LOPHOCPHAN_STTNHOM = explode('-', $_post['MA_LOPHOCPHAN']);
+			$data['query_dsthanhvien'] = $this->msinhvien->lay_dsthanhvien($array_LOPHOCPHAN_STTNHOM[0], $array_LOPHOCPHAN_STTNHOM[1] );
+
+			$array_dsthanhvien = array();
+			foreach ($data['query_dsthanhvien']['thanhvien']  as $row){
+				array_push($array_dsthanhvien, $row['MSSV']);
+				
+			}
+			$data['POST_NGUOIDUOCGIAO'] = implode('   ', $array_dsthanhvien);
+			
+		}
+		
+		
+		// tạo báo cáo
+		else if ($this->input->post('addreport')){
+			$_post = $this->input->post('data');
+			if($_FILES['file']['name'] != NULL){ 
+				$path = "data/".$this->MA_NH."/HK ".$this->MA_HK."/Baocao/".$_post['MA_LOPHOCPHAN']."/"; 
+				$tmp_name = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                $type = $_FILES['file']['type']; 
+                $size = $_FILES['file']['size']; 
+				move_uploaded_file($tmp_name,$path.$name);
+			}
+			
+			$this->msinhvien->them_baocao($_post,$this->MSSV, $name);
+			
+			$this->lib_string->alert(NULL, CIT_BASE_URL.'sinhvien/quanlycongviec/1');
+		}
+		
+		$data['template'] = 'sinhvien/quanlycongviec';
+		$this->load->view('layout/sinhvien', isset($data)?$data:NULL);
+
+	}
+	
+	/*
+	 * Name: verify()
+	 * @author: Thanh Tam
+	 * Purpose: Chứng thực mức 2 khi người dùng thao tác lần đầu tiên với cơ sở dữ liệu sau khi đã đăng nhập.
+	 */	
+	 
+	public function verify(){
+		if (NULL == $this->auth){
+			$this->lib_string->alert("Hết thời hạn đăng nhập", CIT_BASE_URL."auth/login");
+		}
+		else {
+			if ($this->input->post('login'))
+			{
+				$_post = $this->input->post('data');
+				$this->form_validation->set_rules('data[username]', 'Tên đăng nhập', 'regex_match[/^([a-z0-9_])+$/i]|trim|required|min_length[3]|max_length[50]|xss_clean');
+				$this->form_validation->set_rules('data[password]', 'Mật khẩu', 'trim|md5');
+				if ($this->form_validation->run())
+				{
+					if ($this->auth['username'] == $_post['username'] && $this->auth['password'] == $_post['password'])
+						$this->lib_string->alert("Sai username hoặc password", CIT_BASE_URL."auth/login");
+					
+					else {
+						setcookie(CIT_PREFIX.'_user_logged', $this->lib_string->encode_cookie(json_encode($user)), time() + 3600, '/');
+						$this->lib_string->alert("Đăng nhập thành công", CIT_BASE_URL.'home/index');
+					}
+				}
+				
+			}	
+		}
+		$data['template'] = 'auth/login';
+		$this->load->view('layout/login', isset($data)?$data:NULL);
+	}
+	
+	
+	/*
+	 * Name: downloadfile()
+	 * @author: Thanh Tam
+	 * Purpose: Download file đã up lên khi báo cáo
+	 */	
+	
+	function downloadfile($MA_NH, $MA_HK, $MA_LOPHOCPHAN_STT_NHOM, $FILENAME){
+		$FILEPATH = "./data/".$MA_NH."/HK ".$MA_HK."/Baocao/".$MA_LOPHOCPHAN_STT_NHOM."/".$FILENAME;
+		if (file_exists($FILEPATH)) {
+			
+			header('Content-Description: File Transfer');
+			header('Content-Type: application/octet-stream');
+			header('Content-Disposition: attachment; filename='.basename($FILEPATH));
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate');
+			header('Pragma: public');
+			header('Content-Length: ' . filesize($FILEPATH));
+			readfile($FILEPATH);
+			exit;
+		}
+		else die('File không tồn tại');
+	}
+	
+}
+?>

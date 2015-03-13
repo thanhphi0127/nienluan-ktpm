@@ -1,0 +1,28 @@
+$(document).ready(function(){
+	
+	$('#view_calendar').click(function(){
+		$('section.tasklist').show();
+		$('section.reportlist').hide();
+		
+		$('div.tasklist').hide();
+		$('#calendar').fadeIn(1000);
+	});
+	$("#view_list, #view_common_list").click(function(){
+		$('#calendar').hide();
+		$('div.tasklist').fadeIn(1000);
+		
+		$('section.tasklist').show();
+		$('section.reportlist').hide();
+	});
+	
+	$('#view_report').click(function(){
+		$('section.tasklist').hide();
+		$('section.reportlist').show();
+		
+		$('div.reportlist').fadeIn(1000);
+	});
+	
+	/* title */
+	$('a').attr('title','Click để xem chi tiết');
+});
+

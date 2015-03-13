@@ -1,0 +1,55 @@
+﻿<div class="khung">
+	<div class="download">
+        <form action="" method="post">
+            <p>In danh sách nhóm</p>
+            <div>
+            <label id="chonmon" label>Chọn môn học</label>
+            <?php 
+				//Hien thi combobox chon mon hoc giang vien dang phu trachs
+				if(isset($LayMonHoc_GiangVien) && !empty($LayMonHoc_GiangVien)){
+					echo "<select id='sl_mh' class='form-control' name='ma_mh'>";
+					echo "<option value='all'>Tất cả</option>";
+					foreach ($LayMonHoc_GiangVien as $row) {
+						echo "<option value='".$row['MA_MH']."' ";
+						echo ">".$row['MA_MH']." - ".$row['TEN_MH']."</option>";
+					}
+					echo " </select>";
+					
+				} 
+			?>
+            <input style="margin-left: 5px" type="submit" name="btn_monhoc" title="Danh sách sinh viên"  class="btn btn-primary" value="Danh sách sinh viên" />
+            </div>
+        </form>
+        
+        <div>
+        	<h4>Xem trước danh sách nhóm</h4>
+        </div>
+			<table border='1'>
+				<tr><td>MSSV</td><td>Họ tên</td><td>Lớp</td><td>Nhóm</td><td>Đề tài</td><td>Điểm</td><td>Ghi chú</td></tr>
+				<tr> 
+					<td>1111325</td>
+					<td>Nguyễn Thanh Phi</td>
+					<td>DI1196A1</td>
+					<td>1</td>
+					<td>Website quản lý nhóm sinh viên khoa CNTT</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>1111319</td>
+					<td>Huỳnh Thanh Nhã</td>
+					<td>DI1196A2</td>
+					<td>2</td>
+					<td>Ứng dụng Java cho hệ thống eb</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+    </div>
+    
+    </div>
+    <!--   XUAT FILE EXCEL CHO MOI MON GIANG VIEN PHU TRACH  -->
+    <div>
+    	<a id="xuat_excel" href="giangvien/indanhsanhsv?ma_mh=<?php echo $ma_mh; ?>" class="btn btn-success square-btn-adjust" title="Nhấp để in danh sách nhóm" >Xuất ra file excel</a>
+    </div>
+</div>

@@ -1,0 +1,526 @@
+<script type="text/javascript">
+	//
+	function toggle(source) {
+	  checkboxes = document.getElementsByName('checked[]');
+	  for(var i=0, n=checkboxes.length;i<n;i++) {
+		checkboxes[i].checked = source.checked;
+	  }
+	}
+	
+	function checkEmail() {
+		var email = document.getElementsByClassName('email');
+		var len = email.length;
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		for (i = 0; i < len; i++) {
+			if (!filter.test(email[i].value)) {
+				var myerror = '<span style="color:red; font-size:10pt;">Sai định dạng MAIL</span>';
+				var error = document.getElementsByClassName('z-email');
+				error[i].innerHTML = myerror;
+				return false;
+			} 
+			else {
+				var error = document.getElementsByClassName('z-email');
+				error[i].innerHTML = '';
+			}
+		}
+		return true;
+ 	}
+
+	function checkSDT() {
+		var sdt = document.getElementsByClassName('sdt_gv');
+		var len = sdt.length;
+		var phoneno = /^(01\d{9})|(0[0-9]\d{8})$/; 
+		for (i = 0; i < len; i++) { 
+			if(!(sdt[i].value.match(phoneno))) {
+				var myerror = '<span style="color:red">Sai định dạng SĐT</span>';
+				var error = document.getElementsByClassName('z-sdt');
+				error[i].innerHTML = myerror;
+				return false;
+			}
+			else {
+				var error = document.getElementsByClassName('z-sdt');
+				error[i].innerHTML = '';
+			}
+		}
+		return true;
+ 	}
+		
+	function Validation() {
+		if(checkEmail() && checkSDT()) {
+			return true;
+		}
+		else return false;
+	}
+
+	$(function () {
+			
+		$('#choice').html('');
+		$('#btn_save_modfify').hide();
+		$('#btn_add').removeAttr('disabled');
+		$('#btn_delete').removeAttr('disabled');
+		
+		$('#btn_delete').click( function() {
+			var num_check = $('input[type=checkbox]:checked').size();
+			if(num_check > 0) return confirm("Bạn có chắc chắn muốn xóa không?");
+		});
+		
+			 	
+		$('#btn_modify').click(function() {
+			//var value = $('.checkall').parent('tr').find(':checkbox').attr('checked', this.checked);
+			$('#edit').show();
+			$(this).hide();
+			$('#btn_add').css('disabled', 'disabled');
+		});
+		
+		///////////////////////////////////////////////////////////////////////////////
+		///Chọn chỉnh sua thong tin sinh vien
+		$('#edit').click( function() {
+			var sl = 0;
+			if ($('input[type=checkbox]:checked').size() > 0)
+			{
+				$('#btn_add').attr('disabled', 'disabled');
+				$('#btn_delete').attr('disabled', 'disabled');
+			}
+			
+			$('input[type=checkbox]').each( function(e) {
+				//$(this).parent('td').parent('tr').find($('span.txtModify')).removeClass('edit');
+				//$(this).parent('td').parent('tr').find($('span.pModify')).removeClass('edit');	
+				$(this).parent('td').parent('tr').find($('span.txtModify')).hide();
+				$(this).parent('td').parent('tr').find($('span.pModify')).show();
+   			 });
+			
+			$('input[type=checkbox]:checked').each( function(e) {
+				$(this).parent('td').parent('tr').find($('span.txtModify')).show();
+				$(this).parent('td').parent('tr').find($('span.pModify')).hide();
+				sl = $(this).size();
+
+   			 });
+			
+			if (sl > 0) {
+				$('#choice').html('');	
+				$('#btn_save_modfify').show();
+				$('#edit').hide();
+			}
+			else {
+				$('#choice').html('Vui lòng chọn sinh viên');
+			}
+		});
+		
+		
+		$('#btn_add').click(function () {
+			$('#btn_add').attr('disabled', 'disabled');
+			$('#btn_delete').attr('disabled', 'disabled');
+			$('#edit').attr('disabled', 'disabled');
+			
+			$('.khung').css('opacity','0.5');
+			$('#add_Student').show();
+			$('.add_Student').css('opacity','1');
+		});
+		
+		$('.huybo').click(function () {
+			$('.container').show();
+			$('.khung').css('opacity','1');
+			
+			//$('#show_add').hide();
+			$('#add_Student').hide();
+			
+			$('#btn_add').removeAttr('disabled');
+			$('#btn_delete').removeAttr('disabled');
+			$('#edit').removeAttr('disabled');
+		});
+		
+		//Hien thi lai form add neu du lieu khong lop le (FORM THEM SINH VIEN)
+		var pre_add = $('#hidden_add').attr('value');
+		if (pre_add == 1) {
+			$('#show_add').show(500);
+			$('#add_Student').show();
+			//$('.khung').hide();
+			$('.khung').css('opacity','0.5');
+		}
+			
+		//Hien thi lai form cap nhat neu du lieu khong lop le (FORM CAP NHAT SINH VIEN)
+		var pre_modify = $('#hidden_modify').attr('value');
+		if (pre_modify == 1) {
+			$('#show_add').hide();
+			$('.khung').show();
+			$('#choice').html('');	
+			$('#btn_modify').show();
+			$('#edit').hide();
+				
+		}
+		
+		$('.khung form').submit(function(){	
+		/*
+			var valid = true;
+			$('input[type=checkbox]:checked').each( function(e) {
+				var email = $(this).parent('td').parent('tr').find($('.email')).attr('value');
+				re=/^(([a-zA-Z0-9])+\.?)*([a-zA-Z0-9])+@(([a-zA-Z0-9])+\.)+[a-zA-Z]{2,4}$/;
+	   			if(!re.test(email)){
+					$(this).parent('td').parent('tr').find($('.email')).attr('val-type', 'required');
+					$(this).parent('td').parent('tr').find($('.email')).attr('val-message', 'Địa chỉ mail không hợp lệ');
+					alert(email);
+					valid = false;
+					return;
+				}
+   			 });
+			 alert(valid);
+			 return valid;
+			 */
+		});
+		
+	});
+</script>
+
+
+<!-- ----------------------------------------------------------------------------------
+                    COMPOSE ADD STUDENT MODAL 
+-------------------------------------------------------------------------------------->
+
+<div id="add_Student" tabindex="-1" aria-hidden="true" style="position:absolute; display:none">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button id="btn-close" type="button" class="close huybo" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title"><i class="fa fa-envelope-o"></i> Thêm sinh viên</h4>
+          </div>
+           
+           <form action="" method="post">
+          <div class="modal-body" style="margin: 0px padding: 3px;">  
+          <table id="table_add" border="0">
+                    <tr>
+                    	<td><label>MSSV (*)</label></td>
+                        <td><input type="text" class="form-control" name="add[mssv]" value="<?php echo set_value('mssv'); ?>" placeholder="Nhập mã số sinh viên" /> 
+						<?php echo form_error('mssv'); echo $exist_mssv; ?></td>
+                    </tr>
+                  
+                  <tr>
+                      <td><label>Họ tên (*)</label></td>
+                      <td><input type="text" class="form-control" name="add[hoten]" placeholder="Nhập họ tên" value="<?php echo set_value('hoten'); ?>"/>
+                      <?php  echo form_error('hoten'); ?>
+                      </td>   
+                  </tr>
+                  
+                  <tr><td><label>Giới tính (*)</label></td><td><select class="form-control" name="add[gioitinh]">
+                          <option>Nam</option>
+                          <option>Nữ</option>
+                      </select></td> 
+                  </tr>
+                  
+                  <tr><td><label style="display:inline">Ngày sinh (*)</label></td><td><div class="input-group" style="">
+                          <input name="add[ngaysinh]" type="date" class="form-control" placeholder="yyyy/mm/dd" value="<?php echo set_value('ngaysinh'); ?>" />
+                      </div><!-- /.input group -->
+                      <div><?php echo form_error('ngaysinh'); ?></div></td>            
+  				
+                  </tr>
+               
+
+                  <tr><td><label>Địa chỉ (*)</label></td><td><textarea name="add[diachi]" class="form-control" rows="3" placeholder="Nhập địa chỉ"><?php echo set_value('diachi'); ?></textarea>
+                      <?php echo form_error('diachi');?></td>
+                   </tr>
+
+
+                  <tr><td> <label>Số điện thoại (*)</label></td><td><input name="add[sodt]" type="text" class="form-control" placeholder="Nhập số điện thoại" value="<?php echo set_value('sodt'); ?>"/>
+                     <?php echo form_error('sodt'); ?>
+</td>
+				</tr>                      
+                  
+
+                  <tr><td><label>Mail (*)</label></td><td><input name="add[mail]" type="text" class="form-control" placeholder="ai_do@examble.com" value="<?php echo set_value('mail'); ?>"/>
+                      <?php echo form_error('mail'); echo $exist_mail;?></td>
+                  </tr>                      
+                      
+                  <tr><td><label>Ngành (*)</label></td><td><?php 
+					  		if (isset($LayNganh) && !empty($LayNganh)) {
+								echo "<select class='form-control' name='add[manganh]'>";
+								foreach ($LayNganh as $temp) {
+									echo "<option value='".$temp['ma_nganh']."'>".$temp['ten_nganh']."</option>";
+								}
+								echo "</select>";
+							}
+					  ?></td>
+                    </tr>
+
+                  <tr><td><label>Khóa (*)</label></td><td><?php 
+					  		if (isset($LayKhoaHoc) && !empty($LayKhoaHoc)) {
+								echo "<select class='form-control' name='add[khoahoc]'>";
+								foreach ($LayKhoaHoc as $temp) {
+									echo "<option value='".$temp['khoahoc']."'>Khóa ".$temp['khoahoc']."</option>";
+								}
+								echo "</select>";
+							}
+					  ?></td>
+                      </tr>
+                      
+<!--
+                  <tr><td><label>Quyền (*)</label></td>
+                  <td><select class="form-control" hidden="" name="add[maquyen]">
+                          <option value="3">Mức 2 (mức sinh viên)</option>
+                          <option value="2">Mức 1 (mức giảng viên)</option>
+                          <option value="1">Mức 3 (mức admin)</option>
+                      </select></td>
+                   </tr>
+-->
+                  <tr>
+                  	<td colspan="2"><span style="color: red">(*) Là các trường bắt buộc nhập</span><input type="hidden" name="data[press]" value="<?php echo $press_add ?>" id="temp" /></td>
+                  </tr>
+
+                  <tr>
+                      <td colspan="2" class="btn-save-cancel">
+                      <input id="btn_save" name="add_student" type="submit" class="btn btn-primary pull-left" value="Lưu lại"/>
+                      <input id="btn_huybo" name="huybo" type="close" class="btn btn-primary huybo" value="Hủy bỏ" />
+                      </td>
+                  </tr>
+           </table></div>
+ 			</form>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- NOI DUNG -->
+<div class="khung" style="font-family:Times New Roman" >
+<form action="" method="post">
+    <div class="row top_row">
+        
+        <input type="hidden" value="<?php echo $press_modify; ?>" id="hidden_modify" />
+        <table id="example1" class="table-bordered table-hover table_nguoidung">
+
+               <thead>
+               <tr>
+               	<th colspan="11" class="student_header">Danh sách sinh viên</th>
+               </tr>
+                   <tr>
+                   	   <th><input type="checkbox" name="checked[]" onclick="toggle(this)" value="" class="checkall"/></th>
+                       <th>STT</th>
+                       <th>MSSV</th>
+                       <th>Họ tên</th>
+                       <th>Giới tính</th>
+                       <th>Ngày sinh</th>
+                       <th>Địa chỉ</th>
+                       <th>Số điện thoại</th>
+                       <th>Mail</th>
+                       <th>Ngành</th>
+                       <th>Khóa học</th>
+                   </tr>
+               </thead>
+			<tbody>
+				<?php
+                    session_start();
+                    $user = new msinhvien();
+                    $i = 1;
+                    foreach ($ds as $user)
+                    {
+                          echo "<tr>";  
+                          echo "<td><input type='checkbox' name='checked[]' value='$user->mssv'/></td>";  
+                          echo "<td>$i</td>";
+						           
+                          echo "<td>$user->mssv</td>";                
+                          echo "<td>
+						  			<span class='pModify'>$user->hoten</span>
+						  			<span class='txtModify' hidden>
+						  			<input type='text' name='$user->mssv[hoten]' value='$user->hoten' required='required'/></span>
+								</td>";	
+						  
+                          echo "<td>
+									<span class='pModify'>$user->gioitinh</span>
+									<span class='txtModify' hidden>
+									<select name='$user->mssv[gioitinh]'>
+										<option value='Nam'";
+										if ($user->gioitinh == 'Nam') echo 'selected';
+						  echo                        ">Nam</option>
+										<option value='Nữ'";
+										if ($user->gioitinh == 'Nữ') echo 'selected';
+						  echo                       ">Nữ</option>
+									</select></span></td>"; 
+						          
+                          echo "<td>
+								  <span class='pModify'>$user->ngaysinh</span>
+								  <span class='txtModify' hidden >
+								  <input style='width:122px' required type='date' name='$user->mssv[ngaysinh]' value='$user->ngaysinh'/></span>
+						  		</td>";
+						  
+						     
+                          echo "<td>
+						  		  <span class='pModify'>$user->diachi</span>
+								  <span class='txtModify' hidden>
+								  <input style='width:120px' type='text' name='$user->mssv[diachi]' value='$user->diachi' required/></span>".form_error('$user->mssv[diachi]').
+						  		"</td>";  
+						  
+                        echo "<td>
+						  		  <span class='pModify' class='sdt_gv'>$user->sdt</span>
+								  <span class='txtModify' hidden >
+								  <input class='sdt_gv' type='text' name='$user->mssv[sdt]' value='$user->sdt' onblur='checkSDT()' onkeyup='checkSDT()' required/></span><div class='z-sdt'></div>
+						  		</td>";  
+
+					    echo "<td>
+						  		  <span class='pModify'>$user->mail</span>
+								  <span class='txtModify' hidden >
+								  <input class='email' style='width:190px' type='text' name='$user->mssv[mail]' value='$user->mail' onkeyup='checkEmail()' onblur='checkEmail()' required /></span><div class='z-email'></div>
+						  		</td>";  
+						
+						//Hien thi nganh hoc  
+					    echo "<td class='nganhhoc'>
+						  		  <span class='pModify'>$user->ten_nganh</span>
+								  <span class='txtModify' hidden>";
+								  if (isset($LayNganh) && !empty($LayNganh)) {
+						echo       "<select  name='$user->mssv[ma_nganh]' style='width:132px'>";
+								    foreach ($LayNganh as $row) {
+										
+						echo            "<option value='".$row['ma_nganh']."'";
+						 				  if ($user->ten_nganh === $row['ten_nganh']) echo 'selected';
+						echo				                      ">".$row['ten_nganh']."</option>";
+								    }
+						echo       "</select>";
+							      }
+						echo       "</span></td>";		  
+						
+						//Hien thi khoa hoc 	   
+					    echo "<td class='class_khoa'>
+						  		  <span class='pModify'>$user->khoahoc</span>
+								  <span class='txtModify' hidden>";
+								  if (isset($LayKhoaHoc) && !empty($LayKhoaHoc)) {
+						echo       "<select  name='$user->mssv[khoahoc]' style='width:42px'>";
+								    foreach ($LayKhoaHoc as $row) {
+										
+						echo            "<option value='".$row['khoahoc']."'";
+						 				  if ($user->khoahoc == $row['khoahoc']) echo 'selected';
+						echo				                      ">".$row['khoahoc']."</option>";
+								    }
+						echo       "</select>";
+							      }
+						echo "</span></td>";  							       
+                        echo "</tr>";     
+                        $i++;
+                    }
+                ?>
+           
+            </tbody>
+            <tfoot>
+                   <tr>
+                   	   <th></th>
+                       <th>STT</th>
+                       <th>MSSV</th>
+                       <th>Họ tên</th>
+                       <th>Giới tính</th>
+                       <th>Ngày sinh</th>
+                       <th>Địa chỉ</th>
+                       <th>Số điện thoại</th>
+                       <th>Mail</th>
+                       <th>Ngành</th>
+                       <th>Khóa học</th>
+                   </tr>
+            </tfoot>
+        </table>
+  
+         <div id="choice" class="active"></div>
+         <div class="row btn_border">
+			<div class="col-md-2"></div>
+			
+         	<div class="col-md-8 btn_nguoidung">
+				<input id="btn_add" class="btn btn-default" value="Thêm"/>
+                <input id ="edit" name="edit" type="button" class="btn btn-default" value="Cập nhật"/>
+                <input id="btn_save_modfify" name="btn_save" type="submit" class="btn btn-default"  value="Lưu lại" onclick="return Validation()"/>
+                <a id="xuat_excel" style=" margin-left: 25px; width: 110px; height: 34px;" href="admin/quanlysinhvien" class="btn btn-default square-btn-adjust" title="" > Hủy bỏ</a>
+				<input id="btn_delete" name="btn_delete" type="submit"  class="btn btn-default" value="Xóa" />
+                <div style="background-color:#CCC"></div>
+            
+			</div>
+			
+			<div class="col-md-2"></div>
+         </div><!--end div row -->
+         
+    </div> <!--end div col-md-12-->
+
+        
+  </form> 
+</div><!--end div khung-->
+
+
+
+
+<!--=============================================================================== -->
+<div id="show_add1" class="panel panel-danger" style="display:none">
+          <div class="panel-heading">
+              Thêm sinh viên<span class="huybo x">x</span>
+          </div>
+          <form action="" method="post">
+          <table id="table_add" border="0">
+                    <tr>
+                    	<td><label>MSSV (*)</label></td>
+                        <td><input type="text" class="form-control" name="add[mssv]" value="" placeholder="Nhập mã số sinh viên" /> 
+						<?php echo form_error('mssv'); echo $exist_mssv; ?></td>
+                    </tr>
+                  
+                  <tr>
+                      <td><label>Họ tên (*)</label></td>
+                      <td><input type="text" class="form-control" name="add[hoten]" placeholder="Nhập họ tên"/>
+                      <?php  echo form_error('hoten'); ?>
+                      </td>   
+                  </tr>
+                  
+                  <tr><td><label>Giới tính (*)</label></td><td><select class="form-control" name="add[gioitinh]">
+                          <option>Nam</option>
+                          <option>Nữ</option>
+                      </select></td> 
+                  </tr>
+                  
+                  <tr><td><label style="display:inline">Ngày sinh (*)</label></td><td><div class="input-group" style="">
+                          <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                          </div>
+                          <input name="add[ngaysinh]" type="text" class="form-control" placeholder="yyyy/mm/dd" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask />
+                      </div><!-- /.input group -->
+                      <div><?php echo form_error('ngaysinh'); ?></div></td>            
+  				
+                  </tr>
+               
+
+                  <tr><td><label>Địa chỉ (*)</label></td><td><textarea name="add[diachi]" class="form-control" rows="2" placeholder="Nhập địa chỉ"></textarea>
+                      <?php echo form_error('diachi');?></td>
+                   </tr>
+
+
+                  <tr><td> <label>Số điện thoại (*)</label></td><td><input name="add[sodt]" type="text" class="form-control" placeholder="Nhập số điện thoại"/>
+                     <?php echo form_error('sodt'); ?>
+</td>
+				</tr>                      
+                  
+
+                  <tr><td><label>Mail (*)</label></td><td><input name="add[mail]" type="text" class="form-control" placeholder="ai_do@examble.com"/>
+                      <?php echo form_error('mail'); echo $exist_mail;?></td></tr>                      
+                      
+                  <tr><td><label>Ngành (*)</label></td><td><?php 
+					  		if (isset($LayNganh) && !empty($LayNganh)) {
+								echo "<select class='form-control' name='add[manganh]'>";
+								foreach ($LayNganh as $temp) {
+									echo "<option value='".$temp['ma_nganh']."'>".$temp['ten_nganh']."</option>";
+								}
+								echo "</select>";
+							}
+					  ?></td>
+                    </tr>
+                      
+
+                  <tr><td><label>Khóa (*)</label></td><td><select class="form-control" name="add[khoahoc]">
+                          <option value="37">37</option>
+                          <option value="36">36</option>
+                      </select></td>
+                      </tr>
+                     
+
+                  <tr>
+                  	<td colspan="2"><span style="color: red">(*) Là các trường bắt buộc nhập</span><input type="hidden" name="data[press]" id="hidden_add" value="<?php echo $press_add ?>" id="temp" /></td>
+                  </tr>
+
+                  <tr>
+                      <td><input id="btn_save" name="add_student" type="submit" class="btn btn-primary pull-left" value="Lưu lại"/></td>
+                      <td>
+                      	<input id="btn_huybo" name="huybo" type="close" class="btn btn-primary huybo" value="Hủy bỏ" />
+                      </td>
+                  </tr>
+           </table>
+        </form>                          
+</div> 
+
+
+

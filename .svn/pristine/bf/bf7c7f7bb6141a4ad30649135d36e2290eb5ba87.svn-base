@@ -1,0 +1,152 @@
+@import "manipulation.css";
+@import "../common_header.css";
+
+/*-------------------------------------Genarally--------------------------------------------*/
+a {
+	text-decoration:none;
+}
+a:hover {
+	color:blue;
+}
+body {
+	color:black;
+	font-size: 13px;
+}
+
+ul {
+	list-style:none;
+	font-weight:13px;
+	
+}
+/*------------------------------------------------------------------------------------------*/
+
+
+#add, #modifytask, #iframe_login , section.manipulation{
+	display:none;
+}
+
+
+
+#iframe_login div.iframe_login_up {
+	background:#FFF;
+	border-bottom:5px solid #0080FF;
+	text-align:center;
+	width:100%;
+	height:50px;
+	margin:-40px 0px 0px 0px;
+}
+
+#iframe_login div.iframe_login_up  img{
+	margin:2px auto;
+}
+
+#cit_wrapper {
+	border:1px solid #CCC; 
+	width: 87%; 
+	border-radius: 5px;  
+	background-color: #FFF;
+}
+
+th#header_mon{
+	color: #000;
+	background-color:#3898DE;
+	border: 1px solid  #CCC;
+	font-weight:bold;
+	font-size:14px;
+	height: 38px;
+	padding:5px;
+	width: 97%;
+	margin:auto;
+	margin-top: -6px;
+	margin-bottom: 5px;
+	text-align:center;
+	color: #FFF;
+}
+
+div#chon_mh{
+	margin-left: 19px;
+	font-size: 10pt;
+}
+
+select#sl_mh{
+	margin-left:15px;
+}
+
+#menu_quanly{
+	margin: 0px 10px 0px 10px;
+}
+.sum_mh{
+	font-weight:bold;
+	margin-left: 10%;
+	color:#039;
+}
+.title {
+	color:#00F;
+}
+
+#btn_monhoc {
+	margin:0px;
+	width:60px;
+}
+
+label{
+	font-weight:normal;
+}
+hr{
+	width:100%;
+	margin:0px;
+}
+
+.box {
+	background-color:#EEF5F9;
+	padding-top: 10spx;
+	margin-top: 0px;
+	padding: 6px 0px 0px 0px;
+}
+
+tr.odd:hover{
+	background-color:#FFF;
+}
+
+#hocki{
+	margin-left:150px;
+}
+
+div.col-md-12.nguoidung{
+	margin-top: 5px;
+	padding-top: 5px;
+}
+
+.table_nguoidung{
+	background-color:#FFF;
+}
+#header_ttnhom{
+	color:#C00;
+	font-weight:bold;
+	margin-left: 25px;
+	font-size: 17pt;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.nguoidung_nhom {
+	padding: 0px 0px 0px 1px;
+	margin: 10px auto auto;
+	width: 98%;
+	font-size: 11pt;
+}
+
+#xuat_excel{
+	float: right;
+	margin: 12px;
+	margin-right: 15px;
+}
+#example1_wrapper{
+	font-size: 10pt;
+}
+
+.khung table, h1, h2, h3, h4 {
+	min-width: 1130px;
+	margin: auto;
+	max-width: 1239px;
+}

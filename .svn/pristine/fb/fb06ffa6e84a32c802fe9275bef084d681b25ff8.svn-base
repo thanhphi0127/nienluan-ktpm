@@ -1,0 +1,17 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Mdiendan extends CI_Model{
+	public function __construct() {
+		parent::__construct();
+        $this->load->database();
+	}
+    
+    public function newTopic() {
+        $query = $this->db->select('tieude, username, nguoitao, ngaytao, trangthai, noidung')
+                          ->from('chude')
+                          ->where('trangthai', 'Đang thảo luận')
+                          ->order_by('ngaytao desc');
+        $query = $this->db->get();
+        return $query->result();
+    }
+}

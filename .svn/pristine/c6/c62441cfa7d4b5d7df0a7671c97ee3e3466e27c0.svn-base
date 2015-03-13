@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="DANH SÁCH CÔNG VIỆC">
+<Table>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">M&ocirc;n học</Data></Cell>
+<Cell><Data ss:Type="String">Cấu tr&uacute;c dữ liệu</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">Nh&oacute;m </Data></Cell>
+<Cell><Data ss:Type="String">1</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">Phi&ecirc;n bản:</Data></Cell>
+<Cell><Data ss:Type="String">12-10-2014</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">Danh s&aacute;ch th&agrave;nh vi&ecirc;n:</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">STT</Data></Cell>
+<Cell><Data ss:Type="String">MSSV</Data></Cell>
+<Cell><Data ss:Type="String">Họ t&ecirc;n</Data></Cell>
+<Cell><Data ss:Type="String">SDT</Data></Cell>
+<Cell><Data ss:Type="String">Email</Data></Cell>
+<Cell><Data ss:Type="String">Chức vụ</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">1</Data></Cell>
+<Cell><Data ss:Type="String">1111325</Data></Cell>
+<Cell><Data ss:Type="String">Nguyễn Thanh Phi</Data></Cell>
+<Cell><Data ss:Type="String">999</Data></Cell>
+<Cell><Data ss:Type="String">w</Data></Cell>
+<Cell><Data ss:Type="String">Th&agrave;nh vi&ecirc;n</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">2</Data></Cell>
+<Cell><Data ss:Type="String">1111333</Data></Cell>
+<Cell><Data ss:Type="String">Huỳnh Thanh Nh&atilde;</Data></Cell>
+<Cell><Data ss:Type="String">0</Data></Cell>
+<Cell><Data ss:Type="String">rer</Data></Cell>
+<Cell><Data ss:Type="String">Th&agrave;nh vi&ecirc;n</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">3</Data></Cell>
+<Cell><Data ss:Type="String">1111336</Data></Cell>
+<Cell><Data ss:Type="String">Nguyễn Vương Th&agrave;nh T&acirc;m</Data></Cell>
+<Cell><Data ss:Type="String">96833</Data></Cell>
+<Cell><Data ss:Type="String">ded</Data></Cell>
+<Cell><Data ss:Type="String">Th&agrave;nh vi&ecirc;n</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">Danh s&aacute;ch c&ocirc;ng việc:</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">STT</Data></Cell>
+<Cell><Data ss:Type="String">T&ecirc;n c&ocirc;ng việc</Data></Cell>
+<Cell><Data ss:Type="String">Từ ng&agrave;y</Data></Cell>
+<Cell><Data ss:Type="String">Đến ng&agrave;y</Data></Cell>
+<Cell><Data ss:Type="String">Người được giao</Data></Cell>
+<Cell><Data ss:Type="String">Số giờ</Data></Cell>
+<Cell><Data ss:Type="String">M&ocirc; tả</Data></Cell>
+<Cell><Data ss:Type="String">Mức độ</Data></Cell>
+<Cell><Data ss:Type="String">T&iacute;nh chất</Data></Cell>
+</Row>
+<Row>
+<Cell><Data ss:Type="String">1</Data></Cell>
+<Cell><Data ss:Type="String">C&Ocirc;ng việc A</Data></Cell>
+<Cell><Data ss:Type="String">2014-10-12 00:00:00</Data></Cell>
+<Cell><Data ss:Type="String">2014-10-26 00:00:00</Data></Cell>
+<Cell><Data ss:Type="String">Nguyễn Vương Th&agrave;nh T&acirc;m</Data></Cell>
+<Cell><Data ss:Type="String">0</Data></Cell>
+<Cell><Data ss:Type="String"></Data></Cell>
+<Cell><Data ss:Type="String">Kh&ocirc;ng quan trọng</Data></Cell>
+<Cell><Data ss:Type="String">Nhiệm vụ</Data></Cell>
+</Row>
+</Table>
+</Worksheet>
+</Workbook>	

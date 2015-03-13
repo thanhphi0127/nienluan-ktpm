@@ -1,0 +1,210 @@
+﻿<section id='cit_wrapper' >
+	<header class='quanly'>
+		<img src='public/img/quanlycongviec_logo.png'></img>
+		<span class='title'> Quản lý mẫu nhóm</span>
+		
+	</header>
+	
+	
+	<section class='list grouplist'>
+		<header class='tab grouplist'>
+			<ul>
+			<li>
+			<span  class="btnAMD manipulation btnAddgroup">Tạo mẫu nhóm</span>
+			</li>
+			</ul>
+			
+		</header>
+		<section class='view'>
+			<section class='advance'>
+				<div class='search'>
+					<form action='' method='post'>
+					<p>
+						<label><div class='span_title'>Môn học</div>
+							<select name='subject'>
+								<option>--Tất cả-</option>
+								<option>--Phân tích thiết kế hệ thống thông tin--</option>
+								<option>--Niên luận kỹ thuật phần mềm-</option>
+							</select> 
+						</label>
+					</p>
+					
+					<p><div class='span_title'>Tìm kiếm</div>
+								<input type='text' class='text'  placeholder='Nhập từ khóa'/>
+								<input type='submit' value='Tìm' class='btnFind'  />
+						</label>
+					</p>
+					
+					</form>
+				</div>
+				<div class='tool'>
+					
+				</div>
+			</section>
+			<div id='calendar'>
+			</div>
+			<div class='list grouplist'>
+				<table>
+					<tr><th><input type='checkbox' value='checkall'/></th>
+						<th><span class='sort'>Môn học  <img src='public/img/downarrowicon.png'></img></span></th>
+						<th><span class='sort'>Số thành viên tối đa  <img src='public/img/downarrowicon.png'></img></span></th>
+						<th><span class='sort'>Mô tả  <img src='public/img/downarrowicon.png'></img></span></th>
+						<th>Thao tác</th></tr>
+					<tr> 
+						<td class='center'><input type='checkbox' value='checkall'/></td>
+						<td><a>Phân tích thiết kế hệ thống thông tin</a></td>
+						<td>4</td>
+						<td></td>
+						<td><span class='manipulation btnDeletetask'><img src='public/img/deleteicon.png'></img></span>
+							<span class='manipulation btnModifytask'><img src='public/img/editicon.png'></img></span></td>
+					</tr>
+					<tr>
+						<td class='center'><input type='checkbox' value='checkall'/></td>
+						<td><a>Niên luận kỹ thuật phần mềm</a></td>
+						<td>5</td>
+						<td></td>
+						<td><span class='manipulation btnDeletetask'><img src='public/img/deleteicon.png'></img></span>
+							<span class='manipulation btnModifytask'><img src='public/img/editicon.png'></img></span></td>
+					</tr>
+				</table>
+				<section class='pagination'>
+					<ul>
+						<li><a href='#'>Trang đầu</a></li>
+						<li><a href='#'>Lùi lại</a></li>
+						<li><a href='#'>1</a></li>
+						<li><a href='#'>Tiếp theo</a></li>
+						<li><a href='#'>Trang cuối</a></li>
+						<li>
+							<form action='' method='post' >
+								<input type='text' class='search' placeholder='Nhập số trang'/> 
+								<input type='submit' value='Chuyển đến'/>;
+							</form>
+						</li>
+					</ul>
+				</section>
+			</div>	
+		</section>
+		
+	</section>
+	
+	<section class='manipulation'>
+		<div id='black'>
+		</div>
+		<img class='manipulation' src='public/img/iconclose.png'></img>
+		<div id='addtask' >
+<!--		  /* edrerefeff------------------------------------------------------------------------------------------------------*/ -->
+				  <form action="" method="post" class="smart-green">
+					<h1>Contact Form 
+						<span>Please fill all the texts in the fields.</span>
+					</h1>
+					<label>
+						<span>Your Name :</span>
+						<input id="name" type="text" name="name" placeholder="Your Full Name" />
+					</label>
+					
+					<label>
+						<span>Your Email :</span>
+						<input id="email" type="email" name="email" placeholder="Valid Email Address" />
+					</label>
+					
+					<fieldset>
+						<legend>Thời gian</legend>
+							<label>Ngày bắt đầu
+								<input type="date" name='seminar'  />
+							</label>
+						
+						
+							<label>Ngày kết thúc  <input type="date" name='description'  ></label>
+						
+						
+							<label>Uớc lượng thời gian (giờ) <input type="text" name='description'  ></label>
+						
+					</fieldset>
+					
+					<label><span>Mức độ công việc  </span><br/>
+						<ul>
+							<li><label>	<input type="radio" name='description'  />Không quan trọng</label></li>
+							<li><label>	<input type="radio" name='description'  />Bình thường</label></li>
+							<li><label>	<input type="radio" name='description'  />Quan trọng</label></li>
+						</ul>
+					
+					<label>
+						<span>Message :</span>
+						<textarea id="message" name="message" placeholder="Your Message to Us"></textarea>
+					</label> 
+					 <label>
+						<span>Subject :</span><select name="selection">
+						<option value="Job Inquiry">Job Inquiry</option>
+						<option value="General Question">General Question</option>
+						</select>
+					</label>    
+					 <label>
+						<span>&nbsp;</span> 
+						<input type="button" class="button" value="Send" /> 
+					</label>    
+				</form>
+<!--/*--------------------------------------------------------------------------------------------------------------------------------------*/-->
+		
+		</div>
+		<div id='modifytask' class='form'>
+			<form class='form' action="" method="post">
+					<h2>Chỉnh sửa công việc</h2>
+				
+					<p>
+						<label>Tên công việc <input type="text" name='maxmember' value='2'>
+						</label>
+					</p> 
+					<p>
+						<label>Ngày bắt đầu</p><input type="date" name='seminar'  >
+						</label>
+					</p> 
+					<p><label>Ngày kết thúc  </p><input type="date" name='description'  ></label></p> 
+					<p><label>Hoàn thành(%)  </p><input type="number" name='description'  ></label></p> 
+					<p><label>Uớc lượng thời gian (giờ)  </p><input type="text" name='description'  ></label></p> 
+					<p><label>Mức độ công việc  
+							<input type="radio" name='description'  >Không quan trọng
+							<input type="radio" name='description'  >Bình thường
+							<input type="radio" name='description'  >Quan trọng
+						</label>
+					</p>
+							
+					
+					<p><label>Người được giao </p>
+							<select name='level' >
+								
+									  <option value="mon1">Tôi</option>
+									  <option value="mon2">Nguyễn Thanh Phi</option>
+									  <option value="mon3">Huỳnh Thanh Nhã</option>
+									  <option value="mon4">Trịnh Sa Lem</option>
+								
+							</select>
+						</label>
+					</p> 
+					<p><label>Mô tả</p><input type="text" name='description'  ></label></p> 
+					<p><label>Loại công việc  </p>
+							<input type="radio" name='description'  >Nhiệm vụ
+							<input type="radio" name='description'  >Khó khăn
+						</label>
+					</p> 
+					<p><label>Trạng thái: 
+							<input type="radio" name='description'  >Đóng
+							<input type="radio" name='description'  >Mới
+							<input type="radio" name='description'  >Trong tiến trình
+						</label>
+					</p> 
+					<p>
+						<label>
+							<input type="submit" class='submit-button'  value='Đăng kí'/>
+							<input type='reset' class='submit-button'  value='Làm lại'/>
+						</label>
+					</p>
+			</form>
+		</div>
+		<div id='iframe_login'>
+			<div class='verify'><?php $this->load->view('auth/login');?></div>
+			<div  class='iframe_login_up' >
+				<img src='public/img/buttonup.png'></img>
+			</div>
+		</div>
+	</section>
+</section>

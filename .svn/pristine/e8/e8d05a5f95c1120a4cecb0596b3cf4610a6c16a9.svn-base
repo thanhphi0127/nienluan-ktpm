@@ -1,0 +1,239 @@
+﻿<!-- * View quản lý nhóm sinh viên
+     * @author: Thành Tâm
+-->
+
+<section id='cit_wrapper'>
+	
+	<header class='quanly' style="height: 30px">
+		
+		Quản lý nhóm
+	</header>
+	<section class='list quanlynhom'>
+		<header class='tab'>
+		<fieldset >
+			<legend>Thông tin giảng viên</legend>
+			<iframe class='iframe_ttgv' name='thongtingiangvien' id='thongtingiangvien' scrolling="no" src='<?php echo CIT_BASE_URL."iframe/thongtingiangvien/";?>'></iframe>
+		</fieldset>
+		<fieldset class='fright'>
+			<legend>Thao tác</legend>
+			<ul>
+			<li>
+			<span  class="btnAMD btnRegister manipulation"><img style='margin-bottom:-9px;' src='public/img/icondangkinhom.png'></img>Đăng kí nhóm</span>
+			<span  class="btnLeavemanygroup manipulation"><img style='margin-bottom:-9px;' src='public/img/iconleavemanygroup.png'></img>Rời khỏi nhóm</span>
+			</li>
+			</ul>
+		</fieldset>
+			
+		</header>
+		
+		<div class='list grouplist'>
+		<?php echo "<form action='' method='post'>";?>
+			
+				<table>
+					<tr class='tieude_bar'> <th colspan='7'>Danh sách môn học đã đăng kí nhóm</th></tr>
+					<tr><th></th>
+						<th> Môn học </th>
+						<th>Tên nhóm </th>
+						<th>Thành viên </th>
+						<th style='display:none;'>Chức vụ</th><th>Đề tài</th><th>Mô tả</th><th>Thao tác</th>
+					</tr>
+					<?php	
+						if (isset($query_chitietnhom) && !empty($query_chitietnhom) && $query_chitietnhom != NULL){
+							
+							foreach ($query_chitietnhom as $MA_LOPHOCPHAN => $row){
+								if (!empty($row['thongtinnhom'])){
+									echo "<tr> ";
+									echo "<td class='check' ><input class='check' name='check_list[]' type='checkbox' value='".$row['thongtinnhom'][0]['MA_LOPHOCPHAN']."'/></td>";
+									echo "<td class='TEN_MH'><a href='".CIT_BASE_URL."iframe/thongtingiangvien/".$MA_LOPHOCPHAN."' target='thongtingiangvien'>".$row['thongtinnhom'][0]['TEN_MH']."</a></td>";
+									echo "<td>Nhóm <input class='hideinput w60 STT_NHOM' type='text' name='data[STT_NHOM]' value='".$row['thongtinnhom'][0]['STT_NHOM']."' readonly = 'readonly'/></td>";
+									echo "<td>";
+									echo 	"<table class='member'>";
+											
+													foreach ($row['thanhvien'] as $thanhvien){
+													echo "<tr >";
+													  echo "<td>";
+
+															echo "<input class='hide check' type='checkbox' name='check_mssv[]' value='".$thanhvien['MSSV']."' readonly = 'readonly'/>";
+														
+														echo $thanhvien['HOTEN'];
+													  echo "</td>";
+													  echo "<td>";
+															if ($row['thongtinnhom'][0]['NHOMTRUONG'] == $MSSV ){
+																if ($thanhvien['MSSV'] != $row['thongtinnhom'][0]['NHOMTRUONG'])
+																	echo "<span class='manipulation btnDeletemember'><img src='public/img/icondeletemember.png' title='Xóa thành viên'></img></span>";
+																else echo "Nhóm trưởng";
+															}
+															else {
+																if ($row['thongtinnhom'][0]['NHOMTRUONG'] != $thanhvien['MSSV'] )
+																	echo "Thành viên";
+																else echo "Nhóm trưởng";
+															}
+																
+																
+													  echo "</td>";
+													echo "</tr>";
+													}
+									echo "</table>";
+									echo "</td>";
+											
+										
+									echo "<td style='display:none;'>";
+											if ($row['thongtinnhom'][0]['NHOMTRUONG'] == $MSSV)
+												echo "Nhóm trưởng";
+											else echo "Thành viên";
+									echo "</td>";
+									echo "<td class='DETAI' >".$row['thongtinnhom'][0]['DETAI']."</td>";
+									echo "<td class='MOTA'>".$row['thongtinnhom'][0]['MOTA']."</td>";
+									echo "<td>";
+										if ($row['thongtinnhom'][0]['NHOMTRUONG'] == $MSSV )
+											echo "<span class='manipulation btnLeavegroup'><img src='public/img/iconroinhom.png' title='Rời khỏi nhóm'></img></span>";
+										echo "<span class='manipulation btnModifygroup'><img src='public/img/iconedit.png' title='Chỉnh sửa chi tiết nhóm'></img></span>";
+										if ($row['thongtinnhom'][0]['NHOMTRUONG'] == $MSSV )
+											echo "<span class='manipulation btnAddmember'><img src='public/img/iconaddmember.png' title='Thêm thành viên'></img></span>
+											
+										</td>";
+									echo "</tr>";
+								}	
+								
+							}
+						}
+						else echo "<tr><td colspan='7'><span style='font-size:20px; color:blue;'>Chưa có nhóm</span></td></tr>";
+						
+						echo "<input type='submit' class='hide' value='Rời khỏi nhóm' name='leavegroup'/>";
+						echo "<input type='submit' class='hide' value='Xóa thành viên' name='deletemember'/>";
+						echo "</form>";
+					?>
+					
+				</table>
+				
+				
+		
+	</section>
+	
+	<section class='manipulation'>
+		<div id='black'>
+		</div>
+		<img class='manipulation' src='public/img/iconclose.png' style='display:block'>
+		
+		<div id='addmember' class='form'>
+		
+			<form  action="" method="post">
+			
+				<input type='text' id ='flag' class='hide' name='data[flag]' value='<?php echo common_postvalue(isset($flag_post) ? $flag_post : '');?>'/>
+				<h1>THÊM THÀNH VIÊN
+						<span><tieude>Môn</tieude> <?php if (isset($TEN_MH)) echo $TEN_MH;?></span></h1>
+						<input type='text' class='hide MA_LOPHOCPHAN' name='data[MA_LOPHOCPHAN]' value='<?php echo common_postvalue(isset($MA_LOPHOCPHAN) ? $MA_LOPHOCPHAN : '');?>'/>
+						<input type='text' class='hide STT_NHOM' name='data[STT_NHOM]' value='<?php echo common_postvalue(isset($STT_NHOM) ? $STT_NHOM : '');?>'/>
+						<p><span class='error mssv'></span></p>
+						<tieude>Danh sách sinh viên cùng lớp</tieude>
+						
+						<label>
+						<select id='MSSV_THANHVIEN' name='data[MSSV]' >
+						 <?php if (isset($sinhviencunglop) && !empty($sinhviencunglop)){
+							echo "<option value='0' disabled='disabled'>Chọn 1 thành viên</option>";
+							foreach ($sinhviencunglop['chuaconhom'] as $row){
+								echo "<option value='".$row['MSSV']."'>".$row['HOTEN']."</option>";
+							}
+							foreach ($sinhviencunglop['daconhom'] as $row){
+								echo "<option value='0' disabled='disabled'>".$row['HOTEN']."</option>";
+							}
+							
+						 }
+								else 
+									echo "<option value='empty'>Danh sách rỗng</option>";
+								?>
+						</select>
+						</label>
+					
+					
+					<label>
+					<input type='button' name='close' class='submit-button' value='Đóng'/>
+					<input type='reset' class='submit-button' value='Làm lại'/>
+					<input type="submit" class='submit-button' name='addmember' value='THÊM'/>
+					
+					
+				`	</label>
+				<input type='submit' class='hide' name='getclassmate' value='Lấy thành viên cùng nhóm'/>	
+				
+			</form>
+
+		</div>
+	
+		
+		<div id='modifygroup' class='form'>
+		
+			<form  action="" method="post">
+				<h1>CHỈNH SỦA THÔNG TIN NHÓM
+					<span>Môn </span>
+				</h1>	
+						<input type='text' class='hide STT_NHOM' name='data[STT_NHOM]'/>
+						<input type='text' class='hide MA_LOPHOCPHAN' name='data[MA_LOPHOCPHAN]'/>
+						
+						<p><label><tieude>Tên đề tài:</tieude></title><input type="text" class='DETAI' name='data[DETAI]'  /></label></p> 
+						 <p><label><tieude>Mô tả:</tieude></title><textarea name='data[MOTA]' class='MOTA'></textarea></label></p> 
+						 <p>
+						 <label>
+							 <input type='button' name='close' class='submit-button'  value='Đóng'/>
+							 <input type='reset' class='submit-button'  value='Làm lại'/>
+							<input type="submit" name ='modifygroup' class='submit-button'  value='Lưu'/>
+						
+						</label>
+						</p>
+					
+				
+			</form>
+
+		</div>
+		
+		
+		
+		
+		<div id='register' class='form'>
+			<form action="" method="post" >
+			<h1>ĐĂNG KÍ NHÓM</h1>
+						
+					
+					
+						<?php
+								if (isset($query_monhocthamgia) && !empty($query_monhocthamgia)){
+								echo "<p><tieude>Môn học chưa có nhóm</title></p>";
+									echo "<select name='data[MA_LOPHOCPHAN]' >";
+									foreach ($query_monhocthamgia as $row) {
+										echo "<option value='".$row['MA_LOPHOCPHAN']."'>".$row['TEN_MH']."</option>";
+									}
+									echo "</select>";
+								}
+								else {
+									echo "<span style='color:blue'>THÔNG BÁO</span>";
+									echo "<br />Hết nhóm hoặc không tham gia môn học nào trong học kì này";
+								}
+							?>
+							
+					
+						
+						<?php
+								if (isset($query_monhocthamgia) && !empty($query_monhocthamgia)){
+						echo "<fieldset class='register_info'>
+							<legend>THÔNG TIN</legend>
+							<iframe src='".CIT_BASE_URL."iframe/thongtinmaunhom/".$query_monhocthamgia[0]['MA_LOPHOCPHAN']."'>
+							</iframe>
+						</fieldset>
+						<p><label><tieude>Tên đề tài:</title></p><input type='text' name='data[DETAI]'  placeholder='Có thể cập nhật sau' ></label></p> 
+						 <p><label><tieude>Mô tả:</title> </p><textarea name='data[MOTA]' placeholder='Có thể cập nhật sau'></textarea></label></p> 
+						 <p>
+						 <label>
+						 <input type='button' name='close' class='submit-button'  value='Đóng'/>
+						 <input type='reset' class='submit-button'  value='Làm lại'/>
+						<input type='submit' class='submit-button' name='registergroup' value='Đăng kí'/>
+						
+						</label>
+						</p>
+					</fieldset>
+			</form>";
+		}
+		?>
+		
+		</div>
+	
+	</section>
+</section>

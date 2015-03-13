@@ -1,0 +1,196 @@
+div.bar {
+	width: 100%;
+height: 40px;
+margin-top: -20px;
+background: #3898DE;
+color: white;
+padding: 5px 10px;
+text-align: center;
+font-weight: bold;
+font-size: 22px;
+margin-bottom:10px;
+}
+section.dsthongbao {
+	width: 100%;
+	margin: 0px;
+	float: left;
+}
+
+div.tomtat {
+	width: 34%;
+	margin: 0px;
+	float: left;
+	margin-left:20px;
+}
+div.chitiet {
+	width: 63%;
+	float: right;
+}
+
+p{
+	
+	word-wrap: break-word;
+}
+
+table.tomtat tr td, table.chitiet tr td {
+	width:450px;
+}
+
+#taothongbao {
+	padding:0px;
+}
+div.taothongbao{
+	width:100%;
+	height:43px;
+	padding:3px 0px 3px 0px;
+	
+	
+}
+a.taothongbao{
+	float:right;
+	margin-right:20px;
+}
+.hoten {
+	float:none;
+	font-weight:bold;
+}
+.ngaytb {
+	font-weight:bold;
+	float:none;
+}
+.tieude {
+	font-size:16px;
+
+}
+
+.noidung {
+	font-weight:lighter;
+}
+
+tr.TB_DAXEM p label span{
+	font-weight: lighter !important;
+}
+
+tr.TB_CHUAXEM  p label span{
+	font-weight:bold ;
+	
+}
+
+
+
+#taothongbao {
+	display:none;
+	width:500px;
+}
+
+
+#tips {
+	display:none;
+	position: absolute;
+top: 124px;
+right: 298px;
+width: 223px;
+padding: 7px;
+background: white;
+border: 1px solid red;
+border-radius: 4px;
+}
+
+.error {
+	color:red;
+	font-style:italic;
+}
+
+a span.tieude {
+	color: blue;
+font-weight: bold;
+text-decoration: none !important;
+cursor: default;
+}
+
+table.tomtat tr:hover td{
+	background: aliceblue;
+	cursor:pointer;
+}
+table.chitiet {
+	border: 2px solid #999;
+	background: aliceblue;
+}
+table.chitiet tr{
+	display:none;
+}
+
+
+table.chitiet tr td,table.chitiet tr th{
+	padding:5px;
+	vertical-align:top;
+}
+table.chitiet tr:nth-child(even) td{
+	height:371px;
+}
+
+.tieude-tb {
+	color:#006;
+	width: 102px;
+	font-weight: bold;
+}
+
+p.pp{
+	border-bottom: 1px solid #CCC;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+
+table.chitiet tr:first-child, table.chitiet tr:nth-child(2){
+	display:block;
+}
+
+.form h1 {
+	width:110%;
+}
+
+img.close{
+	width:30px;
+	height:30px;
+	padding:5px;
+	position:absolute;
+	top: 25%;
+	right: 111px;
+	opacity: 1;
+}
+
+
+
+section.dsthongbaogui{
+	display:none;
+}
+
+a.thongbaoden, a.thongbaogui{
+	float:left;
+	padding:5px 0px 0px 20px;
+}
+
+.lighter {
+	font-weight:lighter !important;
+}
+
+label {
+	font-weight:lighter;
+}
+
+.form p {
+	margin:-15px 0px;
+}
+
+a.tieude_tomtat {
+	color:blue;
+}
+
+span.nguoigui:before{
+	content:"Từ: ";
+}
+
+span.nguoinhan:before{
+	content:"Đến: ";
+}

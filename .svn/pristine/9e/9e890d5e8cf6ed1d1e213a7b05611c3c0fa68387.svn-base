@@ -1,0 +1,120 @@
+﻿<!-- * View download danh sách công việc, thành viên
+     * @author: Thành Tâm
+-->
+
+
+
+	
+<section id='cit_wrapper'>
+	<header class='quanly'>
+		
+		<p>In danh sách công </p>
+	</header>
+	
+	<section class='config_download form'>
+		<form action="" method="post">
+			<fieldset>
+				<legend>Cấu hình download</legend>
+				<label> Chọn môn học
+						<select name='data[MA_LOPHOCPHAN]'>
+						<?php
+						  if (isset($query_lhpconhom) && !empty($query_lhpconhom)) {
+							foreach ($query_lhpconhom as $row){
+								echo '<option value="'.$row['MA_LOPHOCPHAN'].'-'.$row['STT_NHOM'].'">'.$row['TEN_MH'].' - Nhóm'.$row['STT_NHOM'].'</option>';
+							}
+								
+						  }
+						  else echo "Chưa có nhóm hoặc chưa có học phần để in";
+						 ?>
+						</select>
+					<label>
+				<fieldset class='config_list' id='task' name='task'>
+					<legend>
+						<label>Danh sách công việc <input id='list' type="checkbox" name='data[list]'  checked='checked'/></label>
+					</legend>
+					<br/>
+					<p class='nothide'>
+					<label> 
+						<select name='data[orderby]'>
+						  <option value="ngaybddesc">Mới nhất trước</option>
+						  <option value="ngaybdasc">Cũ nhất trước</option>
+						  <option value="TEN_CV">Tên công việc</option>
+						  <option value="TINHCHAT">Loại công việc</option>
+						</select>
+					<label>
+					</p>
+						<span> <label> <p id='detail'> Xem / Ẩn chi tiết >> </p></label> </span>
+						<p><label >Tên công việc:<input disabled='disabled' type="checkbox" name='check_list[]' value='TEN_CV' checked='checked' ></label></p> 
+						<p><label >Ngày bắt đầu: <input  disabled='disabled' type="checkbox"  name='check_list[]'  value='NGAYBD' checked='checked'></label></p> 
+						<p><label >Ngày kết thúc:<input  disabled='disabled' type="checkbox"  name='check_list[]'   value='NGAYKT'  checked='checked' ></label></p> 
+						<p><label >Người được giao: <input  disabled='disabled' type="checkbox"  name='check_list[]'  value='NGUOIDUOCGIAO'  checked='checked' ></label></p>
+						<p><label >Ước lượng thời gian<input type="checkbox"  name='check_list[]'  value='THOIGIANUL'  checked='checked'></label></p> 
+						<p><label >Mô tả: <input type="checkbox"  name='check_list[]'  value='MOTA'  checked='checked'></label></p> 
+						
+						<p><label>Mức độ công việc: <input type="checkbox"  name='check_list[]'   value='TEN_MUCDO'  checked='checked'></label></p>
+						<p><label >Loại công việc: <input type="checkbox" name='check_list[]'  value='TEN_TINHCHAT'  checked='checked' ></label>
+						
+
+				</fieldset>
+				<p>
+					<input type="submit" class='submit-button' name='download' value='Download'/>
+					<input type='reset' class='submit-button'  value='Làm lại'/>
+				</p>
+			</fieldset>
+		</form>
+		
+	</section>
+		
+	<section class='review_download'>
+		<br/><p>Xem trước bản download</p> <br/>
+		<section class='review_area'>
+			<br/><br/><span class='groupname'>TÊN MÔN HỌC - TÊN NHÓM </span> </p>
+			<span class='version'> PHIÊN BẢN ngày dd/mm/yyyy </span><br/><br/><br/>
+			<span class='member'>Danh sách thành viên</span><br/><br/><br/>
+			<table border='1'  class='member'>
+				<tr><td>STT</td><td>Mã số</td><td>Họ và tên</td><td>Email</td><td>Số điện tdoại</td><td>Chức vụ</td>
+				<tr> <td>1</td>
+					<td>123456</td>
+					<td>Nguyễn Văn A</td>
+					<td>nga@gmail.com</td>
+					<td>0xxxxxxxxxxxx</td>
+					<td>Nhóm trưởng</td>
+				</tr>
+				<tr> <td>2</td>
+					<td>B111234</td>
+					<td>Nguyễn Văn B</td>
+					<td>ngb@gmail.com</td>
+					<td>0xxxxxxxxxxxx</td>
+					<td>tdành viên</td>
+				</tr>
+				
+			</table>
+			<span class='list'>Danh sách công việc</span><br/><br/><br/>
+			<table border='1' class='list'>
+				<tr><td style='width:10px;'>STT</td><td>Tên</td><td>Từ ngày</td><td>Đến ngày</td><td>Số giờ</td><td>Mô tả</td><td>Người được giao</td><td>Mức độ</td><td>Loại công việc</td></tr>
+				<tr><td>1</td> 
+					<td>Công việc A</td>
+					<td> 17/08/2014</td>
+					<td> 24/8/2014</td>
+					<td> 20</td>
+					<td>Mô tả của công việc A</td>
+					<td>Nguyễn Văn A<br/>Trần tdị B</td>
+					<td> QT</td>
+					<td> NV</td>
+				</tr>
+				<tr><td>2</td>
+					<td>Công việc B</td>
+					<td> 17/08/2014</td>
+					<td> 24/8/2014</td>
+					<td> 20</td>
+					<td>Mô tả của công việc B</td>
+					<td>Nguyễn Văn A<br/>Trần tdị B</td>
+					<td> QT</td>
+					<td> NV</td>
+				</tr>
+				
+			</table>
+		</section>
+	</section>
+</section>
+

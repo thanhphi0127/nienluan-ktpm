@@ -1,0 +1,81 @@
+$(document).ready(function(){
+
+	$('div.form > h2').html("CHỨNG THỰC NGƯỜI DÙNG");
+	$('#login #intro').hide();
+	$('span.btnDeletemember img').attr('title','Xóa khỏi nhóm');
+	$('span.btnLeave img').attr('title','Rời khỏi nhóm');
+	$('span.btnSendmail').attr('title','Gửi thông báo');	
+	/* iframe notification */
+	$('span.manipulation').click(function() {
+		$('section.manipulation').fadeIn(1000);
+		$('img.manipulation').show();
+		if ($(this).hasClass('btnRegister')){
+			$('#register').show();
+			$('#addmember').hide()
+			$('#modifymember').hide();
+			$("#iframe_login").hide();
+		}
+		else if ($(this).hasClass('btnAddmember')){
+			$('#addmember').show();
+			$('#register').hide();
+			$('#modifymember').hide();
+			$("#iframe_login").hide();
+		}
+		else if ($(this).hasClass('btnModifymember')){
+			$('#modifymember').show();
+			$('#register').hide();
+			$('#addmember').hide()
+			$("#iframe_login").hide();
+		}
+		else if ($(this).hasClass('btnDeletemember')){
+			$("#iframe_login").slideDown("slow");
+			$('#modifymember').hide();
+			$('#register').hide();
+			$('#addmember').hide()
+			
+		}
+		else if ($(this).hasClass('btnHidedetail')){
+			$("#group_detail").hide();
+			$('section.manipulation').hide();
+			$('#tab_subject').css('float','none');
+			
+		}
+	});
+	/* end ----------------*/
+	
+	/* img manipulation           */
+	$('img.manipulation').click(function (){
+		$('section.manipulation').hide(500);
+		$('#iframe_login').slideUp(500);
+		$(this).hide();
+	});
+	
+	$('#iframe_login div.iframe_login_up img').click(function(){
+		$('#iframe_login').slideUp(500);
+		$('section.manipulation').hide(500);
+	});
+	/*end ------------------*/
+	
+	/*  group detail*/
+	$('#tab_subject tr td').click(function(){
+		$('#tab_subject').css("float","left");
+		$('#group_detail').fadeIn(1000);
+	});
+	
+	$('span[name=dbclmpm_n4]').click(function(){
+			$('#home_quanlynhom').css("display","none");
+		$('#home_quanlynhom').css("float","left");
+			$('#home_quanlynhom').fadeIn(1000);
+		$('#group_detail').fadeIn(1000);
+	});
+
+	
+	/* end ------------------*/
+	
+	
+
+	
+	
+
+});
+

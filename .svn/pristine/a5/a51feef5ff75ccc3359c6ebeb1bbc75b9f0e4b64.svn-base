@@ -1,0 +1,121 @@
+#login {
+	text-align:center;
+}
+
+#login div.form {
+	width:30%;
+	float:right;
+	margin: 2% 3% 0% 5%;
+}
+header.loginheader {
+	background:#000066;
+	color:#00B200;
+	padding:5px;
+	font-size:20px;
+	font-weight:bold;
+	vertical-align:middle;
+}
+header img.logo {
+	width: 42px;
+	margin: 4px 6px;
+	height:auto;
+}
+header span.org{
+	color:red;
+	font-size:30px;
+	
+}
+header span.orgfullname{
+	color:#E1F8FF;
+	font-size:30px;
+}
+
+
+#forgot  {
+	width:400px;
+}
+ul.forgot{
+	float:right;
+	list-style:none;
+	margin:15px 3px;
+	padding:0px;
+}
+ul.forgot li {
+	display:inline;
+	margin:2px 2px;
+}
+
+ul.forgot li a {	
+	text-decoration:underline;
+}
+
+#intro {
+	width:100%;
+	height:405px;
+	margin: 25px 10px;
+	text-align:left;
+	min-width: 80%;
+	max-width: 950%;
+	min-height: 380px;
+}
+
+#intro span{
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border: 0px solid #000000;
+	background-color:#D9534F;
+	padding:10px;
+	color:white;
+	font-weight:700;
+	margin-bottom:20px;
+}
+
+#intro table {
+	border-collapse: collapse;
+	margin-top:20px;
+	height:100%;
+	width:100%;
+	background:#E0EBFF;
+	border-left:4px solid #0066FF;
+}
+#intro table tr td{
+	padding:10px;
+	font-size:14px;
+}
+
+//Login form by Thanh Phi
+
+.form-group label, input, select{
+	display: inline;
+	padding: 0px;
+}
+
+.form-group label{
+	margin-left: 10px;
+				
+}
+
+.form-group_check label{
+	margin-left: 10px;
+				
+}
+			
+.form-group input, .input-group{
+	width: 300px;
+}
+
+.panel{
+	height: 410px;
+	width: 100%;
+	min-width: 350px;
+	max-width: 350px;
+}
+
+p.form-group {
+	margin-bottom: 5px;
+}	
+
+.btn-primary{
+	margin-left: 50px;	
+}

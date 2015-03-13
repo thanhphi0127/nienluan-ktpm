@@ -1,0 +1,9 @@
+$(document).ready(function(){
+  $('img.closeall').click(function(){
+		location.reload();
+		
+	});
+	$('#menu_thongbao').parent().click(function(){
+		$('#frame_thongbao').fadeToggle(300);
+	});
+});

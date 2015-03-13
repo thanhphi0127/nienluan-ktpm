@@ -1,0 +1,216 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Diendan extends MY_Controller {
+	private $auth;
+	private $MSSV;
+	private $MA_HK;
+	private $MA_NH;
+	public function __construct(){
+		parent::__construct();
+		$this->MSSV = '1111319';
+		$this->MA_HK = 1;
+		$this->MA_NH = 2014;
+		$this->auth = $this->lib_authentication->check_cookie();			
+		if ($this->auth == NULL)
+			$this->lib_string->alert("", CIT_BASE_URL."auth/login");
+
+	}	
+	/*******************************
+    Name            : trangchudiendan
+    Param           : none
+    Global variable : none
+    Local variable  : none
+    return          : none
+    ********************************/
+    public function index(){
+		$data['username'] =  $this->auth['username'];
+        $data['seo']['title'] = 'Diễn đàn';
+		$data['seo']['keyword'] = 'forum management';
+		$data['seo']['description'] = '';
+		$data['flag_press'] = 0;
+        
+		$this -> load -> model('mgiangvien');
+		$this -> load -> model('msinhvien');
+		
+		$data['username'] =  $this->auth['username'];
+		$data['ma_quyen'] =  $this->auth['ma_quyen'];
+		if ($data['ma_quyen'] == 1 || $data['ma_quyen'] == 2) {
+			$data['hoten'] = $this->mgiangvien->LayTenGiangVien($data['username']);
+		} else {
+			$data['hoten'] = $this->msinhvien->LayTenSinhVien($data['username']);
+
+		}
+		
+		// Load model
+        $this->load->Model('Mdiendan');
+		
+        //Kiem tra form add hop le
+        $data['check_add'] = 0;
+		$data['check_modify'] = 0;
+
+        /*****************************************
+                Insert new topic to database
+        ******************************************/
+
+        if (isset($_POST['btn_add_save'])) {
+			$_POST = $this->input->post('add');
+            // Include validation library
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
+            $this->form_validation->set_rules('tieude','Tiêu đề','trim|required');
+            $this->form_validation->set_rules('noidung','Nội dung','trim|required');
+            
+            if ($this->form_validation->run() == FALSE) {
+
+                $data['check_add'] = 1;
+            }
+            else {
+                // Get machude and increase
+                /*$query = $this->db->query('SELECT max(ma_chude) as max_machude FROM chude'); 
+                $row = $query->row_array();
+                $max_machude = $row['max_machude'] + 1;*/
+
+                // Set values for table columns
+                $add = array (
+                        'username' => $data['username'],
+                        'ngaytao' => date('Y-m-d G:i:s'),
+                        'tieude'  => $_POST['tieude'],
+                        'trangthai' => $_POST['trangthai'],
+                        'noidung' => $_POST['noidung']
+                        );
+                
+                // Tranfering data to model
+                $this->Mdiendan->saveTopic($add);
+            }
+        }
+
+        /***************************************************
+                    Update topic to database
+        ***************************************************/
+        if (isset($_POST['btn_update_save']) && $this->input->post('btn_update_save')) { //Neu nhat nut luu lai trong form sua
+           
+            $_POST = $this->input->post('modify');
+			// Include validation library
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
+            $this->form_validation->set_rules('tieude','Tiêu đề','trim|required');
+            $this->form_validation->set_rules('noidung','Nội dung','trim|required');
+
+            if ($this->form_validation->run() == FALSE) {
+                $data['check_modify'] = 1;
+            } else {
+
+                // Set values for table columns
+                $data = array (
+                        'username' => $data['username'], // not yet
+                        'ngaytao' => date('Y-m-d G:i:s'),
+                        'tieude'  => $_POST['tieude'],
+                        'trangthai' => $_POST['trangthai'],
+                        'noidung' => $_POST['noidung']
+                        );
+
+                // Tranfering data to model
+                if($this->Mdiendan->updateTopic($data, $_POST['ma_chude'])) {
+					$data['check_modify'] = 0;
+
+				} else $data['check_modify'] = 1;
+				
+            }
+        }
+		
+		/***************************************************
+                   Delete topic from database
+        ***************************************************/
+		if (isset($_POST['btn_delete'])) {
+			$_POST = $this->input->post('delete');
+			$this->Mdiendan->deleteTopic($_POST['ma_chude']);
+			
+		}
+		
+        // Load function newTopic() in model
+        $data['newTopic'] = $this->Mdiendan->newTopic();
+        // Load functionlistTopic() in model
+        $data['list'] = $this->Mdiendan->listTopic();
+		
+		/*****************************************************
+						Transmission to xemchude
+		*****************************************************/
+		if ($this->input->post('form_submit')) {
+			$ma_chude = $_POST['get_machude'];
+			$data['content'] = $this->Mdiendan->trans_to_xemchude($ma_chude);
+			
+			/****************************************************************
+							Insert comment to database
+			****************************************************************/
+			if (isset($_POST['btn_comment'])) {
+				echo "da nhan";
+				$data = array(
+						'username' => '1111325',
+						'ma_chude' => $ma_chude,
+						'thoigian' => date('Y-m-d G:i:s'),
+						'noidung' => $this->input->post('ta_comment')
+						);
+				$this->Mdiendan->addComment($data);
+			}
+			$data['seo']['title'] = 'Xem chủ đề';
+			$data['template'] = 'diendan/xemchude';
+			$this->load->view('layout/diendan', isset($data)?$data:NULL);
+		} else {
+		    $data['template'] = 'diendan/diendan';
+			$this->load->view('layout/diendan', isset($data)?$data:NULL);
+		}
+        
+    }
+    
+    public function xemchude() {
+		$data['username'] =  $this->auth['username'];
+        $data['seo']['title'] = 'Xem chủ đề';
+		$data['seo']['keyword'] = 'forum management';
+		$data['seo']['description'] = '';
+		$data['macd'] = 0;
+		$data['giatri'] = 0;
+		// Load model
+        $this->load->Model('Mdiendan');
+		
+        if ($this->input->get('form_submit')) {
+			$data['ma_chude'] = $this->input->get('get_machude');
+			$data['content'] = $this->Mdiendan->trans_to_xemchude($data['ma_chude']);
+			
+			/****************************************************************
+							Insert comment to database
+			****************************************************************/
+			if (isset($_POST['btn_comment']) && $this->input->post('btn_comment')) {
+				// Include validation library
+				/*$this->load->helper(array('form', 'url'));
+				$this->load->library('form_validation');
+				$this->form_validation->set_error_delimiters('<div class="error">','</div>'); 
+				$this->form_validation->set_rules('noidung','Nội dung bình luận','trim|required');
+				
+				if ($this->form_validation->run() == FALSE) {
+					echo "false";
+				}*/
+				//else {
+					echo "true";
+					$data = array(
+							'username' => $data['username'],
+							'ma_chude' => $data['ma_chude'],
+							'thoigian' => date('Y-m-d G:i:s'),
+							'noidung' => $this->input->post('ta_comment')
+							);
+					$this->Mdiendan->addComment($data);
+					$this->load->helper('url');
+					redirect('http://localhost/cit-quanlynhom/diendan/xemchude?get_machude=4'+ '&form_submit=G%E1%BB%ADi');
+				//}
+			}
+			$data['list_comment'] = $this->Mdiendan->dsBinhLuan();
+    	}
+		
+		//echo 	$data['macd'] ;
+		// 	$data['giatri'];
+		
+		$data['template'] = 'diendan/xemchude';
+        $this->load->view('layout/diendan', isset($data)?$data:NULL);
+	}
+}

@@ -1,0 +1,63 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Mdiendan extends CI_Model{
+	public function __construct() {
+		parent::__construct();
+        $this->load->database();
+	}
+    
+    public function newTopic() {
+		$this->db->select('a.ma_chude, a.tieude, a.trangthai, a.username, a.ngaytao, a.noidung')
+                 ->from('chude as a, nguoidung as b')
+                 ->where('a.username = b.username')
+				 ->where('a.trangthai', 'Đang thảo luận')
+                 ->order_by('ngaytao', 'desc');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function listTopic() {
+        $this->db->select('a.ma_chude, a.tieude, a.username, a.trangthai, a.ngaytao, a.noidung')
+                 ->from('chude as a, nguoidung as b')
+				 ->where('a.username = b.username');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function saveTopic($add) {
+        $this->db->insert('chude', $add);
+    }
+    
+    public function updateTopic($modify, $ma_chude) {
+		$this->db->where('ma_chude', $ma_chude);
+        $result = $this->db->update('chude', $modify);
+		return $result;
+    }
+	
+	public function deleteTopic($ma_chude) {
+		$this->db->where('ma_chude', $ma_chude);
+		$this->db->delete('chude');
+	}
+	
+	public function trans_to_xemchude($ma_chude) {
+		$this->db->select('ma_chude, tieude, a.username, ngaytao, trangthai, noidung')
+				 ->from('chude as a, nguoidung as b')
+				 ->where('a.username = b.username')
+				 ->where('ma_chude', $ma_chude);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	public function addComment($add) {
+		$this->db->insert('binhluan', $add);
+	}
+	
+	public function dsBinhLuan() {
+		$this->db->select('a.username, b.tieude, thoigian, a.noidung')
+				 ->from('binhluan as a, chude as b')
+				 ->where('a.ma_chude = b.ma_chude');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+}

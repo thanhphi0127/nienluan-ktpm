@@ -1,0 +1,141 @@
+
+<div class="khung" style="height:auto">
+	<div class="" style="display:block">
+	<div class="mon">
+    	<img src="<?php echo CIT_BASE_URL; ?>public/img/monhoc_sv1.png" alt="Danh sách môn học" />
+    	<h4>Danh sách các môn học</h4>
+        <?php 
+			if(isset($DanhSachMonHocSV) && !empty($DanhSachMonHocSV)){
+			$i = 1;
+			echo '<table id="#example1" class="table-bordered table-hover table_nguoidung">
+				<thead>
+					  <tr>
+						 <th style="font-size: 10pt;">STT</th>
+						 <th style="font-size: 10pt;">Mã môn học</th>
+						 <th style="font-size: 10pt;">Tên môn học</th>
+						 <th style="font-size: 10pt;">Số tín chỉ</th>
+					  </tr>
+				</thead>
+				<tbody>';
+				foreach ($DanhSachMonHocSV as $row) {
+					echo '<tr>
+					        <td>'.$i.'</td>
+							<td>'.$row['MA_MH'].'</td>
+							<td>'.$row['TEN_MH'].'</td>
+							<td>'.$row['SOTC'].'</td>
+						</tr>';
+					$i++;
+				}
+			echo '</tbody>
+			</table>';
+			echo "<p class='tong_mh'>Tổng số môn học: ".($i-1)." môn học</p>";
+			}
+		?>
+    </div>
+    
+    <div class="congviec">
+    	<img src="<?php echo CIT_BASE_URL; ?>public/img/group_icon.png" alt="Danh sách nhóm thanh gia" />
+    	<h4>Danh sách nhóm thanh gia</h4>
+        <?php 
+			if(isset($DanhSachNhomThamGia) && !empty($DanhSachNhomThamGia)){
+			$i = 1;
+			echo '<table id="#example2" class="table-bordered table-hover table_nguoidung" style="margin-top: -10px;">
+				<thead>
+					  <tr>
+						 <th style="font-size: 10pt;">STT nhóm</th>
+						 <th style="font-size: 10pt;">Số lượng thành viên</th>
+						 <th style="font-size: 10pt;">Tên đề tài</th>
+						 <th style="font-size: 10pt;">Môn học</th>
+					  </tr>
+				</thead>
+				<tbody>';
+				foreach ($DanhSachNhomThamGia as $row) {
+					echo '<tr>
+							<td><a title="Nhấp để xem chi tiết nhóm" href="'.CIT_BASE_URL.'sinhvien/quanlynhom">Nhóm '.$row['STT_NHOM'].'</a></td>
+							<td>'.$row['SLTV'].'</td>
+							<td><a title="Nhấp để xem chi tiết nhóm" href="'.CIT_BASE_URL.'sinhvien/quanlynhom">'.$row['DETAI'].'</a></td>
+							<td>'.$row['TEN_MH'].'</td>
+						</tr>';
+					$i++;
+				}
+			echo '</tbody>
+			</table>';
+			echo "<p class='tong_mh'>Tổng số nhóm: ".($i-1)." nhóm</p>";
+			}
+		?>
+    </div>
+    </div>
+    
+    <div class="capnhat">
+    	<h4>Các công việc cập nhật gần đây</h4>
+        <?php 
+			if(isset($CongViecMoiCapNhat) && !empty($CongViecMoiCapNhat)){
+			$i = 1;
+			echo '<table id="#example3" class="table table-hover table_nguoidung">
+				<thead>
+					  <tr>
+						 <th style="font-size: 10pt;">STT</th>
+						 <th style="font-size: 10pt;">Mã công việc</th>
+						 <th style="font-size: 10pt;">Tên công việc</th>
+						 <th style="font-size: 10pt;">Tỉ lệ hoàn thành</th>
+						  <th style="font-size: 10pt;">Ngày sửa</th>
+					  </tr>
+				</thead>
+				<tbody>';
+				foreach ($CongViecMoiCapNhat as $row) {
+					echo '<tr>
+					        <td>'.$i.'</td>
+							<td><a title="Nhấp để xem chi tiết công viêc" href="'.CIT_BASE_URL.'sinhvien/quanlycongviec">'.$row['MA_CV'].'</a></td>
+							<td><a title="Nhấp để xem chi tiết công việc" href="'.CIT_BASE_URL.'sinhvien/quanlycongviec">'.$row['TEN_CV'].'</a></td>
+							<td>'.$row['HOANTHANH'].'</td>
+							<td>'.$row['THOIGIANSUA'].'</td>
+						</tr>';
+					$i++;
+				}
+			echo '</tbody>
+			</table>';
+			}
+		?>
+    </div>
+
+
+
+
+</div>
+
+<!--
+
+
+
+    	<p class="head_congviec">Công việc mới chỉnh sửa</p>
+        <?php 
+			if(isset($CongViecMoiCapNhat) && !empty($CongViecMoiCapNhat)){
+			$i = 1;
+			echo '<table id="#example2" id="table1" class="table-bordered table-hover table_nguoidung" style="width: 450px;">
+				<thead>
+					  <tr>
+						 <th style="font-size: 10pt;">STT</th>
+						 <th style="font-size: 10pt;">Mã công việc</th>
+						 <th style="font-size: 10pt;">Tên công việc</th>
+						 <th style="font-size: 10pt;">Tỉ lệ hoàn thành</th>
+						 <th style="font-size: 10pt;">Ngày sửa</th>
+					  </tr>
+				</thead>
+				<tbody>';
+				foreach ($CongViecMoiCapNhat as $row) {
+					echo '<tr>
+					        <td>'.$i.'</td>
+							<td>'.$row['MA_CV'].'</td>
+							<td>'.$row['TEN_CV'].'</td>
+							<td>'.$row['HOANTHANH'].'</td>
+							<td>'.$row['THOIGIANSUA'].'</td>
+						</tr>';
+					$i++;
+				}
+			echo '</tbody>
+			</table>';
+			}
+		?>
+      
+      
+      -->
